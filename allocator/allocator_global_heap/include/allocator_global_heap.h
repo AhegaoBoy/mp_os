@@ -6,6 +6,7 @@
 #include <logger_guardant.h>
 #include <typename_holder.h>
 
+
 class allocator_global_heap final:
     public allocator,
     private logger_guardant,
@@ -44,10 +45,6 @@ public:
     void deallocate(
         void *at) override;
 
-public:
-    
-    void foo()
-    {};
 
 private:
     
