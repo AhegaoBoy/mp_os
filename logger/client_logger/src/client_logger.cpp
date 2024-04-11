@@ -83,13 +83,16 @@ void client_logger::insert_in_stream(const std::string &path, std::set<logger::s
 
     else
     {
-        stream = new(std::ofstream);
         stream->open(path);
         this->_streams.emplace(std::make_pair(path, std::make_pair(stream, std::move(severity_set))));
     }
 
     if(_all_streams.find(path) != _all_streams.end()) ++_all_streams.find(path)->second.second;
-    else _all_streams.emplace(std::make_pair(path, std::make_pair(stream, 1)));
+    else
+    {
+        //stream->open(path);
+        _all_streams.emplace(std::make_pair(path, std::make_pair(stream, 1)));
+    }
 
 }
 logger const *client_logger::log(
@@ -103,9 +106,9 @@ logger const *client_logger::log(
         if(iter->second.second.find(severity) != iter->second.second.end())
         {
             path_of_log_file = iter->first;
-            std::ofstream* file = new(std::ofstream);
-            if(path_of_log_file != "") file->open(path_of_log_file);
-            else file = reinterpret_cast<std::ofstream*>(&std::cout);
+
+            std::ofstream* file = path_of_log_file.empty() ? reinterpret_cast<std::ofstream*>(&std::cout) : _all_streams.find(path_of_log_file)->second.first;
+
             *file<<severity_to_string(severity)<<" "<<text<<" "<<current_datetime_to_string()<<std::endl;
         }
     }

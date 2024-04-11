@@ -10,7 +10,10 @@ TEST(allocatorGlobalHeapTests, test1)
     logger_builder *logger_builder_instance = new client_logger_builder;
     
     logger *logger_instance = logger_builder_instance
-        ->add_file_stream("A:\\mai_stuff\\EarBitSky\\log_files\\log_file1.txt", logger::severity::debug)
+        ->add_file_stream("C:\\Users\\zero7\\OneDrive\\Desktop\\test1.txt", logger::severity::debug)
+        ->add_file_stream("C:\\Users\\zero7\\OneDrive\\Desktop\\test1.txt", logger::severity::warning)
+        ->add_file_stream("C:\\Users\\zero7\\OneDrive\\Desktop\\test1.txt", logger::severity::trace)
+        ->add_file_stream("C:\\Users\\zero7\\OneDrive\\Desktop\\test1.txt", logger::severity::error)
         ->build();
     delete logger_builder_instance;
     
@@ -30,11 +33,14 @@ TEST(allocatorGlobalHeapTests, test2)
     logger_builder *logger_builder_instance = new client_logger_builder;
     
     logger *logger_instance = logger_builder_instance
-        ->add_file_stream("gh_alc_test2_logs.txt", logger::severity::debug)
+        ->add_file_stream("C:\\Users\\zero7\\OneDrive\\Desktop\\test2.txt", logger::severity::debug)
+        ->add_file_stream("C:\\Users\\zero7\\OneDrive\\Desktop\\test2.txt", logger::severity::warning)
+        ->add_file_stream("C:\\Users\\zero7\\OneDrive\\Desktop\\test2.txt", logger::severity::trace)
+        ->add_file_stream("C:\\Users\\zero7\\OneDrive\\Desktop\\test2.txt", logger::severity::error)
         ->build();
     delete logger_builder_instance;
     
-    allocator *allocator_instance = new allocator_global_heap;
+    allocator *allocator_instance = new allocator_global_heap(logger_instance);
     
     auto first_block = reinterpret_cast<char *>(allocator_instance->allocate(sizeof(char), 11));
     
@@ -46,10 +52,22 @@ TEST(allocatorGlobalHeapTests, test2)
 }
 
 TEST(allocatorGlobalHeapTests, test3)
+
 {
+
+    logger_builder *logger_builder_instance = new client_logger_builder;
+
+    logger *logger_instance = logger_builder_instance
+            ->add_file_stream("C:\\Users\\zero7\\OneDrive\\Desktop\\test3.txt", logger::severity::debug)
+            ->add_file_stream("C:\\Users\\zero7\\OneDrive\\Desktop\\test3.txt", logger::severity::warning)
+            ->add_file_stream("C:\\Users\\zero7\\OneDrive\\Desktop\\test3.txt", logger::severity::trace)
+            ->add_file_stream("C:\\Users\\zero7\\OneDrive\\Desktop\\test3.txt", logger::severity::error)
+            ->build();
+    delete logger_builder_instance;
+
     int const values_to_allocate_count = 30;
     
-    allocator *allocator_instance = new allocator_global_heap(nullptr);
+    allocator *allocator_instance = new allocator_global_heap(logger_instance);
     
     auto first_block = reinterpret_cast<unsigned int *>(allocator_instance->allocate(sizeof(unsigned int), values_to_allocate_count));
     auto second_block = reinterpret_cast<unsigned int *>(allocator_instance->allocate(sizeof(unsigned long int), values_to_allocate_count));
@@ -71,9 +89,18 @@ TEST(allocatorGlobalHeapTests, test3)
 
 TEST(allocatorGlobalHeapTests, test4)
 {
+    logger_builder *logger_builder_instance = new client_logger_builder;
+
+    logger *logger_instance = logger_builder_instance
+            ->add_file_stream("C:\\Users\\zero7\\OneDrive\\Desktop\\test4.txt", logger::severity::debug)
+            ->add_file_stream("C:\\Users\\zero7\\OneDrive\\Desktop\\test4.txt", logger::severity::warning)
+            ->add_file_stream("C:\\Users\\zero7\\OneDrive\\Desktop\\test4.txt", logger::severity::trace)
+            ->add_file_stream("C:\\Users\\zero7\\OneDrive\\Desktop\\test4.txt", logger::severity::error)
+            ->build();
+    delete logger_builder_instance;
     int const values_to_allocate_count = 75;
     
-    allocator *allocator_instance = new allocator_global_heap;
+    allocator *allocator_instance = new allocator_global_heap(logger_instance);
     
     auto first_block = reinterpret_cast<short *>(allocator_instance->allocate(sizeof(short), values_to_allocate_count));
     auto second_block = reinterpret_cast<float *>(allocator_instance->allocate(sizeof(float), values_to_allocate_count));
@@ -108,8 +135,17 @@ TEST(allocatorGlobalHeapTests, test5)
         
         }
     };
-    
-    allocator *allocator_instance = new allocator_global_heap;
+
+    logger_builder *logger_builder_instance = new client_logger_builder;
+
+    logger *logger_instance = logger_builder_instance
+            ->add_file_stream("C:\\Users\\zero7\\OneDrive\\Desktop\\test5.txt", logger::severity::debug)
+            ->add_file_stream("C:\\Users\\zero7\\OneDrive\\Desktop\\test5.txt", logger::severity::warning)
+            ->add_file_stream("C:\\Users\\zero7\\OneDrive\\Desktop\\test5.txt", logger::severity::trace)
+            ->add_file_stream("C:\\Users\\zero7\\OneDrive\\Desktop\\test5.txt", logger::severity::error)
+            ->build();
+    delete logger_builder_instance;
+    allocator *allocator_instance = new allocator_global_heap(logger_instance);
     
     struct_metainfo *metainfo_instance = reinterpret_cast<struct_metainfo *>(allocator_instance->allocate(sizeof(struct_metainfo), 1));
     allocator::construct<struct_metainfo>(metainfo_instance, 10, std::string("string"));

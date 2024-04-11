@@ -18,6 +18,10 @@ class allocator_sorted_list final:
 private:
     
     void *_trusted_memory;
+    size_t* size_of_memory;
+    allocator* parent_allocator;
+    logger* _logger;
+    allocator_with_fit_mode :: fit_mode* _fit_mode;
 
 public:
     

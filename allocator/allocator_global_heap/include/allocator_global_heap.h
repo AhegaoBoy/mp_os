@@ -5,7 +5,7 @@
 #include <logger.h>
 #include <logger_guardant.h>
 #include <typename_holder.h>
-
+#include <cstddef>
 
 class allocator_global_heap final:
     public allocator,
@@ -54,7 +54,11 @@ private:
     
     inline std::string get_typename() const noexcept override;
 
-public:
+private:
+    std::string convert_address_to_string(void const* address);
+
+private:
+    std::string get_bytes(void* pointer, size_t end) const noexcept;
 
 };
 

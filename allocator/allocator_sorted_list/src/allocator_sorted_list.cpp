@@ -4,31 +4,58 @@
 
 allocator_sorted_list::~allocator_sorted_list()
 {
-    throw not_implemented("allocator_sorted_list::~allocator_sorted_list()", "your code should be here...");
+
 }
 
 allocator_sorted_list::allocator_sorted_list(
-    allocator_sorted_list const &other)
+    allocator_sorted_list const &other) : _trusted_memory(other._trusted_memory),
+    size_of_memory(other.size_of_memory), parent_allocator(other.parent_allocator),
+    _fit_mode(other._fit_mode)
 {
-    throw not_implemented("allocator_sorted_list::allocator_sorted_list(allocator_sorted_list const &)", "your code should be here...");
+
 }
 
 allocator_sorted_list &allocator_sorted_list::operator=(
     allocator_sorted_list const &other)
 {
-    throw not_implemented("allocator_sorted_list &allocator_sorted_list::operator=(allocator_sorted_list const &)", "your code should be here...");
+    if(this != &other) this->_trusted_memory = other._trusted_memory;
+    return *this;
 }
 
 allocator_sorted_list::allocator_sorted_list(
     allocator_sorted_list &&other) noexcept
 {
-    throw not_implemented("allocator_sorted_list::allocator_sorted_list(allocator_sorted_list &&) noexcept", "your code should be here...");
+    this->_trusted_memory = other._trusted_memory;
+    this->size_of_memory  = other.size_of_memory;
+    this->parent_allocator = other.parent_allocator;
+    this->_logger = other._logger;
+    this->_fit_mode = other._fit_mode;
+
+    other._trusted_memory = nullptr;
+    other.parent_allocator = nullptr;
+    other.size_of_memory = nullptr;
+    other._logger = nullptr;
+    other._fit_mode = nullptr;
 }
 
 allocator_sorted_list &allocator_sorted_list::operator=(
     allocator_sorted_list &&other) noexcept
 {
-    throw not_implemented("allocator_sorted_list &allocator_sorted_list::operator=(allocator_sorted_list &&) noexcept", "your code should be here...");
+    if(this != &other)
+    {
+        this->_trusted_memory = other._trusted_memory;
+        this->size_of_memory  = other.size_of_memory;
+        this->parent_allocator = other.parent_allocator;
+        this->_logger = other._logger;
+        this->_fit_mode = other._fit_mode;
+
+        other._trusted_memory = nullptr;
+        other.parent_allocator = nullptr;
+        other.size_of_memory = nullptr;
+        other._logger = nullptr;
+        other._fit_mode = nullptr;
+    }
+    return *this;
 }
 
 allocator_sorted_list::allocator_sorted_list(
@@ -37,7 +64,10 @@ allocator_sorted_list::allocator_sorted_list(
     logger *logger,
     allocator_with_fit_mode::fit_mode allocate_fit_mode)
 {
-    throw not_implemented("allocator_sorted_list::allocator_sorted_list(size_t, allocator *, logger *, allocator_with_fit_mode::fit_mode)", "your code should be here...");
+    this->size_of_memory = &space_size;
+    this->parent_allocator = parent_allocator;
+    this->_logger = logger;
+    this->_fit_mode = &allocate_fit_mode;
 }
 
 [[nodiscard]] void *allocator_sorted_list::allocate(
@@ -56,12 +86,12 @@ void allocator_sorted_list::deallocate(
 inline void allocator_sorted_list::set_fit_mode(
     allocator_with_fit_mode::fit_mode mode)
 {
-    throw not_implemented("inline void allocator_sorted_list::set_fit_mode(allocator_with_fit_mode::fit_mode)", "your code should be here...");
+    this->_fit_mode = &mode;
 }
 
 inline allocator *allocator_sorted_list::get_allocator() const
 {
-    throw not_implemented("inline allocator *allocator_sorted_list::get_allocator() const", "your code should be here...");
+    return this->parent_allocator;
 }
 
 std::vector<allocator_test_utils::block_info> allocator_sorted_list::get_blocks_info() const noexcept
@@ -71,10 +101,10 @@ std::vector<allocator_test_utils::block_info> allocator_sorted_list::get_blocks_
 
 inline logger *allocator_sorted_list::get_logger() const
 {
-    throw not_implemented("inline logger *allocator_sorted_list::get_logger() const", "your code should be here...");
+    return this->_logger;
 }
 
 inline std::string allocator_sorted_list::get_typename() const noexcept
 {
-    throw not_implemented("inline std::string allocator_sorted_list::get_typename() const noexcept", "your code should be here...");
+    return typeid(this).name();
 }

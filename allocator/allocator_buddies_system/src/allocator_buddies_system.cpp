@@ -56,7 +56,7 @@ void allocator_buddies_system::deallocate(
 inline void allocator_buddies_system::set_fit_mode(
     allocator_with_fit_mode::fit_mode mode)
 {
-    throw not_implemented("inline void allocator_buddies_system::set_fit_mode(allocator_with_fit_mode::fit_mode)", "your code should be here...");
+    *this->_fit_mode = mode;
 }
 
 inline allocator *allocator_buddies_system::get_allocator() const
@@ -71,10 +71,10 @@ std::vector<allocator_test_utils::block_info> allocator_buddies_system::get_bloc
 
 inline logger *allocator_buddies_system::get_logger() const
 {
-    throw not_implemented("inline logger *allocator_buddies_system::get_logger() const", "your code should be here...");
+    return this->_logger;
 }
 
 inline std::string allocator_buddies_system::get_typename() const noexcept
 {
-    throw not_implemented("inline std::string allocator_buddies_system::get_typename() const noexcept", "your code should be here...");
+    return typeid(this).name();
 }

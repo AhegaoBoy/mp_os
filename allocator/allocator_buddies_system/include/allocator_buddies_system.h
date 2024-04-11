@@ -16,8 +16,9 @@ class allocator_buddies_system final:
 {
 
 private:
-    
+    fit_mode* _fit_mode;
     void *_trusted_memory;
+    logger* _logger;
 
 public:
     
