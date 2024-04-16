@@ -23,45 +23,45 @@ class search_tree:
 {
 
 public:
-    
+
     struct __attribute__((unused)) common_node
     {
-    
+
     public:
-        
+
         typename associative_container<tkey, tvalue>::key_value_pair *keys_and_values;
-        
+
         common_node **subtrees;
-        
+
         size_t virtual_size;
-    
+
     public:
-    
+
         common_node();
-        
+
         virtual ~common_node() noexcept;
-        
+
     };
 
 protected:
-    
+
     std::function<int(tkey const &, tkey const &)> _keys_comparer;
 
 private:
-    
+
     logger *_logger;
-    
+
     allocator *_allocator;
 
 protected:
-    
+
     explicit search_tree(
         std::function<int(tkey const &, tkey const &)> keys_comparer = std::less<tkey>(),
         logger *logger = nullptr,
         allocator *allocator = nullptr);
-    
+
 public:
-    
+
     virtual std::vector<typename associative_container<tkey, tvalue>::key_value_pair> obtain_between(
         tkey const &lower_bound,
         tkey const &upper_bound,
@@ -69,11 +69,11 @@ public:
         bool upper_bound_inclusive) = 0;
 
 protected:
-    
+
     [[nodiscard]] inline allocator *get_allocator() const final;
-    
+
     [[nodiscard]] inline logger *get_logger() const final;
-    
+
 };
 
 //region search_tree<tkey, tvalue>::node implementation
