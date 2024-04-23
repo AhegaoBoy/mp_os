@@ -49,7 +49,7 @@ client_logger::~client_logger() noexcept
         if(tmp.second == 1)
         {
             tmp.first->close();
-            delete tmp.first;
+            //delete tmp.first;
             --tmp.second;
         }
     }
@@ -109,9 +109,8 @@ logger const *client_logger::log(
 
             std::ofstream* file = path_of_log_file.empty() ? reinterpret_cast<std::ofstream*>(&std::cout) : _all_streams.find(path_of_log_file)->second.first;
 
-            *file<<severity_to_string(severity)<<" "<<text<<" "<<current_datetime_to_string()<<std::endl;
+            *file<<severity_to_string(severity)<<" "<<text<<" "<<current_datetime_to_string()<<std::endl << std::endl;
         }
     }
-//    if(iter == _streams.end()) throw(std::string("No log file with fit severity, throwing exception\n"));//если не нашел, то кидаю ошибку
     return this;
 }

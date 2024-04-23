@@ -3,6 +3,7 @@
 #include <logger_builder.h>
 #include <client_logger_builder.h>
 #include <iostream>
+#include <gtest/gtest.h>
 
 logger *create_logger(
     std::vector<std::pair<std::string, logger::severity>> const &output_file_streams_setup,
@@ -93,16 +94,23 @@ bool infix_iterator_test(
 {
     auto end_infix = tree.cend_infix();
     auto it = tree.cbegin_infix();
+
     
     for (auto const &item: expected_result)
     {
-        if ((*it)->depth != item.depth || (*it)->key != item.key || (*it)->value != item.value)
+        if ((*it)->depth != item.depth || (*it)->get_key() != item.get_key() || (*it)->get_value() != item.get_value())
         {
             return false;
         }
         
         ++it;
     }
+
+/*    while(it != end_infix)
+    {
+        std::cout<<"DEPTH: "<<(*it)->depth<<"KEY: "<<(*it)->get_key()<<"VALUE: "<<(*it)->get_value()<<std::endl;
+        ++it;
+    }*/
     
     return true;
 }
@@ -119,11 +127,11 @@ bool prefix_iterator_test(
     
     for (auto const &item: expected_result)
     {
-        if ((*it)->depth != item.depth || (*it)->key != item.key || (*it)->value != item.value)
+        if ((*it)->depth != item.depth || (*it)->get_key() != item.get_key() || (*it)->get_value() != item.get_value())
         {
             return false;
         }
-        
+        std::cout<<"DEPTH: "<<(*it)->depth << " KEY: " << (*it)->get_key() << " VALUE: " << (*it)->get_value()<<std::endl;
         ++it;
     }
     
@@ -139,11 +147,11 @@ bool postfix_iterator_test(
 {
     std::string line;
     auto end_postfix = tree.end_postfix();
-    auto it = tree.cbegin_postfix();
+    auto it = tree.begin_postfix();
     
     for (auto const &item: expected_result)
     {
-        if ((*it)->depth != item.depth || (*it)->key != item.key || (*it)->value != item.value)
+        if ((*it)->depth != item.depth || (*it)->get_key() != item.get_key() || (*it)->get_value() != item.get_value())
         {
             return false;
         }
@@ -176,14 +184,14 @@ TEST(binarySearchTreePositiveTests, test1)
     
     std::vector<typename binary_search_tree<int, std::string>::iterator_data> expected_result =
         {
-            binary_search_tree<int, std::string>::iterator_data(2, 1, "l"),
-            binary_search_tree<int, std::string>::iterator_data(1, 2, "b"),
-            binary_search_tree<int, std::string>::iterator_data(2, 3, "d"),
-            binary_search_tree<int, std::string>::iterator_data(0, 5, "a"),
-            binary_search_tree<int, std::string>::iterator_data(2, 14, "e"),
-            binary_search_tree<int, std::string>::iterator_data(1, 15, "c")
+            std::move(binary_search_tree<int, std::string>::iterator_data(2, 1, "l")),
+            std::move(binary_search_tree<int, std::string>::iterator_data(1, 2, "b")),
+            std::move(binary_search_tree<int, std::string>::iterator_data(2, 3, "d")),
+            std::move(binary_search_tree<int, std::string>::iterator_data(0, 5, "a")),
+            std::move(binary_search_tree<int, std::string>::iterator_data(2, 14, "e")),
+            std::move(binary_search_tree<int, std::string>::iterator_data(1, 15, "c"))
         };
-    
+
     EXPECT_TRUE(infix_iterator_test(*reinterpret_cast<binary_search_tree<int, std::string> const *>(bst), expected_result));
     
     logger->trace("binarySearchTreePositiveTests.test1 finished");
@@ -603,7 +611,8 @@ int main(
     int argc,
     char **argv)
 {
+
     testing::InitGoogleTest(&argc, argv);
-    
+
     return RUN_ALL_TESTS();
 }

@@ -61,6 +61,9 @@ private:
     
     inline allocator *get_allocator() const override;
 
+private:
+    inline allocator_with_fit_mode::fit_mode get_fit_mode() const;
+
 public:
     
     std::vector<allocator_test_utils::block_info> get_blocks_info() const noexcept override;
@@ -72,7 +75,30 @@ private:
 private:
     
     inline std::string get_typename() const noexcept override;
-    
+
+private:
+    inline std::mutex *get_mutex() const;
+
+private:
+    size_t get_allocator_size() const noexcept;
+    size_t meta_size_of_block() const noexcept;
+    size_t meta_size() const noexcept;
+    void* get_first_occupied() const noexcept;
+    void set_first_occupied(void*) const noexcept;
+    size_t get_size_of_block(void* pointer) const noexcept;
+private:
+    std::string convert_address_to_string(const void* address) const;
+
+private:
+    void* get_next_occupied(void*) const noexcept;
+    void* get_previous_occupied(void*) const noexcept;
+    size_t get_size_between_occupied(void*, void*) const noexcept;
+
+    void* block_after_occupied(void*) const noexcept;
+
+    allocator* get_allocator_for_occupied(void*) const noexcept;
+
+
 };
 
 #endif //MATH_PRACTICE_AND_OPERATING_SYSTEMS_ALLOCATOR_ALLOCATOR_BOUNDARY_TAGS_H
