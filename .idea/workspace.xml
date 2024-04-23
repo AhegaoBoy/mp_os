@@ -3,9 +3,9 @@
   <component name="AutoImportSettings">
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
-  <component name="CMakePresetLoader">{
-  &quot;useNewFormat&quot;: true
-}</component>
+  <component name="CMakePresetLoader"><![CDATA[{
+  "useNewFormat": true
+}]]></component>
   <component name="CMakeReloadState">
     <option name="reloaded" value="true" />
   </component>
@@ -52,16 +52,10 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fbbbf1da-cdeb-43c3-8713-8291b52490d2" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/allocator/allocator_boundary_tags/include/allocator_boundary_tags.h" beforeDir="false" afterPath="$PROJECT_DIR$/allocator/allocator_boundary_tags/include/allocator_boundary_tags.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/allocator/allocator_boundary_tags/src/allocator_boundary_tags.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/allocator/allocator_boundary_tags/src/allocator_boundary_tags.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/allocator/allocator_boundary_tags/tests/allocator_boundary_tags_tests.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/allocator/allocator_boundary_tags/tests/allocator_boundary_tags_tests.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/associative_container/include/associative_container.h" beforeDir="false" afterPath="$PROJECT_DIR$/associative_container/include/associative_container.h" afterDir="false" />
+    <list default="true" id="eb7a191f-32ed-4860-804b-454a93318fd7" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/associative_container/search_tree/binary_search_tree/include/binary_search_tree.h" beforeDir="false" afterPath="$PROJECT_DIR$/associative_container/search_tree/binary_search_tree/include/binary_search_tree.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/associative_container/search_tree/binary_search_tree/tests/binary_search_tree_tests.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/associative_container/search_tree/binary_search_tree/tests/binary_search_tree_tests.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/associative_container/search_tree/include/search_tree.h" beforeDir="false" afterPath="$PROJECT_DIR$/associative_container/search_tree/include/search_tree.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/logger/client_logger/src/client_logger.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/logger/client_logger/src/client_logger.cpp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -81,34 +75,23 @@
   <component name="ProjectApplicationVersion">
     <option name="ide" value="CLion" />
     <option name="majorVersion" value="2023" />
-    <option name="minorVersion" value="3.4" />
+    <option name="minorVersion" value="2.2" />
   </component>
-  <component name="ProjectColorInfo">{
-  &quot;customColor&quot;: &quot;&quot;,
-  &quot;associatedIndex&quot;: 8
-}</component>
-  <component name="ProjectId" id="2fSuVU88sgcMgZXDgqorSy9wCWx" />
+  <component name="ProjectColorInfo"><![CDATA[{
+  "customColor": "",
+  "associatedIndex": 8
+}]]></component>
+  <component name="ProjectId" id="2fUePWPCay0aC8UkBqMiXKoSRko" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
-    "CMake Application.mp_os_assctv_cntnr_srch_tr_bnr_srch_tr_tests.executor": "Run",
-    "Google Test.binarySearchTreePositiveTests.test10.executor": "Debug",
-    "Google Test.binarySearchTreePositiveTests.test11.executor": "Run",
-    "Google Test.binarySearchTreePositiveTests.test2.executor": "Run",
-    "Google Test.binarySearchTreePositiveTests.test3.executor": "Run",
-    "Google Test.binarySearchTreePositiveTests.test4.executor": "Run",
-    "Google Test.binarySearchTreePositiveTests.test5.executor": "Run",
-    "Google Test.binarySearchTreePositiveTests.test6.executor": "Run",
-    "Google Test.binarySearchTreePositiveTests.test8.executor": "Run",
-    "Google Test.binarySearchTreePositiveTests.test9.executor": "Run",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.cidr.known.project.marker": "true",
-    "RunOnceActivity.readMode.enableVisualFormatting": "true",
-    "cf.advertisement.text.has.clang-format": "true",
+    "WebServerToolWindowFactoryState": "false",
     "cf.first.check.clang-format": "false",
     "cidr.known.project.marker": "true",
     "git-widget-placeholder": "main",
@@ -116,39 +99,14 @@
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
+    "structure.view.defaults.are.configured": "true",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
-  <component name="RunManager" selected="Google Test.binarySearchTreePositiveTests.test3">
-    <configuration name="binarySearchTreePositiveTests.test10" type="CMakeGoogleTestRunConfigurationType" factoryName="Google Test" temporary="true" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="mp_os" TARGET_NAME="mp_os_assctv_cntnr_srch_tr_bnr_srch_tr_tests" RUN_TARGET_PROJECT_NAME="mp_os" RUN_TARGET_NAME="mp_os_assctv_cntnr_srch_tr_bnr_srch_tr_tests" TEST_CLASS="binarySearchTreePositiveTests" TEST_METHOD="test10" TEST_MODE="SUITE_TEST">
+  <component name="RunManager" selected="Google Test.mp_os_allctr_allctr_bndr_tgs_tests">
+    <configuration default="true" type="CLionExternalRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true">
       <method v="2">
-        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
-        <option name="BeforeTestRunTask" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="binarySearchTreePositiveTests.test11" type="CMakeGoogleTestRunConfigurationType" factoryName="Google Test" temporary="true" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="mp_os" TARGET_NAME="mp_os_assctv_cntnr_srch_tr_bnr_srch_tr_tests" RUN_TARGET_PROJECT_NAME="mp_os" RUN_TARGET_NAME="mp_os_assctv_cntnr_srch_tr_bnr_srch_tr_tests" TEST_CLASS="binarySearchTreePositiveTests" TEST_METHOD="test11" TEST_MODE="SUITE_TEST">
-      <method v="2">
-        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
-        <option name="BeforeTestRunTask" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="binarySearchTreePositiveTests.test2" type="CMakeGoogleTestRunConfigurationType" factoryName="Google Test" temporary="true" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="mp_os" TARGET_NAME="mp_os_assctv_cntnr_srch_tr_bnr_srch_tr_tests" RUN_TARGET_PROJECT_NAME="mp_os" RUN_TARGET_NAME="mp_os_assctv_cntnr_srch_tr_bnr_srch_tr_tests" TEST_CLASS="binarySearchTreePositiveTests" TEST_METHOD="test2" TEST_MODE="SUITE_TEST">
-      <method v="2">
-        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
-        <option name="BeforeTestRunTask" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="binarySearchTreePositiveTests.test3" type="CMakeGoogleTestRunConfigurationType" factoryName="Google Test" temporary="true" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="mp_os" TARGET_NAME="mp_os_assctv_cntnr_srch_tr_bnr_srch_tr_tests" RUN_TARGET_PROJECT_NAME="mp_os" RUN_TARGET_NAME="mp_os_assctv_cntnr_srch_tr_bnr_srch_tr_tests" TEST_CLASS="binarySearchTreePositiveTests" TEST_METHOD="test3" TEST_MODE="SUITE_TEST">
-      <method v="2">
-        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
-        <option name="BeforeTestRunTask" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="binarySearchTreePositiveTests.test9" type="CMakeGoogleTestRunConfigurationType" factoryName="Google Test" temporary="true" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="mp_os" TARGET_NAME="mp_os_assctv_cntnr_srch_tr_bnr_srch_tr_tests" RUN_TARGET_PROJECT_NAME="mp_os" RUN_TARGET_NAME="mp_os_assctv_cntnr_srch_tr_bnr_srch_tr_tests" TEST_CLASS="binarySearchTreePositiveTests" TEST_METHOD="test9" TEST_MODE="SUITE_TEST">
-      <method v="2">
-        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
-        <option name="BeforeTestRunTask" enabled="true" />
+        <option name="CLION.EXTERNAL.BUILD" enabled="true" />
       </method>
     </configuration>
     <configuration name="mp_os_allctr_allctr_bdds_sstm_tests" type="CMakeGoogleTestRunConfigurationType" factoryName="Google Test" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="mp_os" TARGET_NAME="mp_os_allctr_allctr_bdds_sstm_tests" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="mp_os" RUN_TARGET_NAME="mp_os_allctr_allctr_bdds_sstm_tests" TEST_MODE="SUITE_TEST">
@@ -329,13 +287,9 @@
       </method>
     </configuration>
     <list>
-      <item itemvalue="CMake Application.gmock" />
-      <item itemvalue="CMake Application.gmock_main" />
-      <item itemvalue="CMake Application.gtest" />
-      <item itemvalue="CMake Application.gtest_main" />
       <item itemvalue="CMake Application.mp_os_allctr_allctr" />
-      <item itemvalue="CMake Application.mp_os_allctr_allctr_bdds_sstm" />
       <item itemvalue="CMake Application.mp_os_allctr_allctr_bndr_tgs" />
+      <item itemvalue="CMake Application.mp_os_allctr_allctr_bdds_sstm" />
       <item itemvalue="CMake Application.mp_os_allctr_allctr_glbl_hp" />
       <item itemvalue="CMake Application.mp_os_allctr_allctr_rb_tr" />
       <item itemvalue="CMake Application.mp_os_allctr_allctr_srtd_lst" />
@@ -346,12 +300,16 @@
       <item itemvalue="CMake Application.mp_os_assctv_cntnr_srch_tr_bnr_srch_tr_rb_tr" />
       <item itemvalue="CMake Application.mp_os_assctv_cntnr_srch_tr_bnr_srch_tr_scpgt_tr" />
       <item itemvalue="CMake Application.mp_os_assctv_cntnr_srch_tr_bnr_srch_tr_spl_tr" />
+      <item itemvalue="CMake Application.gmock" />
+      <item itemvalue="CMake Application.gmock_main" />
+      <item itemvalue="CMake Application.gtest" />
+      <item itemvalue="CMake Application.gtest_main" />
       <item itemvalue="CMake Application.mp_os_cmmn" />
       <item itemvalue="CMake Application.mp_os_lggr_clnt_lggr" />
       <item itemvalue="CMake Application.mp_os_lggr_lggr" />
       <item itemvalue="CMake Application.mp_os_lggr_srvr_lggr" />
-      <item itemvalue="Google Test.mp_os_allctr_allctr_bdds_sstm_tests" />
       <item itemvalue="Google Test.mp_os_allctr_allctr_bndr_tgs_tests" />
+      <item itemvalue="Google Test.mp_os_allctr_allctr_bdds_sstm_tests" />
       <item itemvalue="Google Test.mp_os_allctr_allctr_glbl_hp_tests" />
       <item itemvalue="Google Test.mp_os_allctr_allctr_rb_tr_tests" />
       <item itemvalue="Google Test.mp_os_allctr_allctr_srtd_lst_tests" />
@@ -362,36 +320,17 @@
       <item itemvalue="Google Test.mp_os_assctv_cntnr_srch_tr_bnr_srch_tr_tests" />
       <item itemvalue="Google Test.mp_os_lggr_clnt_lggr_tests" />
       <item itemvalue="Google Test.mp_os_lggr_srvr_lggr_tests" />
-      <item itemvalue="Google Test.binarySearchTreePositiveTests.test10" />
-      <item itemvalue="Google Test.binarySearchTreePositiveTests.test11" />
-      <item itemvalue="Google Test.binarySearchTreePositiveTests.test9" />
-      <item itemvalue="Google Test.binarySearchTreePositiveTests.test2" />
-      <item itemvalue="Google Test.binarySearchTreePositiveTests.test3" />
     </list>
-    <recent_temporary>
-      <list>
-        <item itemvalue="Google Test.binarySearchTreePositiveTests.test3" />
-        <item itemvalue="Google Test.binarySearchTreePositiveTests.test10" />
-        <item itemvalue="Google Test.binarySearchTreePositiveTests.test11" />
-        <item itemvalue="Google Test.binarySearchTreePositiveTests.test9" />
-        <item itemvalue="Google Test.binarySearchTreePositiveTests.test2" />
-      </list>
-    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="fbbbf1da-cdeb-43c3-8713-8291b52490d2" name="Changes" comment="" />
-      <created>1713806824448</created>
+      <changelist id="eb7a191f-32ed-4860-804b-454a93318fd7" name="Changes" comment="" />
+      <created>1713860061148</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1713806824448</updated>
-      <workItem from="1713806825919" duration="2409000" />
-      <workItem from="1713814715897" duration="1000" />
-      <workItem from="1713815668784" duration="524000" />
-      <workItem from="1713816204495" duration="1000" />
-      <workItem from="1713818252701" duration="2321000" />
-      <workItem from="1713821828721" duration="1151000" />
+      <updated>1713860061148</updated>
+      <workItem from="1713860063219" duration="2061000" />
     </task>
     <servers />
   </component>
@@ -399,44 +338,9 @@
     <option name="version" value="3" />
   </component>
   <component name="VCPKGProject">
+    <isAutomaticEditVcpkgJson value="false" />
     <isAutomaticCheckingOnLaunch value="false" />
     <isAutomaticFoundErrors value="true" />
-    <isAutomaticReloadCMake value="true" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
-          <url>file://$PROJECT_DIR$/associative_container/search_tree/binary_search_tree/tests/binary_search_tree_tests.cpp</url>
-          <line>120</line>
-          <option name="timeStamp" value="2" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
-          <url>file://$PROJECT_DIR$/associative_container/search_tree/binary_search_tree/include/binary_search_tree.h</url>
-          <line>2019</line>
-          <option name="timeStamp" value="3" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
-          <url>file://$PROJECT_DIR$/associative_container/search_tree/binary_search_tree/include/binary_search_tree.h</url>
-          <line>2060</line>
-          <option name="timeStamp" value="4" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
-          <url>file://$PROJECT_DIR$/associative_container/search_tree/binary_search_tree/tests/binary_search_tree_tests.cpp</url>
-          <line>143</line>
-          <option name="timeStamp" value="5" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
-          <url>file://$PROJECT_DIR$/associative_container/search_tree/binary_search_tree/include/binary_search_tree.h</url>
-          <line>2737</line>
-          <option name="timeStamp" value="6" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
-    <watches-manager>
-      <configuration name="CMakeGoogleTestRunConfigurationType">
-        <watch expression="expected_result[0]._key" />
-      </configuration>
-    </watches-manager>
+    <isAutomaticFoundErrors value="true" />
   </component>
 </project>

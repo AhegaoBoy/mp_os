@@ -106,11 +106,6 @@ bool infix_iterator_test(
         ++it;
     }
 
-/*    while(it != end_infix)
-    {
-        std::cout<<"DEPTH: "<<(*it)->depth<<"KEY: "<<(*it)->get_key()<<"VALUE: "<<(*it)->get_value()<<std::endl;
-        ++it;
-    }*/
     
     return true;
 }
