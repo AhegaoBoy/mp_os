@@ -3,27 +3,37 @@
 #include "../include/server_logger.h"
 
 server_logger::server_logger(
-    server_logger const &other)
+    server_logger const &other): _streams(other._streams), _format(other._format)
 {
-    throw not_implemented("server_logger::server_logger(server_logger const &other)", "your code should be here...");
+
 }
 
 server_logger &server_logger::operator=(
     server_logger const &other)
 {
-    throw not_implemented("server_logger &server_logger::operator=(server_logger const &other)", "your code should be here...");
+    if(this != &other)
+    {
+        this->_streams = other._streams;
+        this->_format = other._format;
+    }
+    return *this;
 }
 
 server_logger::server_logger(
-    server_logger &&other) noexcept
+    server_logger &&other) noexcept: _streams(std::move(other._streams)), _format(std::move(other._format))
 {
-    throw not_implemented("server_logger::server_logger(server_logger &&other) noexcept", "your code should be here...");
+
 }
 
 server_logger &server_logger::operator=(
     server_logger &&other) noexcept
 {
-    throw not_implemented("server_logger &server_logger::operator=(server_logger &&other) noexcept", "your code should be here...");
+    if(this != &other)
+    {
+        this->_streams = std::move(other._streams);
+        this->_format = std::move(other._format);
+    }
+    return *this;
 }
 
 server_logger::~server_logger() noexcept
@@ -31,6 +41,15 @@ server_logger::~server_logger() noexcept
     throw not_implemented("server_logger::~server_logger() noexcept", "your code should be here...");
 }
 
+void server_logger::add_file_stream(const std::string &file_path_name,
+                                                   logger::severity const &severity)
+{
+    _streams[file_path_name].emplace(severity);
+}
+void server_logger::add_console_severity(logger::severity const &severity)
+{
+    _streams[""].emplace(severity);
+}
 logger const *server_logger::log(
     const std::string &text,
     logger::severity severity) const noexcept

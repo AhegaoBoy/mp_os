@@ -49,7 +49,7 @@ client_logger::~client_logger() noexcept
         if(tmp.second == 1)
         {
             tmp.first->close();
-            //delete tmp.first;
+            if(!iter->first.empty()) delete tmp.first;
             --tmp.second;
         }
     }
@@ -90,7 +90,6 @@ void client_logger::insert_in_stream(const std::string &path, std::set<logger::s
     if(_all_streams.find(path) != _all_streams.end()) ++_all_streams.find(path)->second.second;
     else
     {
-        //stream->open(path);
         _all_streams.emplace(std::make_pair(path, std::make_pair(stream, 1)));
     }
 

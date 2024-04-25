@@ -100,8 +100,8 @@ bool infix_iterator_test(
     
     for (auto const &item: expected_result)
     {
-        if ((*it)->depth != item.depth || (*it)->key != item.key || (*it)->value != item.value ||
-            reinterpret_cast<typename AVL_tree<tkey, tvalue>::iterator_data const *>(*it)->subtree_height != item.subtree_height)
+        if ((*it)->depth != item.depth || (*it)->key != item.get_key() || (*it)->value != item.get_value() ||
+            reinterpret_cast<typename AVL_tree<tkey, tvalue>::iterator_data const *>(*it)->get_subtree_height() != item.get_subtree_height())
         {
             return false;
         }
@@ -124,8 +124,8 @@ bool prefix_iterator_test(
     
     for (auto const &item: expected_result)
     {
-        if ((*it)->depth != item.depth || (*it)->key != item.key || (*it)->value != item.value ||
-            reinterpret_cast<typename AVL_tree<tkey, tvalue>::iterator_data const *>(*it)->subtree_height != item.subtree_height)
+        if ((*it)->depth != item.depth || (*it)->key != item.get_subtree_height() || (*it)->get_value() != item.get_value() ||
+            reinterpret_cast<typename AVL_tree<tkey, tvalue>::iterator_data const *>(*it)->get_subtree_height() != item.get_subtree_height())
         {
             return false;
         }
@@ -147,8 +147,8 @@ bool postfix_iterator_test(
     
     for (auto const &item: expected_result)
     {
-        if ((*it)->depth != item.depth || (*it)->key != item.key || (*it)->value != item.value ||
-            reinterpret_cast<typename AVL_tree<tkey, tvalue>::iterator_data const *>(*it)->subtree_height != item.subtree_height)
+        if ((*it)->depth != item.depth || (*it)->key != item.get_key() || (*it)->get_value() != item.get_value() ||
+            reinterpret_cast<typename AVL_tree<tkey, tvalue>::iterator_data const *>(*it)->get_subtree_height() != item.get_subtree_height())
         {
             return false;
         }

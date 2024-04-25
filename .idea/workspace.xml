@@ -3,9 +3,9 @@
   <component name="AutoImportSettings">
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
-  <component name="CMakePresetLoader"><![CDATA[{
-  "useNewFormat": true
-}]]></component>
+  <component name="CMakePresetLoader">{
+  &quot;useNewFormat&quot;: true
+}</component>
   <component name="CMakeReloadState">
     <option name="reloaded" value="true" />
   </component>
@@ -52,10 +52,15 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="eb7a191f-32ed-4860-804b-454a93318fd7" name="Changes" comment="">
+    <list default="true" id="11fc3a6b-eff8-4cc7-a550-5e64dfa9b7d7" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/associative_container/search_tree/binary_search_tree/AVL_tree/include/AVL_tree.h" beforeDir="false" afterPath="$PROJECT_DIR$/associative_container/search_tree/binary_search_tree/AVL_tree/include/AVL_tree.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/associative_container/search_tree/binary_search_tree/AVL_tree/tests/AVL_tree_tests.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/associative_container/search_tree/binary_search_tree/AVL_tree/tests/AVL_tree_tests.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/associative_container/search_tree/binary_search_tree/include/binary_search_tree.h" beforeDir="false" afterPath="$PROJECT_DIR$/associative_container/search_tree/binary_search_tree/include/binary_search_tree.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/associative_container/search_tree/binary_search_tree/tests/binary_search_tree_tests.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/associative_container/search_tree/binary_search_tree/tests/binary_search_tree_tests.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/logger/client_logger/src/client_logger.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/logger/client_logger/src/client_logger.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/logger/server_logger/include/server_logger.h" beforeDir="false" afterPath="$PROJECT_DIR$/logger/server_logger/include/server_logger.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/logger/server_logger/src/server_logger.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/logger/server_logger/src/server_logger.cpp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -75,23 +80,29 @@
   <component name="ProjectApplicationVersion">
     <option name="ide" value="CLion" />
     <option name="majorVersion" value="2023" />
-    <option name="minorVersion" value="2.2" />
+    <option name="minorVersion" value="3.4" />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "customColor": "",
-  "associatedIndex": 8
-}]]></component>
-  <component name="ProjectId" id="2fUePWPCay0aC8UkBqMiXKoSRko" />
+  <component name="ProjectColorInfo">{
+  &quot;customColor&quot;: &quot;&quot;,
+  &quot;associatedIndex&quot;: 8
+}</component>
+  <component name="ProjectId" id="2fYiZU3oSFxBNsskcgmUMzRiurZ" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "CMake Application.mp_os_allctr_allctr_bndr_tgs_tests.executor": "Debug",
+    "CMake Application.mp_os_assctv_cntnr_srch_tr_bnr_srch_tr_tests.executor": "Run",
+    "Google Test.falsePositiveTests.test1.executor": "Run",
+    "Google Test.positiveTests.test1.executor": "Run",
+    "Google Test.positiveTests.test2.executor": "Debug",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.cidr.known.project.marker": "true",
-    "WebServerToolWindowFactoryState": "false",
+    "RunOnceActivity.readMode.enableVisualFormatting": "true",
+    "cf.advertisement.text.has.clang-format": "true",
     "cf.first.check.clang-format": "false",
     "cidr.known.project.marker": "true",
     "git-widget-placeholder": "main",
@@ -99,14 +110,15 @@
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
-    "structure.view.defaults.are.configured": "true",
+    "nodejs_package_manager_path": "npm",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
-  <component name="RunManager" selected="Google Test.mp_os_allctr_allctr_bndr_tgs_tests">
-    <configuration default="true" type="CLionExternalRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true">
+  <component name="RunManager" selected="CMake Application.mp_os_allctr_allctr_bndr_tgs_tests">
+    <configuration name="falsePositiveTests.test1" type="CMakeGoogleTestRunConfigurationType" factoryName="Google Test" temporary="true" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="mp_os" TARGET_NAME="mp_os_allctr_allctr_bndr_tgs_tests" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="mp_os" RUN_TARGET_NAME="mp_os_allctr_allctr_bndr_tgs_tests" TEST_CLASS="falsePositiveTests" TEST_METHOD="test1" TEST_MODE="SUITE_TEST">
       <method v="2">
-        <option name="CLION.EXTERNAL.BUILD" enabled="true" />
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+        <option name="BeforeTestRunTask" enabled="true" />
       </method>
     </configuration>
     <configuration name="mp_os_allctr_allctr_bdds_sstm_tests" type="CMakeGoogleTestRunConfigurationType" factoryName="Google Test" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="mp_os" TARGET_NAME="mp_os_allctr_allctr_bdds_sstm_tests" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="mp_os" RUN_TARGET_NAME="mp_os_allctr_allctr_bdds_sstm_tests" TEST_MODE="SUITE_TEST">
@@ -181,6 +193,18 @@
         <option name="BeforeTestRunTask" enabled="true" />
       </method>
     </configuration>
+    <configuration name="positiveTests.test1" type="CMakeGoogleTestRunConfigurationType" factoryName="Google Test" temporary="true" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="mp_os" TARGET_NAME="mp_os_allctr_allctr_bndr_tgs_tests" RUN_TARGET_PROJECT_NAME="mp_os" RUN_TARGET_NAME="mp_os_allctr_allctr_bndr_tgs_tests" TEST_CLASS="positiveTests" TEST_METHOD="test1" TEST_MODE="SUITE_TEST">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+        <option name="BeforeTestRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="positiveTests.test2" type="CMakeGoogleTestRunConfigurationType" factoryName="Google Test" temporary="true" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="mp_os" TARGET_NAME="mp_os_allctr_allctr_bndr_tgs_tests" RUN_TARGET_PROJECT_NAME="mp_os" RUN_TARGET_NAME="mp_os_allctr_allctr_bndr_tgs_tests" TEST_CLASS="positiveTests" TEST_METHOD="test2" TEST_MODE="SUITE_TEST">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+        <option name="BeforeTestRunTask" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="gmock" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="mp_os" TARGET_NAME="gmock" CONFIG_NAME="Debug">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
@@ -212,6 +236,11 @@
       </method>
     </configuration>
     <configuration name="mp_os_allctr_allctr_bndr_tgs" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="mp_os" TARGET_NAME="mp_os_allctr_allctr_bndr_tgs" CONFIG_NAME="Debug">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="mp_os_allctr_allctr_bndr_tgs_tests" type="CMakeRunConfiguration" factoryName="Application" temporary="true" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="mp_os" TARGET_NAME="mp_os_allctr_allctr_bndr_tgs_tests" RUN_TARGET_PROJECT_NAME="mp_os" RUN_TARGET_NAME="mp_os_allctr_allctr_bndr_tgs_tests">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
       </method>
@@ -266,6 +295,11 @@
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
       </method>
     </configuration>
+    <configuration name="mp_os_assctv_cntnr_srch_tr_bnr_srch_tr_tests" type="CMakeRunConfiguration" factoryName="Application" temporary="true" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="mp_os" TARGET_NAME="mp_os_assctv_cntnr_srch_tr_bnr_srch_tr_tests" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="mp_os" RUN_TARGET_NAME="mp_os_assctv_cntnr_srch_tr_bnr_srch_tr_tests">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="mp_os_cmmn" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="mp_os" TARGET_NAME="mp_os_cmmn" CONFIG_NAME="Debug">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
@@ -308,6 +342,8 @@
       <item itemvalue="CMake Application.mp_os_lggr_clnt_lggr" />
       <item itemvalue="CMake Application.mp_os_lggr_lggr" />
       <item itemvalue="CMake Application.mp_os_lggr_srvr_lggr" />
+      <item itemvalue="CMake Application.mp_os_allctr_allctr_bndr_tgs_tests" />
+      <item itemvalue="CMake Application.mp_os_assctv_cntnr_srch_tr_bnr_srch_tr_tests" />
       <item itemvalue="Google Test.mp_os_allctr_allctr_bndr_tgs_tests" />
       <item itemvalue="Google Test.mp_os_allctr_allctr_bdds_sstm_tests" />
       <item itemvalue="Google Test.mp_os_allctr_allctr_glbl_hp_tests" />
@@ -320,17 +356,31 @@
       <item itemvalue="Google Test.mp_os_assctv_cntnr_srch_tr_bnr_srch_tr_tests" />
       <item itemvalue="Google Test.mp_os_lggr_clnt_lggr_tests" />
       <item itemvalue="Google Test.mp_os_lggr_srvr_lggr_tests" />
+      <item itemvalue="Google Test.falsePositiveTests.test1" />
+      <item itemvalue="Google Test.positiveTests.test1" />
+      <item itemvalue="Google Test.positiveTests.test2" />
     </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="CMake Application.mp_os_allctr_allctr_bndr_tgs_tests" />
+        <item itemvalue="Google Test.positiveTests.test2" />
+        <item itemvalue="Google Test.falsePositiveTests.test1" />
+        <item itemvalue="Google Test.positiveTests.test1" />
+        <item itemvalue="CMake Application.mp_os_assctv_cntnr_srch_tr_bnr_srch_tr_tests" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="eb7a191f-32ed-4860-804b-454a93318fd7" name="Changes" comment="" />
-      <created>1713860061148</created>
+      <changelist id="11fc3a6b-eff8-4cc7-a550-5e64dfa9b7d7" name="Changes" comment="" />
+      <created>1713984468164</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1713860061148</updated>
-      <workItem from="1713860063219" duration="2061000" />
+      <updated>1713984468164</updated>
+      <workItem from="1713984469692" duration="4193000" />
+      <workItem from="1713997231532" duration="1312000" />
+      <workItem from="1714042806341" duration="2140000" />
     </task>
     <servers />
   </component>
@@ -338,9 +388,8 @@
     <option name="version" value="3" />
   </component>
   <component name="VCPKGProject">
-    <isAutomaticEditVcpkgJson value="false" />
     <isAutomaticCheckingOnLaunch value="false" />
     <isAutomaticFoundErrors value="true" />
-    <isAutomaticFoundErrors value="true" />
+    <isAutomaticReloadCMake value="true" />
   </component>
 </project>

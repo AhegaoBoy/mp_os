@@ -187,6 +187,7 @@ TEST(binarySearchTreePositiveTests, test1)
             std::move(binary_search_tree<int, std::string>::iterator_data(1, 15, "c"))
         };
 
+
     EXPECT_TRUE(infix_iterator_test(*reinterpret_cast<binary_search_tree<int, std::string> const *>(bst), expected_result));
     
     logger->trace("binarySearchTreePositiveTests.test1 finished");
