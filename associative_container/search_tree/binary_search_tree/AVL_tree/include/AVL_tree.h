@@ -15,10 +15,6 @@ private:
     struct node final:
         binary_search_tree<tkey, tvalue>::node
     {
-        tkey key;
-        tvalue value;
-        node* left_subtree;
-        node* right_subtree;
         size_t height;
     };
 
@@ -159,20 +155,20 @@ private:
     class obtaining_template_method final:
         public binary_search_tree<tkey, tvalue>::obtaining_template_method
     {
-    
+
     public:
-        
+
         explicit obtaining_template_method(
             AVL_tree<tkey, tvalue> *tree);
-        
+
         // TODO: think about it!
-        
+
     };
     
     class disposal_template_method final:
         public binary_search_tree<tkey, tvalue>::disposal_template_method
     {
-    
+    AVL_tree<t>::
     public:
         
         explicit disposal_template_method(

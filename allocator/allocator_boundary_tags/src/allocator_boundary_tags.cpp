@@ -79,6 +79,7 @@ allocator_boundary_tags::allocator_boundary_tags(
     *fitMode = allocate_fit_mode;
 
     std::mutex* mutex_object = reinterpret_cast<std::mutex*>(fitMode + 1);
+    allocator::construct(mutex_object);
     //mutex_object->unlock();
 
     void** first_occupied_block = reinterpret_cast<void**>(mutex_object  + 1);
@@ -94,8 +95,9 @@ allocator_boundary_tags::allocator_boundary_tags(
     size_t value_size,
     size_t values_count) {
     debug_with_guard("ALLOCATION METHOD STARTED");
-    //std::mutex* mutex = get_mutex();
-    //mutex->lock();
+    std::mutex* mutex = get_mutex();
+    std::lock_guard<std::mutex> lock(*mutex);
+
     size_t client_size = values_count * value_size;
     void *pointer_to_allocated_memory = nullptr;
     size_t *block = nullptr;
@@ -173,22 +175,27 @@ allocator_boundary_tags::allocator_boundary_tags(
 
 
                 if(fitMode == allocator_with_fit_mode::fit_mode::first_fit
-                    && (size_between >= client_size + meta_size_of_block())
-                    ||(fitMode == allocator_with_fit_mode::fit_mode::the_best_fit &&
+                    && (size_between >= client_size + meta_size_of_block()))
+                {
+                    fit_free_block = block_after_occupied(previous_occupied_block);
+                    saved_prev = previous_occupied_block;
+                    saved_next = current_occupied_block;
+                    break;
+                }
+                else if((fitMode == allocator_with_fit_mode::fit_mode::the_best_fit &&
                         (size_between <= size_of_fit_block && (size_between >= client_size + meta_size_of_block())))
                     ||(fitMode == allocator_with_fit_mode::fit_mode::the_worst_fit &&
                         (size_between >= size_of_fit_block && (size_between >= client_size + meta_size_of_block()))))
                 {
                     fit_free_block = block_after_occupied(previous_occupied_block);
-                    saved_prev = nullptr;
-                    saved_next = previous_occupied_block;
+                    saved_prev = previous_occupied_block;
+                    saved_next = current_occupied_block;
+                    size_of_fit_block = size_between;
                 }
             }
 
             previous_occupied_block = current_occupied_block;
             current_occupied_block = get_next_occupied(current_occupied_block);
-
-
         }
 
         if(!fit_free_block && !current_occupied_block)
@@ -261,8 +268,9 @@ allocator_boundary_tags::allocator_boundary_tags(
 void allocator_boundary_tags::deallocate(
     void *at)
 {
-/*    std::mutex* mutex = get_mutex();
-    mutex->lock();*/
+    std::mutex* mutex = get_mutex();
+    std::lock_guard<std::mutex> lock(*mutex);
+
     debug_with_guard("BLOCK TO DEALLOCATE: " + convert_address_to_string(at));
 
     if(get_allocator_for_occupied(at) != this)
@@ -365,13 +373,13 @@ std::vector<allocator_test_utils::block_info> allocator_boundary_tags::get_block
 
 
         block_sate.is_block_occupied = true;
-        block_sate.block_size = get_size_of_block(current) + meta_size_of_block();
+        block_sate.block_size = get_size_of_block(current);
 
         vc.push_back(block_sate);
     }
     else
     {
-        block_sate.block_size = get_size_of_block(current) + meta_size_of_block();
+        block_sate.block_size = get_size_of_block(current);
         block_sate.is_block_occupied = true;
 
         debug_with_guard("BLOCK 1: " + convert_address_to_string(current) + " IS OCCUPIED");
@@ -393,7 +401,7 @@ std::vector<allocator_test_utils::block_info> allocator_boundary_tags::get_block
             debug_with_guard("BLOCK :" + convert_address_to_string(reinterpret_cast<unsigned char*>(previous) + meta_size_of_block() +                                                                        get_size_of_block(current)) + " IS FREE ");
         }
         block_sate.is_block_occupied = true;
-        block_sate.block_size = get_size_of_block(current) + meta_size_of_block();
+        block_sate.block_size = get_size_of_block(current);
 
         debug_with_guard("BLOCK: " + convert_address_to_string(current) + " IS OCCUPIED");
         vc.push_back(block_sate);

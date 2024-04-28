@@ -6,9 +6,9 @@
 #include <logger_builder.h>
 
 logger *create_logger(
-    std::vector<std::pair<std::string, logger::severity>> const &output_file_streams_setup,
-    bool use_console_stream = true,
-    logger::severity console_stream_severity = logger::severity::debug)
+        std::vector<std::pair<std::string, logger::severity>> const &output_file_streams_setup,
+        bool use_console_stream = true,
+        logger::severity console_stream_severity = logger::severity::debug)
 {
     logger_builder *logger_builder_instance = new client_logger_builder;
 
@@ -32,35 +32,35 @@ logger *create_logger(
 TEST(positiveTests, test1)
 {
     logger *logger = create_logger(std::vector<std::pair<std::string, logger::severity>>
-        {
-            {
-                "A:\\mai_stuff\\EarBitSky\\log_files\\log1.txt",
-                logger::severity::information
-            }
-        });
-    allocator *subject = new allocator_boundary_tags(sizeof(int) * 60, nullptr, logger, allocator_with_fit_mode::fit_mode::first_fit);
+                                           {
+                                                   {
+                                                           "allocator_boundary_tags_tests_logs_positive_test_plain_usage.txt",
+                                                           logger::severity::information
+                                                   }
+                                           });
+    allocator *subject = new allocator_boundary_tags(sizeof(int) * 70, nullptr, logger, allocator_with_fit_mode::fit_mode::first_fit);
 
-    auto const *first_block = reinterpret_cast<int const *>(subject->allocate(sizeof(int), 10));
-    auto const *second_block = reinterpret_cast<int const *>(subject->allocate(sizeof(int), 10));
-    auto const *third_block = reinterpret_cast<int const *>(subject->allocate(sizeof(int), 10));
+    auto *first_block = reinterpret_cast<int*>(subject->allocate(sizeof(int), 10));
+    auto *second_block = reinterpret_cast<int*>(subject->allocate(sizeof(int), 10));
+    auto *third_block = reinterpret_cast<int*>(subject->allocate(sizeof(int), 10));
 
-    printf("first block: %p\tfirst block + 10 %p\tsecond block %p\n",first_block, first_block + 10*sizeof(int) + 2*sizeof(void**) + sizeof(allocator**) + sizeof(size_t*), second_block);
-
-    std::cout<<10* sizeof(int) + 2*sizeof(void**) + sizeof(allocator**) + sizeof(size_t*)<<std::endl;
-
-    ASSERT_EQ(first_block + 18, second_block);
-    ASSERT_EQ(second_block + 18, third_block);
+    ASSERT_EQ(reinterpret_cast<int*>(reinterpret_cast<unsigned char*>(first_block + 10) + sizeof(size_t) + sizeof(void*)*3) , second_block);
+    ASSERT_EQ(reinterpret_cast<int*>(reinterpret_cast<unsigned char*>(second_block + 10) + sizeof(size_t) + sizeof(void*)*3), third_block);
 
     subject->deallocate(const_cast<void *>(reinterpret_cast<void const *>(second_block)));
+    auto actual_blocks_state1 = dynamic_cast<allocator_test_utils *>(subject)->get_blocks_info();
+
 
     auto *the_same_subject = dynamic_cast<allocator_with_fit_mode *>(subject);
     the_same_subject->set_fit_mode(allocator_with_fit_mode::fit_mode::the_worst_fit);
-    auto const *fourth_block = reinterpret_cast<int const *>(subject->allocate(sizeof(int), 1));
+    auto *fourth_block = reinterpret_cast<int*>(subject->allocate(sizeof(int), 1));
     the_same_subject->set_fit_mode(allocator_with_fit_mode::fit_mode::the_best_fit);
-    auto const *fifth_block = reinterpret_cast<int const *>(subject->allocate(sizeof(int), 1));
+    auto *fifth_block = reinterpret_cast<int*>(subject->allocate(sizeof(int), 1));
 
-/*    ASSERT_EQ(first_block + 18, fifth_block);
-    ASSERT_EQ(third_block + 18, fourth_block);*/
+    auto actual_blocks_state2 = dynamic_cast<allocator_test_utils *>(subject)->get_blocks_info();
+
+    ASSERT_EQ(reinterpret_cast<int*>(reinterpret_cast<unsigned char*>(first_block + 10) + sizeof(size_t) + sizeof(void*)*3), fourth_block);
+    ASSERT_EQ(reinterpret_cast<int*>(reinterpret_cast<unsigned char*>(fourth_block + 1) + sizeof(size_t) + sizeof(void*)*3), fifth_block);
 
     subject->deallocate(const_cast<void *>(reinterpret_cast<void const *>(first_block)));
     subject->deallocate(const_cast<void *>(reinterpret_cast<void const *>(third_block)));
@@ -68,19 +68,19 @@ TEST(positiveTests, test1)
     subject->deallocate(const_cast<void *>(reinterpret_cast<void const *>(fifth_block)));
 
     delete subject;
-
     delete logger;
+
 }
 
 TEST(positiveTests, test2)
 {
     logger *logger_instance = create_logger(std::vector<std::pair<std::string, logger::severity>>
-        {
-            {
-                "allocator_boundary_tags_tests_logs_false_positive_test_1.txt",
-                logger::severity::information
-            }
-        });
+                                                    {
+                                                            {
+                                                                    "allocator_boundary_tags_tests_logs_positive_test_1.txt",
+                                                                    logger::severity::information
+                                                            }
+                                                    });
     allocator *allocator_instance = new allocator_boundary_tags(sizeof(unsigned char) * 3000, nullptr, logger_instance, allocator_with_fit_mode::fit_mode::first_fit);
 
     char *first_block = reinterpret_cast<char *>(allocator_instance->allocate(sizeof(char), 1000));
@@ -89,17 +89,18 @@ TEST(positiveTests, test2)
     first_block = reinterpret_cast<char *>(allocator_instance->allocate(sizeof(char), 999));
     auto actual_blocks_state = dynamic_cast<allocator_test_utils *>(allocator_instance)->get_blocks_info();
     std::vector<allocator_test_utils::block_info> expected_blocks_state
-        {
-            { .block_size = 1000 + sizeof(allocator::block_size_t) + sizeof(allocator::block_pointer_t) * 2, .is_block_occupied = true },
-            { .block_size = 1000 + sizeof(allocator::block_size_t) + sizeof(allocator::block_pointer_t) * 2, .is_block_occupied = true },
-            { .block_size = 3000 - (1000 + sizeof(allocator::block_size_t) + sizeof(allocator::block_pointer_t)) * 2, .is_block_occupied = false }
-        };
+            {
+                    { .block_size = 999, .is_block_occupied = true },
+                    { .block_size = 1, .is_block_occupied = false},
+                    { .block_size = 0, .is_block_occupied = true },
+                    { .block_size = 1936, .is_block_occupied = false }
+            };
 
-/*    ASSERT_EQ(actual_blocks_state.size(), expected_blocks_state.size());
+    ASSERT_EQ(actual_blocks_state.size(), expected_blocks_state.size());
     for (int i = 0; i < actual_blocks_state.size(); i++)
     {
         ASSERT_EQ(actual_blocks_state[i], expected_blocks_state[i]);
-    }*/
+    }
 
     allocator_instance->deallocate(first_block);
     allocator_instance->deallocate(second_block);
@@ -111,12 +112,12 @@ TEST(positiveTests, test2)
 TEST(falsePositiveTests, test1)
 {
     logger *logger_instance = create_logger(std::vector<std::pair<std::string, logger::severity>>
-        {
-            {
-                "allocator_boundary_tags_tests_logs_false_positive_test_2.txt",
-                logger::severity::information
-            }
-        });
+                                                    {
+                                                            {
+                                                                    "allocator_boundary_tags_tests_logs_false_positive_test_1.txt",
+                                                                    logger::severity::information
+                                                            }
+                                                    });
     allocator *allocator_instance = new allocator_boundary_tags(3000, nullptr, logger_instance, allocator_with_fit_mode::fit_mode::first_fit);
 
     ASSERT_THROW(static_cast<void>(allocator_instance->allocate(sizeof(char), 3000)), std::bad_alloc);
@@ -126,8 +127,8 @@ TEST(falsePositiveTests, test1)
 }
 
 int main(
-    int argc,
-    char *argv[])
+        int argc,
+        char *argv[])
 {
     testing::InitGoogleTest(&argc, argv);
 
