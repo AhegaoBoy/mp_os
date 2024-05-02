@@ -98,13 +98,13 @@ public:
 
         unsigned int depth;
 
-    private:
+    protected:
 
         tkey *_key;
 
         tvalue *_value;
 
-    private:
+    protected:
 
         bool _is_state_initialized;
 
@@ -126,9 +126,7 @@ public:
         {
             return _is_state_initialized;
         }
-
     public:
-
         iterator_data():
                 _key(reinterpret_cast<tkey *>(::operator new(sizeof(tkey)))),
                 _value(reinterpret_cast<tvalue *>(::operator new(sizeof(tvalue)))),
@@ -1822,7 +1820,7 @@ protected:
 
     // endregion template methods definition
 
-private:
+protected:
 
     node *_root;
 
@@ -1868,7 +1866,11 @@ public:
 
 protected:
 
-    virtual void clear(
+    /*virtual void copy_additional_data(const node *source, node *&  destination) noexcept
+    {
+
+    }*/
+    void clear(
             node *&subtree_root)
     {
         if (subtree_root == nullptr)
@@ -1884,7 +1886,7 @@ protected:
         subtree_root = nullptr;
     }
 
-    virtual node *copy(
+    node *copy(
             node const *subtree_root)
     {
         if (subtree_root == nullptr)
@@ -1896,6 +1898,7 @@ protected:
         call_node_constructor(subtree_root_copied, subtree_root->key, subtree_root->value);
         subtree_root_copied->left_subtree = copy(subtree_root->left_subtree);
         subtree_root_copied->right_subtree = copy(subtree_root->right_subtree);
+        copy_additional_data(subtree_root, subtree_root_copied);
 
         return subtree_root_copied;
     }
@@ -1926,7 +1929,7 @@ protected:
             iterator_data *destination,
             node *source)
     {
-
+        // Base class implementation
     }
 
     virtual iterator_data *create_iterator_data() const
@@ -3987,7 +3990,7 @@ template<
         typename tvalue>
 typename binary_search_tree<tkey, tvalue>::infix_iterator binary_search_tree<tkey, tvalue>::begin_infix() const noexcept
 {
-    return binary_search_tree<tkey, tvalue>::infix_iterator(const_cast<binary_search_tree<tkey, tvalue>*>(this), _root, create_iterator_data());
+    return binary_search_tree<tkey, tvalue>::infix_iterator(const_cast<binary_search_tree<tkey, tvalue>*>(static_cast<binary_search_tree<tkey, tvalue> const*>(this)), _root, create_iterator_data());
 }
 
 template<
@@ -4164,7 +4167,7 @@ void binary_search_tree<tkey, tvalue>::big_left_rotation(
     subtree_root->left_subtree = grand_child;
     grand_child->left_subtree = child;
 
-    small_left_rotation(subtree_root, true);
+    small_left_rotation(subtree_root, false);
 }
 
 template<
@@ -4183,7 +4186,7 @@ void binary_search_tree<tkey, tvalue>::big_right_rotation(
     subtree_root->right_subtree = grand_child;
     grand_child->right_subtree = child;
 
-    small_right_rotation(subtree_root, true);
+    small_right_rotation(subtree_root, false);
 }
 
 template<
@@ -4197,7 +4200,7 @@ void binary_search_tree<tkey, tvalue>::double_left_rotation(
     if(!validate) return;
     if(validate && (!subtree_root || !subtree_root->right_subtree || !subtree_root->right_subtree->right_subtree)) throw std::logic_error("Can't do the double left rotation");
 
-    small_left_rotation(small_left_rotation(subtree_root, true), true);
+    small_left_rotation(small_left_rotation(subtree_root, false), false);
 }
 
 template<
@@ -4211,7 +4214,7 @@ void binary_search_tree<tkey, tvalue>::double_right_rotation(
     if(!validate) return;
     if(validate && (!subtree_root || !subtree_root->left_subtree || !subtree_root->left_subtree->left_subtree)) throw std::logic_error("Can't do the double right rotation");
 
-    small_right_rotation(small_right_rotation(subtree_root, true), true);
+    small_right_rotation(small_right_rotation(subtree_root, false), false);
 }
 
 // endregion subtree rotations implementation

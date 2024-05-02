@@ -54,9 +54,9 @@
   <component name="ChangeListManager">
     <list default="true" id="11fc3a6b-eff8-4cc7-a550-5e64dfa9b7d7" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/allocator/allocator_boundary_tags/src/allocator_boundary_tags.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/allocator/allocator_boundary_tags/src/allocator_boundary_tags.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/allocator/allocator_boundary_tags/tests/allocator_boundary_tags_tests.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/allocator/allocator_boundary_tags/tests/allocator_boundary_tags_tests.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/associative_container/search_tree/binary_search_tree/AVL_tree/include/AVL_tree.h" beforeDir="false" afterPath="$PROJECT_DIR$/associative_container/search_tree/binary_search_tree/AVL_tree/include/AVL_tree.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/associative_container/search_tree/binary_search_tree/AVL_tree/tests/AVL_tree_tests.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/associative_container/search_tree/binary_search_tree/AVL_tree/tests/AVL_tree_tests.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/associative_container/search_tree/binary_search_tree/include/binary_search_tree.h" beforeDir="false" afterPath="$PROJECT_DIR$/associative_container/search_tree/binary_search_tree/include/binary_search_tree.h" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -90,7 +90,10 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "CMake Application.mp_os_allctr_allctr_bndr_tgs_tests.executor": "Debug",
+    "CMake Application.mp_os_assctv_cntnr_srch_tr_bnr_srch_tr_AVL_tr_tests.executor": "Run",
     "CMake Application.mp_os_assctv_cntnr_srch_tr_bnr_srch_tr_tests.executor": "Run",
+    "Google Test.AVLTreePositiveTests.test1.executor": "Run",
+    "Google Test.binarySearchTreePositiveTests.test1.executor": "Debug",
     "Google Test.falsePositiveTests.test1.executor": "Run",
     "Google Test.positiveTests.test1.executor": "Run",
     "Google Test.positiveTests.test2.executor": "Debug",
@@ -103,7 +106,7 @@
     "cf.first.check.clang-format": "false",
     "cidr.known.project.marker": "true",
     "git-widget-placeholder": "main",
-    "last_opened_file_path": "D:/C++/mp_os",
+    "last_opened_file_path": "A:/mai_stuff/EarBitSky/mp_os",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -113,19 +116,14 @@
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
-  <component name="RunManager" selected="CMake Application.mp_os_allctr_allctr_bndr_tgs_tests">
-    <configuration default="true" type="CLionExternalRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true">
-      <method v="2">
-        <option name="CLION.EXTERNAL.BUILD" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="binarySearchTreePositiveTests.test1" type="CMakeGoogleTestRunConfigurationType" factoryName="Google Test" temporary="true" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="mp_os" TARGET_NAME="mp_os_assctv_cntnr_srch_tr_bnr_srch_tr_tests" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="mp_os" RUN_TARGET_NAME="mp_os_assctv_cntnr_srch_tr_bnr_srch_tr_tests" TEST_CLASS="binarySearchTreePositiveTests" TEST_METHOD="test1" TEST_MODE="SUITE_TEST">
+  <component name="RunManager" selected="Google Test.AVLTreePositiveTests.test1">
+    <configuration name="AVLTreePositiveTests.test1" type="CMakeGoogleTestRunConfigurationType" factoryName="Google Test" temporary="true" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="mp_os" TARGET_NAME="mp_os_assctv_cntnr_srch_tr_bnr_srch_tr_AVL_tr_tests" RUN_TARGET_PROJECT_NAME="mp_os" RUN_TARGET_NAME="mp_os_assctv_cntnr_srch_tr_bnr_srch_tr_AVL_tr_tests" TEST_CLASS="AVLTreePositiveTests" TEST_METHOD="test1" TEST_MODE="SUITE_TEST">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
         <option name="BeforeTestRunTask" enabled="true" />
       </method>
     </configuration>
-    <configuration name="falsePositiveTests.test1" type="CMakeGoogleTestRunConfigurationType" factoryName="Google Test" temporary="true" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="mp_os" TARGET_NAME="mp_os_allctr_allctr_bndr_tgs_tests" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="mp_os" RUN_TARGET_NAME="mp_os_allctr_allctr_bndr_tgs_tests" TEST_CLASS="falsePositiveTests" TEST_METHOD="test1" TEST_MODE="SUITE_TEST">
+    <configuration name="binarySearchTreePositiveTests.test1" type="CMakeGoogleTestRunConfigurationType" factoryName="Google Test" temporary="true" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="mp_os" TARGET_NAME="mp_os_assctv_cntnr_srch_tr_bnr_srch_tr_tests" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="mp_os" RUN_TARGET_NAME="mp_os_assctv_cntnr_srch_tr_bnr_srch_tr_tests" TEST_CLASS="binarySearchTreePositiveTests" TEST_METHOD="test1" TEST_MODE="SUITE_TEST">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
         <option name="BeforeTestRunTask" enabled="true" />
@@ -203,12 +201,6 @@
         <option name="BeforeTestRunTask" enabled="true" />
       </method>
     </configuration>
-    <configuration name="positiveTests.test1" type="CMakeGoogleTestRunConfigurationType" factoryName="Google Test" temporary="true" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="mp_os" TARGET_NAME="mp_os_allctr_allctr_bndr_tgs_tests" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="mp_os" RUN_TARGET_NAME="mp_os_allctr_allctr_bndr_tgs_tests" TEST_CLASS="positiveTests" TEST_METHOD="test1" TEST_MODE="SUITE_TEST">
-      <method v="2">
-        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
-        <option name="BeforeTestRunTask" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="gmock" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="mp_os" TARGET_NAME="gmock" CONFIG_NAME="Debug">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
@@ -244,7 +236,7 @@
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
       </method>
     </configuration>
-    <configuration name="mp_os_allctr_allctr_bndr_tgs_tests" type="CMakeRunConfiguration" factoryName="Application" temporary="true" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="mp_os" TARGET_NAME="mp_os_allctr_allctr_bndr_tgs_tests" RUN_TARGET_PROJECT_NAME="mp_os" RUN_TARGET_NAME="mp_os_allctr_allctr_bndr_tgs_tests">
+    <configuration name="mp_os_allctr_allctr_bndr_tgs_tests" type="CMakeRunConfiguration" factoryName="Application" temporary="true" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="mp_os" TARGET_NAME="mp_os_allctr_allctr_bndr_tgs_tests" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="mp_os" RUN_TARGET_NAME="mp_os_allctr_allctr_bndr_tgs_tests">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
       </method>
@@ -280,6 +272,11 @@
       </method>
     </configuration>
     <configuration name="mp_os_assctv_cntnr_srch_tr_bnr_srch_tr_AVL_tr" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="mp_os" TARGET_NAME="mp_os_assctv_cntnr_srch_tr_bnr_srch_tr_AVL_tr" CONFIG_NAME="Debug">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="mp_os_assctv_cntnr_srch_tr_bnr_srch_tr_AVL_tr_tests" type="CMakeRunConfiguration" factoryName="Application" temporary="true" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="mp_os" TARGET_NAME="mp_os_assctv_cntnr_srch_tr_bnr_srch_tr_AVL_tr_tests" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="mp_os" RUN_TARGET_NAME="mp_os_assctv_cntnr_srch_tr_bnr_srch_tr_AVL_tr_tests">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
       </method>
@@ -346,6 +343,7 @@
       <item itemvalue="CMake Application.mp_os_lggr_clnt_lggr" />
       <item itemvalue="CMake Application.mp_os_lggr_lggr" />
       <item itemvalue="CMake Application.mp_os_lggr_srvr_lggr" />
+      <item itemvalue="CMake Application.mp_os_assctv_cntnr_srch_tr_bnr_srch_tr_AVL_tr_tests" />
       <item itemvalue="CMake Application.mp_os_allctr_allctr_bndr_tgs_tests" />
       <item itemvalue="CMake Application.mp_os_assctv_cntnr_srch_tr_bnr_srch_tr_tests" />
       <item itemvalue="Google Test.mp_os_allctr_allctr_bndr_tgs_tests" />
@@ -361,16 +359,15 @@
       <item itemvalue="Google Test.mp_os_lggr_clnt_lggr_tests" />
       <item itemvalue="Google Test.mp_os_lggr_srvr_lggr_tests" />
       <item itemvalue="Google Test.binarySearchTreePositiveTests.test1" />
-      <item itemvalue="Google Test.falsePositiveTests.test1" />
-      <item itemvalue="Google Test.positiveTests.test1" />
+      <item itemvalue="Google Test.AVLTreePositiveTests.test1" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="CMake Application.mp_os_allctr_allctr_bndr_tgs_tests" />
-        <item itemvalue="Google Test.positiveTests.test1" />
-        <item itemvalue="CMake Application.mp_os_assctv_cntnr_srch_tr_bnr_srch_tr_tests" />
+        <item itemvalue="Google Test.AVLTreePositiveTests.test1" />
         <item itemvalue="Google Test.binarySearchTreePositiveTests.test1" />
-        <item itemvalue="Google Test.falsePositiveTests.test1" />
+        <item itemvalue="CMake Application.mp_os_assctv_cntnr_srch_tr_bnr_srch_tr_AVL_tr_tests" />
+        <item itemvalue="CMake Application.mp_os_assctv_cntnr_srch_tr_bnr_srch_tr_tests" />
+        <item itemvalue="CMake Application.mp_os_allctr_allctr_bndr_tgs_tests" />
       </list>
     </recent_temporary>
   </component>
@@ -386,6 +383,10 @@
       <workItem from="1713997231532" duration="1312000" />
       <workItem from="1714042806341" duration="2140000" />
       <workItem from="1714060725845" duration="7956000" />
+      <workItem from="1714317008931" duration="10459000" />
+      <workItem from="1714383022462" duration="27223000" />
+      <workItem from="1714563765315" duration="17641000" />
+      <workItem from="1714648281295" duration="3920000" />
     </task>
     <servers />
   </component>
@@ -393,10 +394,85 @@
     <option name="version" value="3" />
   </component>
   <component name="VCPKGProject">
-    <isAutomaticEditVcpkgJson value="true" />
     <isAutomaticCheckingOnLaunch value="false" />
     <isAutomaticFoundErrors value="true" />
-    <isAutomaticFoundErrors value="true" />
+    <isAutomaticReloadCMake value="true" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
+          <url>file://$PROJECT_DIR$/associative_container/search_tree/binary_search_tree/AVL_tree/include/AVL_tree.h</url>
+          <line>363</line>
+          <option name="timeStamp" value="7" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
+          <url>file://$PROJECT_DIR$/associative_container/search_tree/binary_search_tree/include/binary_search_tree.h</url>
+          <line>3730</line>
+          <option name="timeStamp" value="9" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
+          <url>file://$PROJECT_DIR$/associative_container/search_tree/binary_search_tree/include/binary_search_tree.h</url>
+          <line>56</line>
+          <option name="timeStamp" value="11" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
+          <url>file://$PROJECT_DIR$/associative_container/search_tree/include/search_tree.h</url>
+          <line>101</line>
+          <option name="timeStamp" value="12" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
+          <url>file://$PROJECT_DIR$/associative_container/search_tree/binary_search_tree/tests/binary_search_tree_tests.cpp</url>
+          <line>168</line>
+          <option name="timeStamp" value="13" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
+          <url>file://$PROJECT_DIR$/associative_container/search_tree/binary_search_tree/AVL_tree/tests/AVL_tree_tests.cpp</url>
+          <line>180</line>
+          <option name="timeStamp" value="15" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
+          <url>file://$PROJECT_DIR$/associative_container/search_tree/binary_search_tree/AVL_tree/include/AVL_tree.h</url>
+          <line>320</line>
+          <option name="timeStamp" value="16" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
+          <url>file://$PROJECT_DIR$/associative_container/search_tree/binary_search_tree/include/binary_search_tree.h</url>
+          <line>3552</line>
+          <option name="timeStamp" value="20" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
+          <url>file://$PROJECT_DIR$/associative_container/search_tree/binary_search_tree/include/binary_search_tree.h</url>
+          <line>1905</line>
+          <option name="timeStamp" value="21" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
+          <url>file://$PROJECT_DIR$/associative_container/search_tree/binary_search_tree/include/binary_search_tree.h</url>
+          <line>1910</line>
+          <option name="timeStamp" value="22" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
+          <url>file://$PROJECT_DIR$/associative_container/search_tree/binary_search_tree/AVL_tree/include/AVL_tree.h</url>
+          <line>288</line>
+          <option name="timeStamp" value="23" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
+          <url>file://$PROJECT_DIR$/associative_container/search_tree/binary_search_tree/AVL_tree/include/AVL_tree.h</url>
+          <line>293</line>
+          <option name="timeStamp" value="24" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
+          <url>file://$PROJECT_DIR$/associative_container/search_tree/binary_search_tree/AVL_tree/include/AVL_tree.h</url>
+          <line>300</line>
+          <option name="timeStamp" value="25" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
+          <url>file://$PROJECT_DIR$/associative_container/search_tree/binary_search_tree/AVL_tree/include/AVL_tree.h</url>
+          <line>334</line>
+          <option name="timeStamp" value="26" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

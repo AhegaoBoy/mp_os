@@ -96,11 +96,11 @@ bool infix_iterator_test(
 {
     std::string line;
     auto end_infix = tree.cend_infix();
-    auto it = tree.cbegin_infix();
+    auto it = tree.begin_infix();
     
     for (auto const &item: expected_result)
     {
-        if ((*it)->depth != item.depth || (*it)->key != item.get_key() || (*it)->value != item.get_value() ||
+        if ((*it)->depth != item.depth || (*it)->get_key() != item.get_key() || (*it)->get_value() != item.get_value() ||
             reinterpret_cast<typename AVL_tree<tkey, tvalue>::iterator_data const *>(*it)->get_subtree_height() != item.get_subtree_height())
         {
             return false;
@@ -124,7 +124,7 @@ bool prefix_iterator_test(
     
     for (auto const &item: expected_result)
     {
-        if ((*it)->depth != item.depth || (*it)->key != item.get_subtree_height() || (*it)->get_value() != item.get_value() ||
+        if ((*it)->depth != item.depth || (*it)->get_key() != item.get_key() || (*it)->get_value() != item.get_value() ||
             reinterpret_cast<typename AVL_tree<tkey, tvalue>::iterator_data const *>(*it)->get_subtree_height() != item.get_subtree_height())
         {
             return false;
@@ -143,11 +143,11 @@ bool postfix_iterator_test(
 {
     std::string line;
     auto end_postfix = tree.end_postfix();
-    auto it = tree.cbegin_postfix();
+    auto it = tree.begin_postfix();
     
     for (auto const &item: expected_result)
     {
-        if ((*it)->depth != item.depth || (*it)->key != item.get_key() || (*it)->get_value() != item.get_value() ||
+        if ((*it)->depth != item.depth || (*it)->get_key() != item.get_key() || (*it)->get_value() != item.get_value() ||
             reinterpret_cast<typename AVL_tree<tkey, tvalue>::iterator_data const *>(*it)->get_subtree_height() != item.get_subtree_height())
         {
             return false;
@@ -169,7 +169,7 @@ TEST(AVLTreePositiveTests, test1)
     
     logger->trace("AVLTreePositiveTests.test1 started");
     
-    search_tree<int, std::string> *avl = new AVL_tree<int, std::string>(nullptr, logger);
+    search_tree<int, std::string> *avl = new AVL_tree<int, std::string>(nullptr,logger, key_comparer());
     
     avl->insert(5, "a");
     avl->insert(2, "b");

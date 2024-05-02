@@ -10,13 +10,95 @@ class AVL_tree final:
     public binary_search_tree<tkey, tvalue>
 {
 
+public:
+    explicit AVL_tree<tkey, tvalue>(std::function<int(tkey const &, tkey const &)> keys_comparer = std::less<tkey>(),
+            logger* logger = nullptr,
+            allocator* allocator = nullptr) : binary_search_tree<tkey, tvalue>(keys_comparer, logger, allocator)
+    {
+
+    }
 private:
     
     struct node final:
         binary_search_tree<tkey, tvalue>::node
     {
         size_t height;
+
+    public:
+        node(
+                tkey const &key,
+                tvalue const &value
+                ) : binary_search_tree<tkey, tvalue>::node(key, value), height(1){}
+        node(
+                tkey const &key,
+                tvalue &&value
+                ) : binary_search_tree<tkey, tvalue>::node(key, value), height(1){}
+                ~node() noexcept override = default;
     };
+
+class height_and_balance : public binary_search_tree<tkey, tvalue>::template_method_basics
+{
+protected:
+    void count_node_height(node*& current)
+    {
+        if(!current->right_subtree && !current->left_subtree) current->height = 1;
+
+        if(current->right_subtree && !current->left_subtree) current->height = current->right_subtree->heght + 1;
+
+        if(current->left_subtree && !current->right_subtree) current->height = current->left_subtree->height + 1;
+
+        max(current->left_subtree->height + current->right_subtree->height) + 1;
+    }
+
+    size_t balance_factor(node* current)
+    {
+        if(!current || !current->right_subtree && !current->left_subtree) return 0;
+
+        if(current->right_subtree && !current->left_subtree) return -current->right_subtree->height;
+
+        if(current->left_subtree && !current->right_subtree) return current->left_subtree->height;
+
+        return current->left_subtree->height - current->right_subtree->height;
+    }
+
+    void balance(std::stack<typename binary_search_tree<tkey, tvalue>::node**> & path) override
+    {
+        while(!path.empty())
+        {
+            node* current_node = path.top();
+            count_node_height(current_node);
+
+            path.pop();
+
+            if(std::abs(balance_factor(current_node)) <= 1) continue;
+
+            else
+            {
+                if(balance_factor(current_node) == 2)
+                {
+                    if(balance_factor(current_node->left_subtree) == 1)
+                    {
+                        AVL_tree<tkey, tvalue>::small_right_rotation(current_node);
+                    }
+                    else
+                    {
+                        AVL_tree<tkey, tvalue>::big_right_rotation(current_node);
+                    }
+                }
+
+                else
+                {
+                    if(balance_factor(current_node->right_subtree) == 1) AVL_tree<tkey, tvalue>::small_left_rotation(current_node);
+                    else AVL_tree<tkey, tvalue>::big_left_rotation(current_node);
+                }
+                count_node_height(current_node->left_subtree);
+                count_node_height(current_node->right_subtree);
+                count_node_height(current_node);
+            }
+        }
+    }
+};
+
 
 public:
     
@@ -25,18 +107,13 @@ public:
     {
 
     public:
-        unsigned int depth;
-    private:
-        tkey* _key;
-        tvalue* _value;
-        size_t* subtree_height;
-        bool _is_state_initialized;
+        unsigned int subtree_height;
 
     public:
         size_t get_subtree_height() const
         {
-            if(!_is_state_initialized) throw std::logic_error("state is unitialized");
-            return *subtree_height;
+            if(!binary_search_tree<tkey, tvalue>::iterator_data::_is_state_initialized) throw std::logic_error("state is unitialized");
+            return subtree_height;
         }
     
     public:
@@ -47,109 +124,103 @@ public:
             tvalue const &value,
             size_t subtree_height);
 
-        iterator_data():
-                _key(reinterpret_cast<tkey*>(::operator new(sizeof (tkey)))),
-                _value(reinterpret_cast<tvalue*>(::operator new(sizeof(tvalue)))),
-                subtree_height(reinterpret_cast<size_t*>(::operator new(sizeof (size_t))))
+        iterator_data(): binary_search_tree<tkey, tvalue>::iterator_data()
         {
 
         }
-
-    public:
-        iterator_data(iterator_data const& other)  noexcept :
-                _key(reinterpret_cast<tkey*>(::operator new(sizeof(tkey)))),
-                _value(reinterpret_cast<tvalue*>(operator new(sizeof(tvalue)))),
-                subtree_height(reinterpret_cast<size_t*>(::operator new(sizeof(size_t)))),
-                _is_state_initialized(other._is_state_initialized),
-                depth(other.depth)
-        {
-            allocator::construct(this->_key, *(other._key));
-            allocator::construct(this->_value, *(other._value));
-            allocator::construct(this->subtree_height, *(other.subtree_height));
-        }
-
-        iterator_data& operator=(iterator_data const& other) noexcept
-        {
-            if(this != &other)
-            {
-                this->_key = other._key;
-                this->_value = other._value;
-                this->_is_state_initialized = other._is_state_initialized;
-                this->subtree_height = other.subtree_height;
-                this->depth = other.depth;
-            }
-            return *this;
-        }
-
-        iterator_data (iterator_data&& other) noexcept : _key(other._key), _value(other._value), _is_state_initialized(other._is_state_initialized), depth(other.depth)
-        {
-            other._value = nullptr;
-            other._key = nullptr;
-            other.subtree_height = nullptr;
-            other.depth = 0;
-            other._is_state_initialized = false;
-        }
-
-        iterator_data& operator=(iterator_data&& other) noexcept
-        {
-            if(this != &other)
-            {
-                this->_key = other._key;
-                this->_value = other._value;
-                this->_is_state_initialized = other._is_state_initialized;
-                this->subtree_height = other.subtree_height;
-                this->depth = other.depth;
-
-                other._value = nullptr;
-                other._key = nullptr;
-                other.subtree_height = nullptr;
-                other.depth = 0;
-                other._is_state_initialized = false;
-            }
-            return *this;
-        }
-
-
-        virtual ~iterator_data() noexcept
-        {
-            if (_is_state_initialized)
-            {
-                allocator::destruct(_key);
-                allocator::destruct(_value);
-                allocator::destruct((subtree_height));
-
-            }
-
-            ::operator delete(_key);
-            _key = nullptr;
-            ::operator delete(_value);
-            _value = nullptr;
-            ::operator delete (subtree_height);
-            subtree_height = nullptr;
-
-            _is_state_initialized = false;
-        };
         
     };
 
 private:
     
     class insertion_template_method final:
-        public binary_search_tree<tkey, tvalue>::insertion_template_method
+        public binary_search_tree<tkey, tvalue>::insertion_template_method, public height_and_balance
     {
     private:
-        binary_search_tree<tkey, tvalue>::insertion_of_existent_key_attempt_strategy _insertion_strtegy;
+        typename binary_search_tree<tkey, tvalue>::insertion_of_existent_key_attempt_strategy _insertion_strtegy;
         allocator* allocator;
     public:
         
         explicit insertion_template_method(
             AVL_tree<tkey, tvalue> *tree,
             typename binary_search_tree<tkey, tvalue>::insertion_of_existent_key_attempt_strategy insertion_strategy);
-    
-    private:
-        
-        // TODO: think about it!
-        
+
+    public:
+        void insert(tkey const &key, tvalue const &value)
+        {
+            binary_search_tree<tkey, tvalue>::insertion_template_method::insert(key, value);
+        }
+
+        void insert(tkey const &key, tvalue &&value)
+        {
+            binary_search_tree<tkey, tvalue>::insertion_template_method::insert(key, value);
+        }
+
+        void set_insertion_strategy(
+                typename binary_search_tree<tkey, tvalue>::insertion_of_existent_key_attempt_strategy insertion_strategy) noexcept
+        {
+            binary_search_tree<tkey, tvalue>::set_insertion_strategy(insertion_strategy);
+        }
+
+        void count_node_height(node*& current)
+        {
+            if(!current->right_subtree && !current->left_subtree) current->height = 1;
+
+            if(current->right_subtree && !current->left_subtree) current->height = current->right_subtree->heght + 1;
+
+            if(current->left_subtree && !current->right_subtree) current->height = current->left_subtree->height + 1;
+
+            max(current->left_subtree->height + current->right_subtree->height) + 1;
+        }
+
+        size_t balance_factor(node* current)
+        {
+            if(!current || !current->right_subtree && !current->left_subtree) return 0;
+
+            if(current->right_subtree && !current->left_subtree) return -current->right_subtree->height;
+
+            if(current->left_subtree && !current->right_subtree) return current->left_subtree->height;
+
+            return current->left_subtree->height - current->right_subtree->height;
+        }
+
+        void balance(std::stack<typename binary_search_tree<tkey, tvalue>::node**> & path) override
+        {
+            while(!path.empty())
+            {
+                node* current_node = path.top();
+                count_node_height(current_node);
+
+                path.pop();
+
+                if(std::abs(balance_factor(current_node)) <= 1) continue;
+
+                else
+                {
+                    if(balance_factor(current_node) == 2)
+                    {
+                        if(balance_factor(current_node->left_subtree) == 1)
+                        {
+                            AVL_tree<tkey, tvalue>::small_right_rotation(current_node);
+                        }
+                        else
+                        {
+                            AVL_tree<tkey, tvalue>::big_right_rotation(current_node);
+                        }
+                    }
+
+                    else
+                    {
+                        if(balance_factor(current_node->right_subtree) == 1) AVL_tree<tkey, tvalue>::small_left_rotation(current_node);
+                        else AVL_tree<tkey, tvalue>::big_left_rotation(current_node);
+                    }
+                    count_node_height(current_node->left_subtree);
+                    count_node_height(current_node->right_subtree);
+                    count_node_height(current_node);
+                }
+            }
+        }
+
     };
     
     class obtaining_template_method final:
@@ -166,9 +237,8 @@ private:
     };
     
     class disposal_template_method final:
-        public binary_search_tree<tkey, tvalue>::disposal_template_method
+        public binary_search_tree<tkey, tvalue>::disposal_template_method, public height_and_balance
     {
-    AVL_tree<t>::
     public:
         
         explicit disposal_template_method(
@@ -184,12 +254,13 @@ public:
     explicit AVL_tree(
         allocator *allocator = nullptr,
         logger *logger = nullptr,
+        std::function<int(tkey const &, tkey const &)> comparer =  std::less<tkey>(),
         typename binary_search_tree<tkey, tvalue>::insertion_of_existent_key_attempt_strategy insertion_strategy = binary_search_tree<tkey, tvalue>::insertion_of_existent_key_attempt_strategy::throw_an_exception,
         typename binary_search_tree<tkey, tvalue>::disposal_of_nonexistent_key_attempt_strategy disposal_strategy = binary_search_tree<tkey, tvalue>::disposal_of_nonexistent_key_attempt_strategy::throw_an_exception);
 
 public:
     
-    ~AVL_tree() noexcept final;
+/*    ~AVL_tree() noexcept final;
     
     AVL_tree(
         AVL_tree<tkey, tvalue> const &other);
@@ -201,8 +272,7 @@ public:
         AVL_tree<tkey, tvalue> &&other) noexcept;
     
     AVL_tree<tkey, tvalue> &operator=(
-        AVL_tree<tkey, tvalue> &&other) noexcept;
-
+        AVL_tree<tkey, tvalue> &&other) noexcept;*/
 
 private:
 
@@ -214,70 +284,35 @@ private:
 
     disposal_template_method *_disposal_template;
 
-private:
-    void clear(node* &subtree_root) final;
 
-    node* copy(node const * subtree_root) override final
+
+    size_t get_node_size() const noexcept override final
     {
-        if (subtree_root == nullptr)
-        {
-            return nullptr;
-        }
-
-        node *subtree_root_copied = reinterpret_cast<node *>(this->allocate_with_guard(get_node_size(), 1));
-        call_node_constructor(subtree_root_copied, subtree_root->key, subtree_root->value);
-        subtree_root_copied->left_subtree = copy(subtree_root->left_subtree);
-        subtree_root_copied->right_subtree = copy(subtree_root->right_subtree);
-
-        return subtree_root_copied;
-    }
-
-
-    size_t get_node_size() const override final
-    {
-        return sizeof(AVL_tree<tkey, tvalue>::node);
+        return sizeof(typename AVL_tree<tkey, tvalue>::node);
     }
 
     void call_node_constructor(
-            node* raw_space,
-            tkey const &key,
-            tvalue && value) override final
-    {
-        allocator::construct(raw_space, key, std::move(value));
+            typename binary_search_tree<tkey, tvalue>::node* raw_space,
+            const tkey& key,
+            const tvalue& value) override {
+        allocator::construct(reinterpret_cast<typename AVL_tree::node*>(raw_space), key, value);
     }
 
-    iterator_data* create_iterator_data() const;
-
-    void inject_additional_data(iterator_data* destination,
-                                node* source) override
-    {
-
+    void call_node_constructor(
+            typename binary_search_tree<tkey, tvalue>::node* raw_space,
+            tkey const & key,
+            tvalue && value) override{
+        allocator::construct(static_cast<typename AVL_tree::node*>(raw_space), key, std::move(value));
     }
 
-public:
-    void insert(tkey const &key, tvalue const &value) override final;
-
-    void insert(tkey const &key, tvalue &&value) override final;
-
-    tvalue const &obtain(
-            tkey const &key) final;
-
-    std::vector<typename associative_container<tkey, tvalue>::key_value_pair> obtain_between(
-            tkey const &lower_bound,
-            tkey const &upped_bound,
-            bool lower_bond_inclusive,
-            bool upped_bound_inclusive) override final;
-
-    tvalue dispose(tkey const &key) final;
-
-public:
-    void set_insertion_strategy(
-            typename AVL_tree<tkey, tvalue>::insertion_of_existent_key_attempt_strategy insertion_strategy
-            ) noexcept;
-
-    void set_removal_strategy(typename AVL_tree<tkey, tvalue>::disposal_of_nonexistent_key_attempt_strategy disposal_strategy) noexcept;
 
 
+    void inject_additional_data(
+            typename binary_search_tree<tkey, tvalue>::iterator_data *destination,
+            typename binary_search_tree<tkey, tvalue>::node *source) override
+    {
+        static_cast<AVL_tree<tkey, tvalue>::iterator_data*>(destination)->subtree_height = static_cast<AVL_tree<tkey, tvalue>::node*>(source)->height;
+    }
 };
 
 template<
@@ -288,17 +323,11 @@ AVL_tree<tkey, tvalue>::iterator_data::iterator_data(
     tkey const &key,
     tvalue const &value,
     size_t subtree_height):
-    binary_search_tree<tkey, tvalue>::iterator_data(depth, key, value)
+    binary_search_tree<tkey, tvalue>::iterator_data(depth, key, value), subtree_height(subtree_height)
 {
-    this->_key = reinterpret_cast<tkey*>(::operator new(sizeof(tkey)));
-    this->_value = reinterpret_cast<tvalue*>(::operator new(sizeof(tvalue)));
-    this->subtree_height = reinterpret_cast<size_t>(::operator new(sizeof(size_t)));
 
-    allocator::construct(this->_key, key);
-    allocator::construct(this->_value, value);
-    allocator::construct(this->subtree_height,subtree_height);
-    _is_state_initialized = true;
 }
+
 
 template<
     typename tkey,
@@ -331,19 +360,25 @@ AVL_tree<tkey, tvalue>::disposal_template_method::disposal_template_method(
 
 }
 
-template<
-    typename tkey,
-    typename tvalue>
+template<typename tkey, typename tvalue>
 AVL_tree<tkey, tvalue>::AVL_tree(
-    allocator *allocator,
-    logger *logger,
-    typename binary_search_tree<tkey, tvalue>::insertion_of_existent_key_attempt_strategy insertion_strategy,
-    typename binary_search_tree<tkey, tvalue>::disposal_of_nonexistent_key_attempt_strategy disposal_strategy)
+        allocator *allocator,
+        logger *logger,
+        std::function<int(tkey const &, tkey const &)> comparer,
+        typename binary_search_tree<tkey, tvalue>::insertion_of_existent_key_attempt_strategy insertion_strategy,
+        typename binary_search_tree<tkey, tvalue>::disposal_of_nonexistent_key_attempt_strategy disposal_strategy) :
+        binary_search_tree<tkey, tvalue>::binary_search_tree(
+                reinterpret_cast<AVL_tree<tkey, tvalue>::insertion_template_method*>(new typename binary_search_tree<tkey, tvalue>::insertion_template_method(this, insertion_strategy)),
+                reinterpret_cast<AVL_tree<tkey, tvalue>::obtaining_template_method*>(new typename binary_search_tree<tkey, tvalue>::obtaining_template_method(this)),
+                reinterpret_cast<AVL_tree<tkey, tvalue>::disposal_template_method*>(new typename binary_search_tree<tkey, tvalue>::disposal_template_method(this, disposal_strategy)),
+                comparer,
+                allocator,
+                logger)
 
 {
-    throw not_implemented("template<typename tkey, typename tvalue> AVL_tree<tkey, tvalue>::AVL_tree(allocator *, logger *, typename binary_search_tree<tkey, tvalue>::insertion_of_existent_key_attempt_strategy, typename binary_search_tree<tkey, tvalue>::disposal_of_nonexistent_key_attempt_strategy)", "your code should be here...");
 }
 
+/*
 template<
     typename tkey,
     typename tvalue>
@@ -386,6 +421,6 @@ AVL_tree<tkey, tvalue> &AVL_tree<tkey, tvalue>::operator=(
     AVL_tree<tkey, tvalue> &&other) noexcept
 {
     throw not_implemented("template<typename tkey, typename tvalue> AVL_tree<tkey, tvalue> &AVL_tree<tkey, tvalue>::operator=(AVL_tree<tkey, tvalue> &&) noexcept", "your code should be here...");
-}
+}*/
 
 #endif //MATH_PRACTICE_AND_OPERATING_SYSTEMS_AVL_TREE_H
