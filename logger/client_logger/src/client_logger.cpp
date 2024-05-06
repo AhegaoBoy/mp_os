@@ -108,7 +108,7 @@ logger const *client_logger::log(
 
             std::ofstream* file = path_of_log_file.empty() ? reinterpret_cast<std::ofstream*>(&std::cout) : _all_streams.find(path_of_log_file)->second.first;
 
-            *file<<severity_to_string(severity)<<" "<<text<<" "<<current_datetime_to_string()<<std::endl << std::endl;
+            //*file<<severity_to_string(severity)<<" "<<text<<" "<<current_datetime_to_string()<<std::endl << std::endl;
         }
     }
     return this;

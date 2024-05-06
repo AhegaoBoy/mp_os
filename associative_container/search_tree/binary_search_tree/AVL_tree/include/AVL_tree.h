@@ -9,7 +9,6 @@ template<
 class AVL_tree final:
     public binary_search_tree<tkey, tvalue>
 {
-
 public:
     explicit AVL_tree<tkey, tvalue>(std::function<int(tkey const &, tkey const &)> keys_comparer = std::less<tkey>(),
             logger* logger = nullptr,
@@ -22,7 +21,7 @@ private:
     struct node final:
         binary_search_tree<tkey, tvalue>::node
     {
-        size_t height;
+        int height;
 
     public:
         node(
@@ -36,68 +35,7 @@ private:
                 ~node() noexcept override = default;
     };
 
-class height_and_balance : public binary_search_tree<tkey, tvalue>::template_method_basics
-{
-protected:
-    void count_node_height(node*& current)
-    {
-        if(!current->right_subtree && !current->left_subtree) current->height = 1;
-
-        if(current->right_subtree && !current->left_subtree) current->height = current->right_subtree->heght + 1;
-
-        if(current->left_subtree && !current->right_subtree) current->height = current->left_subtree->height + 1;
-
-        max(current->left_subtree->height + current->right_subtree->height) + 1;
-    }
-
-    size_t balance_factor(node* current)
-    {
-        if(!current || !current->right_subtree && !current->left_subtree) return 0;
-
-        if(current->right_subtree && !current->left_subtree) return -current->right_subtree->height;
-
-        if(current->left_subtree && !current->right_subtree) return current->left_subtree->height;
-
-        return current->left_subtree->height - current->right_subtree->height;
-    }
-
-    void balance(std::stack<typename binary_search_tree<tkey, tvalue>::node**> & path) override
-    {
-        while(!path.empty())
-        {
-            node* current_node = path.top();
-            count_node_height(current_node);
-
-            path.pop();
-
-            if(std::abs(balance_factor(current_node)) <= 1) continue;
-
-            else
-            {
-                if(balance_factor(current_node) == 2)
-                {
-                    if(balance_factor(current_node->left_subtree) == 1)
-                    {
-                        AVL_tree<tkey, tvalue>::small_right_rotation(current_node);
-                    }
-                    else
-                    {
-                        AVL_tree<tkey, tvalue>::big_right_rotation(current_node);
-                    }
-                }
-
-                else
-                {
-                    if(balance_factor(current_node->right_subtree) == 1) AVL_tree<tkey, tvalue>::small_left_rotation(current_node);
-                    else AVL_tree<tkey, tvalue>::big_left_rotation(current_node);
-                }
-                count_node_height(current_node->left_subtree);
-                count_node_height(current_node->right_subtree);
-                count_node_height(current_node);
-            }
-        }
-    }
-};
+friend typename binary_search_tree<tkey, tvalue>::insertion_template_method;
 
 
 public:
@@ -131,64 +69,63 @@ public:
         
     };
 
-private:
-    
+
+
     class insertion_template_method final:
-        public binary_search_tree<tkey, tvalue>::insertion_template_method, public height_and_balance
+public binary_search_tree<tkey, tvalue>::insertion_template_method
     {
     private:
-        typename binary_search_tree<tkey, tvalue>::insertion_of_existent_key_attempt_strategy _insertion_strtegy;
+        typename binary_search_tree<tkey, tvalue>::insertion_of_existent_key_attempt_strategy _insertion_strategy;
         allocator* allocator;
+        node** _root;
     public:
         
         explicit insertion_template_method(
             AVL_tree<tkey, tvalue> *tree,
             typename binary_search_tree<tkey, tvalue>::insertion_of_existent_key_attempt_strategy insertion_strategy);
 
-    public:
-        void insert(tkey const &key, tvalue const &value)
-        {
-            binary_search_tree<tkey, tvalue>::insertion_template_method::insert(key, value);
-        }
 
-        void insert(tkey const &key, tvalue &&value)
-        {
-            binary_search_tree<tkey, tvalue>::insertion_template_method::insert(key, value);
-        }
-
-        void set_insertion_strategy(
-                typename binary_search_tree<tkey, tvalue>::insertion_of_existent_key_attempt_strategy insertion_strategy) noexcept
-        {
-            binary_search_tree<tkey, tvalue>::set_insertion_strategy(insertion_strategy);
-        }
-
+    private:
         void count_node_height(node*& current)
         {
-            if(!current->right_subtree && !current->left_subtree) current->height = 1;
+            if(!current->right_subtree && !current->left_subtree)
+            {
+                current->height = 1;
+                return ;
+            }
 
-            if(current->right_subtree && !current->left_subtree) current->height = current->right_subtree->heght + 1;
+            if(current->right_subtree && !current->left_subtree)
+            {
+                current->height = reinterpret_cast<AVL_tree::node*>(current->right_subtree)->height + 1;
+                return;
+            }
 
-            if(current->left_subtree && !current->right_subtree) current->height = current->left_subtree->height + 1;
+            if(current->left_subtree && !current->right_subtree)
+            {
+                current->height = reinterpret_cast<AVL_tree::node*>(current->left_subtree)->height + 1;
+                return ;
+            }
 
-            max(current->left_subtree->height + current->right_subtree->height) + 1;
+            current->height = std::max(reinterpret_cast<AVL_tree::node*>(current->left_subtree)->height, reinterpret_cast<AVL_tree::node*>(current->right_subtree)->height) + 1;
         }
 
-        size_t balance_factor(node* current)
+        int balance_factor(node* current)
         {
             if(!current || !current->right_subtree && !current->left_subtree) return 0;
 
-            if(current->right_subtree && !current->left_subtree) return -current->right_subtree->height;
+            if(current->right_subtree && !current->left_subtree) return -reinterpret_cast<AVL_tree::node*>(current->right_subtree)->height;
 
-            if(current->left_subtree && !current->right_subtree) return current->left_subtree->height;
+            if(current->left_subtree && !current->right_subtree) return reinterpret_cast<AVL_tree::node*>(current->left_subtree)->height;
 
-            return current->left_subtree->height - current->right_subtree->height;
+            return reinterpret_cast<AVL_tree::node*>(current->left_subtree)->height - reinterpret_cast<AVL_tree::node*>(current->right_subtree)->height;
         }
 
         void balance(std::stack<typename binary_search_tree<tkey, tvalue>::node**> & path) override
         {
             while(!path.empty())
             {
-                node* current_node = path.top();
+                node* current_node = reinterpret_cast<AVL_tree<tkey, tvalue>::node*>(*(path.top()));
+                typename binary_search_tree<tkey, tvalue>::node* tmp = current_node;
                 count_node_height(current_node);
 
                 path.pop();
@@ -199,24 +136,77 @@ private:
                 {
                     if(balance_factor(current_node) == 2)
                     {
-                        if(balance_factor(current_node->left_subtree) == 1)
+                        if(balance_factor(reinterpret_cast<AVL_tree<tkey, tvalue>::node*>(current_node->left_subtree)) == 1)
                         {
-                            AVL_tree<tkey, tvalue>::small_right_rotation(current_node);
+                            node* new_subtree_root = reinterpret_cast<AVL_tree<tkey, tvalue>::node*>(current_node->left_subtree);
+                            this->_tree->small_right_rotation(tmp);
+
+                            node* left_subtree_new_node = reinterpret_cast<AVL_tree<tkey, tvalue>::node*>(new_subtree_root->left_subtree);
+                            node* right_subtree_new_node = reinterpret_cast<AVL_tree<tkey, tvalue>::node*>(new_subtree_root->right_subtree);
+
+                            count_node_height(right_subtree_new_node);
+                            count_node_height(left_subtree_new_node);
+                            count_node_height(new_subtree_root);
+
+                            if(!path.empty())
+                                (*path.top())->left_subtree == current_node ? (*path.top())->left_subtree = new_subtree_root : (*path.top())->right_subtree = new_subtree_root;
+                            else
+                                *_root = reinterpret_cast<AVL_tree<tkey, tvalue>::node*>(new_subtree_root);
                         }
                         else
                         {
-                            AVL_tree<tkey, tvalue>::big_right_rotation(current_node);
+                            node* new_subtree_root = reinterpret_cast<AVL_tree<tkey, tvalue>::node*>(current_node->left_subtree->right_subtree);
+                            this->_tree->big_right_rotation(tmp);
+
+                            node* left_subtree_new_node = reinterpret_cast<AVL_tree<tkey, tvalue>::node*>(new_subtree_root->left_subtree);
+                            node* right_subtree_new_node = reinterpret_cast<AVL_tree<tkey, tvalue>::node*>(new_subtree_root->right_subtree);
+
+                            count_node_height(right_subtree_new_node);
+                            count_node_height(left_subtree_new_node);
+                            count_node_height(new_subtree_root);
+                            if(!path.empty())
+                                (*path.top())->left_subtree == current_node ? (*path.top())->left_subtree = new_subtree_root : (*path.top())->right_subtree = new_subtree_root;
+                            else
+                                *_root = reinterpret_cast<AVL_tree<tkey, tvalue>::node*>(new_subtree_root);
                         }
                     }
 
                     else
                     {
-                        if(balance_factor(current_node->right_subtree) == 1) AVL_tree<tkey, tvalue>::small_left_rotation(current_node);
-                        else AVL_tree<tkey, tvalue>::big_left_rotation(current_node);
+                        if(balance_factor(reinterpret_cast<AVL_tree<tkey, tvalue>::node*>(current_node->right_subtree)) == 1)
+                        {
+                            node* new_subtree_root = reinterpret_cast<AVL_tree<tkey, tvalue>::node*>(current_node->right_subtree->left_subtree);
+                            this->_tree->big_left_rotation(tmp);
+
+                            node* left_subtree_new_node = reinterpret_cast<AVL_tree<tkey, tvalue>::node*>(new_subtree_root->left_subtree);
+                            node* right_subtree_new_node = reinterpret_cast<AVL_tree<tkey, tvalue>::node*>(new_subtree_root->right_subtree);
+
+                            count_node_height(right_subtree_new_node);
+                            count_node_height(left_subtree_new_node);
+                            count_node_height(new_subtree_root);
+
+                            if(!path.empty())
+                                (*path.top())->left_subtree == current_node ? (*path.top())->left_subtree = new_subtree_root : (*path.top())->right_subtree = new_subtree_root;
+                            else
+                                *_root = reinterpret_cast<AVL_tree<tkey, tvalue>::node*>(new_subtree_root);                        }
+                        else
+                        {
+                            node* new_subtree_root = reinterpret_cast<AVL_tree<tkey, tvalue>::node*>(current_node->right_subtree);
+                            this->_tree->small_left_rotation(tmp);
+
+                            node* left_subtree_new_node = reinterpret_cast<AVL_tree<tkey, tvalue>::node*>(new_subtree_root->left_subtree);
+                            node* right_subtree_new_node = reinterpret_cast<AVL_tree<tkey, tvalue>::node*>(new_subtree_root->right_subtree);
+
+                            count_node_height(right_subtree_new_node);
+                            count_node_height(left_subtree_new_node);
+                            count_node_height(new_subtree_root);
+
+                            if(!path.empty())
+                                (*path.top())->left_subtree == current_node ? (*path.top())->left_subtree = new_subtree_root : (*path.top())->right_subtree = new_subtree_root;
+                            else
+                                *_root = reinterpret_cast<AVL_tree<tkey, tvalue>::node*>(new_subtree_root);
+                        }
                     }
-                    count_node_height(current_node->left_subtree);
-                    count_node_height(current_node->right_subtree);
-                    count_node_height(current_node);
                 }
             }
         }
@@ -226,26 +216,154 @@ private:
     class obtaining_template_method final:
         public binary_search_tree<tkey, tvalue>::obtaining_template_method
     {
-
     public:
 
         explicit obtaining_template_method(
             AVL_tree<tkey, tvalue> *tree);
 
-        // TODO: think about it!
+    private:
+
+
 
     };
     
     class disposal_template_method final:
-        public binary_search_tree<tkey, tvalue>::disposal_template_method, public height_and_balance
+        public binary_search_tree<tkey, tvalue>::disposal_template_method
     {
+    private:
+        node** _root;
     public:
         
         explicit disposal_template_method(
             AVL_tree<tkey, tvalue> *tree,
             typename binary_search_tree<tkey, tvalue>::disposal_of_nonexistent_key_attempt_strategy disposal_strategy);
-        
-        // TODO: think about it!
+
+        void count_node_height(node*& current)
+        {
+            if(!current) return;
+
+            if(!current->right_subtree && !current->left_subtree)
+            {
+                current->height = 1;
+                return ;
+            }
+
+            if(current->right_subtree && !current->left_subtree)
+            {
+                current->height = reinterpret_cast<AVL_tree::node*>(current->right_subtree)->height + 1;
+                return;
+            }
+
+            if(current->left_subtree && !current->right_subtree)
+            {
+                current->height = reinterpret_cast<AVL_tree::node*>(current->left_subtree)->height + 1;
+                return ;
+            }
+
+            current->height = std::max(reinterpret_cast<AVL_tree::node*>(current->left_subtree)->height, reinterpret_cast<AVL_tree::node*>(current->right_subtree)->height) + 1;
+        }
+
+        int balance_factor(node* current)
+        {
+            if(!current || !current->right_subtree && !current->left_subtree) return 0;
+
+            if(current->right_subtree && !current->left_subtree) return -reinterpret_cast<AVL_tree::node*>(current->right_subtree)->height;
+
+            if(current->left_subtree && !current->right_subtree) return reinterpret_cast<AVL_tree::node*>(current->left_subtree)->height;
+
+            return reinterpret_cast<AVL_tree::node*>(current->left_subtree)->height - reinterpret_cast<AVL_tree::node*>(current->right_subtree)->height;
+        }
+
+        void balance(std::stack<typename binary_search_tree<tkey, tvalue>::node**> & path) override
+        {
+            while(!path.empty())
+            {
+                node* current_node = reinterpret_cast<AVL_tree<tkey, tvalue>::node*>(*(path.top()));
+                typename binary_search_tree<tkey, tvalue>::node* tmp = current_node;
+                count_node_height(current_node);
+
+                path.pop();
+
+                if(std::abs(balance_factor(current_node)) <= 1) continue;
+
+                else
+                {
+                    if(balance_factor(current_node) == 2)
+                    {
+                        if(balance_factor(reinterpret_cast<AVL_tree<tkey, tvalue>::node*>(current_node->left_subtree)) == 1)
+                        {
+                            node* new_subtree_root = reinterpret_cast<AVL_tree<tkey, tvalue>::node*>(current_node->left_subtree);
+                            this->_tree->small_right_rotation(tmp);
+
+                            node* left_subtree_new_node = reinterpret_cast<AVL_tree<tkey, tvalue>::node*>(new_subtree_root->left_subtree);
+                            node* right_subtree_new_node = reinterpret_cast<AVL_tree<tkey, tvalue>::node*>(new_subtree_root->right_subtree);
+
+                            count_node_height(right_subtree_new_node);
+                            count_node_height(left_subtree_new_node);
+                            count_node_height(new_subtree_root);
+
+                            if(!path.empty())
+                                (*path.top())->left_subtree == current_node ? (*path.top())->left_subtree = new_subtree_root : (*path.top())->right_subtree = new_subtree_root;
+                            else
+                                *_root = reinterpret_cast<AVL_tree<tkey, tvalue>::node*>(new_subtree_root);
+                        }
+                        else
+                        {
+                            node* new_subtree_root = reinterpret_cast<AVL_tree<tkey, tvalue>::node*>(current_node->left_subtree->right_subtree);
+                            this->_tree->big_right_rotation(tmp);
+
+                            node* left_subtree_new_node = reinterpret_cast<AVL_tree<tkey, tvalue>::node*>(new_subtree_root->left_subtree);
+                            node* right_subtree_new_node = reinterpret_cast<AVL_tree<tkey, tvalue>::node*>(new_subtree_root->right_subtree);
+
+                            count_node_height(right_subtree_new_node);
+                            count_node_height(left_subtree_new_node);
+                            count_node_height(new_subtree_root);
+                            if(!path.empty())
+                                (*path.top())->left_subtree == current_node ? (*path.top())->left_subtree = new_subtree_root : (*path.top())->right_subtree = new_subtree_root;
+                            else
+                                *_root = reinterpret_cast<AVL_tree<tkey, tvalue>::node*>(new_subtree_root);
+                        }
+                    }
+
+                    else
+                    {
+                        if(balance_factor(reinterpret_cast<AVL_tree<tkey, tvalue>::node*>(current_node->right_subtree)) == 1)
+                        {
+                            node* new_subtree_root = reinterpret_cast<AVL_tree<tkey, tvalue>::node*>(current_node->right_subtree->left_subtree);
+                            this->_tree->big_left_rotation(tmp);
+
+                            node* left_subtree_new_node = reinterpret_cast<AVL_tree<tkey, tvalue>::node*>(new_subtree_root->left_subtree);
+                            node* right_subtree_new_node = reinterpret_cast<AVL_tree<tkey, tvalue>::node*>(new_subtree_root->right_subtree);
+
+                            count_node_height(right_subtree_new_node);
+                            count_node_height(left_subtree_new_node);
+                            count_node_height(new_subtree_root);
+
+                            if(!path.empty())
+                                (*path.top())->left_subtree == current_node ? (*path.top())->left_subtree = new_subtree_root : (*path.top())->right_subtree = new_subtree_root;
+                            else
+                                *_root = reinterpret_cast<AVL_tree<tkey, tvalue>::node*>(new_subtree_root);                        }
+                        else
+                        {
+                            node* new_subtree_root = reinterpret_cast<AVL_tree<tkey, tvalue>::node*>(current_node->right_subtree);
+                            this->_tree->small_left_rotation(tmp);
+
+                            node* left_subtree_new_node = reinterpret_cast<AVL_tree<tkey, tvalue>::node*>(new_subtree_root->left_subtree);
+                            node* right_subtree_new_node = reinterpret_cast<AVL_tree<tkey, tvalue>::node*>(new_subtree_root->right_subtree);
+
+                            count_node_height(right_subtree_new_node);
+                            count_node_height(left_subtree_new_node);
+                            count_node_height(new_subtree_root);
+
+                            if(!path.empty())
+                                (*path.top())->left_subtree == current_node ? (*path.top())->left_subtree = new_subtree_root : (*path.top())->right_subtree = new_subtree_root;
+                            else
+                                *_root = reinterpret_cast<AVL_tree<tkey, tvalue>::node*>(new_subtree_root);
+                        }
+                    }
+                }
+            }
+        }
         
     };
 
@@ -258,33 +376,8 @@ public:
         typename binary_search_tree<tkey, tvalue>::insertion_of_existent_key_attempt_strategy insertion_strategy = binary_search_tree<tkey, tvalue>::insertion_of_existent_key_attempt_strategy::throw_an_exception,
         typename binary_search_tree<tkey, tvalue>::disposal_of_nonexistent_key_attempt_strategy disposal_strategy = binary_search_tree<tkey, tvalue>::disposal_of_nonexistent_key_attempt_strategy::throw_an_exception);
 
-public:
-    
-/*    ~AVL_tree() noexcept final;
-    
-    AVL_tree(
-        AVL_tree<tkey, tvalue> const &other);
-    
-    AVL_tree<tkey, tvalue> &operator=(
-        AVL_tree<tkey, tvalue> const &other);
-    
-    AVL_tree(
-        AVL_tree<tkey, tvalue> &&other) noexcept;
-    
-    AVL_tree<tkey, tvalue> &operator=(
-        AVL_tree<tkey, tvalue> &&other) noexcept;*/
 
 private:
-
-    node *_root;
-
-    insertion_template_method *_insertion_template;
-
-    obtaining_template_method *_obtaining_template;
-
-    disposal_template_method *_disposal_template;
-
-
 
     size_t get_node_size() const noexcept override final
     {
@@ -313,6 +406,11 @@ private:
     {
         static_cast<AVL_tree<tkey, tvalue>::iterator_data*>(destination)->subtree_height = static_cast<AVL_tree<tkey, tvalue>::node*>(source)->height;
     }
+
+    typename binary_search_tree<tkey, tvalue>::iterator_data* create_iterator_data() const
+    {
+        return new iterator_data;
+    }
 };
 
 template<
@@ -335,7 +433,8 @@ template<
 AVL_tree<tkey, tvalue>::insertion_template_method::insertion_template_method(
     AVL_tree<tkey, tvalue> *tree,
     typename binary_search_tree<tkey, tvalue>::insertion_of_existent_key_attempt_strategy insertion_strategy):
-    binary_search_tree<tkey, tvalue>::insertion_template_method(tree, insertion_strategy)
+    binary_search_tree<tkey, tvalue>::insertion_template_method::insertion_template_method(tree, insertion_strategy),
+    _root(reinterpret_cast<AVL_tree<tkey, tvalue>::node**>(&tree->_root))
 {
 
 }
@@ -345,7 +444,7 @@ template<
     typename tvalue>
 AVL_tree<tkey, tvalue>::obtaining_template_method::obtaining_template_method(
     AVL_tree<tkey, tvalue> *tree):
-        binary_search_tree<tkey, tvalue>::obtaining_template_method(tree)
+    binary_search_tree<tkey, tvalue>::obtaining_template_method::obtaining_template_method(tree)
 {
 
 }
@@ -355,7 +454,9 @@ template<
     typename tvalue>
 AVL_tree<tkey, tvalue>::disposal_template_method::disposal_template_method(
     AVL_tree<tkey, tvalue> *tree,
-    typename binary_search_tree<tkey, tvalue>::disposal_of_nonexistent_key_attempt_strategy disposal_strategy) : binary_search_tree<tkey, tvalue>::disposal_template_method(tree)
+    typename binary_search_tree<tkey, tvalue>::disposal_of_nonexistent_key_attempt_strategy disposal_strategy) :
+    binary_search_tree<tkey, tvalue>::disposal_template_method::disposal_template_method(tree, disposal_strategy),
+    _root(reinterpret_cast<AVL_tree<tkey, tvalue>::node**>(&tree->_root))
 {
 
 }
@@ -368,59 +469,15 @@ AVL_tree<tkey, tvalue>::AVL_tree(
         typename binary_search_tree<tkey, tvalue>::insertion_of_existent_key_attempt_strategy insertion_strategy,
         typename binary_search_tree<tkey, tvalue>::disposal_of_nonexistent_key_attempt_strategy disposal_strategy) :
         binary_search_tree<tkey, tvalue>::binary_search_tree(
-                reinterpret_cast<AVL_tree<tkey, tvalue>::insertion_template_method*>(new typename binary_search_tree<tkey, tvalue>::insertion_template_method(this, insertion_strategy)),
-                reinterpret_cast<AVL_tree<tkey, tvalue>::obtaining_template_method*>(new typename binary_search_tree<tkey, tvalue>::obtaining_template_method(this)),
-                reinterpret_cast<AVL_tree<tkey, tvalue>::disposal_template_method*>(new typename binary_search_tree<tkey, tvalue>::disposal_template_method(this, disposal_strategy)),
+                new typename AVL_tree<tkey, tvalue>::insertion_template_method(this, insertion_strategy),
+                new typename AVL_tree<tkey, tvalue>::obtaining_template_method(this),
+                new typename AVL_tree<tkey, tvalue>::disposal_template_method(this, disposal_strategy),
                 comparer,
                 allocator,
                 logger)
 
 {
-}
-
-/*
-template<
-    typename tkey,
-    typename tvalue>
-AVL_tree<tkey, tvalue>::~AVL_tree() noexcept
-{
 
 }
-
-template<
-    typename tkey,
-    typename tvalue>
-AVL_tree<tkey, tvalue>::AVL_tree(
-    AVL_tree<tkey, tvalue> const &other)
-{
-    throw not_implemented("template<typename tkey, typename tvalue> AVL_tree<tkey, tvalue>::AVL_tree(AVL_tree<tkey, tvalue> const &)", "your code should be here...");
-}
-
-template<
-    typename tkey,
-    typename tvalue>
-AVL_tree<tkey, tvalue> &AVL_tree<tkey, tvalue>::operator=(
-    AVL_tree<tkey, tvalue> const &other)
-{
-    throw not_implemented("template<typename tkey, typename tvalue> AVL_tree<tkey, tvalue> &AVL_tree<tkey, tvalue>::operator=(AVL_tree<tkey, tvalue> const &)", "your code should be here...");
-}
-
-template<
-    typename tkey,
-    typename tvalue>
-AVL_tree<tkey, tvalue>::AVL_tree(
-    AVL_tree<tkey, tvalue> &&other) noexcept
-{
-    throw not_implemented("template<typename tkey, typename tvalue> AVL_tree<tkey, tvalue>::AVL_tree(AVL_tree<tkey, tvalue> &&) noexcept", "your code should be here...");
-}
-
-template<
-    typename tkey,
-    typename tvalue>
-AVL_tree<tkey, tvalue> &AVL_tree<tkey, tvalue>::operator=(
-    AVL_tree<tkey, tvalue> &&other) noexcept
-{
-    throw not_implemented("template<typename tkey, typename tvalue> AVL_tree<tkey, tvalue> &AVL_tree<tkey, tvalue>::operator=(AVL_tree<tkey, tvalue> &&) noexcept", "your code should be here...");
-}*/
 
 #endif //MATH_PRACTICE_AND_OPERATING_SYSTEMS_AVL_TREE_H

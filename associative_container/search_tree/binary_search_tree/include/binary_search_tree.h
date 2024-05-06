@@ -1161,8 +1161,8 @@ public:
         {
             if(_state.empty()) return;
 
-            allocator::construct(_data->_key, _state.top().first->key);
-            allocator::construct(_data->value, _state.top().first->value);
+            allocator::construct(_data->_key, _state.top()->key);
+            allocator::construct(_data->value, _state.top()->value);
         }
 
 
@@ -1208,7 +1208,7 @@ public:
 
     private:
         binary_search_tree<tkey, tvalue> *_holder;
-        std::stack<std::pair<node*, bool>> _state;
+        std::stack<node*> _state;
         iterator_data *_data;
 
     private:
@@ -1220,13 +1220,13 @@ public:
 
         explicit postfix_const_iterator(
                 binary_search_tree<tkey, tvalue>* holder,
-                std::stack<std::pair<node*, bool>> state,
+                std::stack<node*> state,
                 iterator_data const* data
                 ) : _holder(holder), _state(state), _data(data)
         {
             if(_state.empty()) return;
-            allocator::construct(_data->_key, _state.top().first->key);
-            allocator::construct(_data->_value, _state.top().first->value);
+            allocator::construct(_data->_key, _state.top()->key);
+            allocator::construct(_data->_value, _state.top()->value);
         }
     public:
         postfix_const_iterator(postfix_const_iterator const& other) : _holder(other._holder), _state(other._state)
@@ -1291,16 +1291,16 @@ public:
         {
             if(_data->is_state_initialized())
             {
-                *(_data->_key) = _state.top().first->key;
-                *(_data->_value) = _state.top().first->value;
+                *(_data->_key) = _state.top()->key;
+                *(_data->_value) = _state.top()->value;
             }
             else
             {
-                allocator::construct(_data->_key, _state.top().first->key);
-                allocator::construct(_data->_value, _state.top().first->value);
+                allocator::construct(_data->_key, _state.top()->key);
+                allocator::construct(_data->_value, _state.top()->value);
                 _data->_is_state_initialized = true;
             }
-            _holder->inject_additional_data(_data, _state.top().first);
+            _holder->inject_additional_data(_data, _state.top());
 
         }
     };
@@ -1400,16 +1400,16 @@ public:
         {
             if(_data->is_state_initialized())
             {
-                *(_data->_key) = _state.top().first->key;
-                *(_data->_value) = _state.top().first->value;
+                *(_data->_key) = _state.top()->key;
+                *(_data->_value) = _state.top()->value;
             }
             else
             {
-                allocator::construct(_data->_key, _state.top().first->key);
-                allocator::construct(_data->_value, _state.top().first->value);
+                allocator::construct(_data->_key, _state.top()->key);
+                allocator::construct(_data->_value, _state.top()->value);
                 _data->_is_state_initialized = true;
             }
-            _holder->inject_additional_data(_data, _state.top().first);
+            _holder->inject_additional_data(_data, _state.top());
 
         }
     };
@@ -1508,16 +1508,16 @@ public:
         {
             if(_data->is_state_initialized())
             {
-                *(_data->_key) = _state.top().first->key;
-                *(_data->_value) = _state.top().first->value;
+                *(_data->_key) = _state.top()->key;
+                *(_data->_value) = _state.top()->value;
             }
             else
             {
-                allocator::construct(_data->_key, _state.top().first->key);
-                allocator::construct(_data->_value, _state.top().first->value);
+                allocator::construct(_data->_key, _state.top()->key);
+                allocator::construct(_data->_value, _state.top()->value);
                 _data->_is_state_initialized = true;
             }
-            _holder->inject_additional_data(_data, _state.top().first);
+            _holder->inject_additional_data(_data, _state.top());
 
         }
     };
@@ -1669,7 +1669,6 @@ protected:
             public template_method_basics,
             public allocator_guardant
     {
-
     private:
 
         binary_search_tree<tkey, tvalue>::insertion_of_existent_key_attempt_strategy _insertion_strategy;
@@ -1698,8 +1697,10 @@ protected:
     private:
 
         [[nodiscard]] allocator *get_allocator() const noexcept final;
+        
 
     };
+
 
     class obtaining_template_method:
             public template_method_basics
@@ -2021,7 +2022,7 @@ public:
 
     // endregion iterators requests definition
 
-protected:
+public:
 
     // region subtree rotations definition
 
@@ -2110,6 +2111,7 @@ binary_search_tree<tkey, tvalue>::prefix_iterator::prefix_iterator(
         _state.push(subtree_root);
         allocator::construct(_data->_key, _state.top()->key);
         allocator::construct(_data->_value, _state.top()->value);
+        this->_holder->inject_additional_data(_data, _state.top());
         _data->depth = 0;
         _data->_is_state_initialized = true;
     }
@@ -2205,6 +2207,7 @@ binary_search_tree<tkey, tvalue>::prefix_const_iterator::prefix_const_iterator(
         _state.push(subtree_root);
         allocator::construct(_data->_key, _state.top()->key);
         allocator::construct(_data->_value, _state.top()->value);
+        this->_holder->inject_additional_data(_data, _state.top());
         _data->depth = 0;
         _data->_is_state_initialized = true;
     }
@@ -2255,7 +2258,9 @@ typename binary_search_tree<tkey, tvalue>::prefix_const_iterator &binary_search_
     {
         _state.push(current->left_subtree);
     }
-    _data->depth++;
+
+    if(!(!current->right_subtree && !current->left_subtree)) _data->depth++;
+
 
     if(!_state.empty()) assign_data();
 
@@ -2300,6 +2305,7 @@ binary_search_tree<tkey, tvalue>::prefix_reverse_iterator::prefix_reverse_iterat
         _state.push(subtree_root);
         allocator::construct(_data->_key, _state.top()->key);
         allocator::construct(_data->_value, _state.top()->value);
+        this->_holder->inject_additional_data(_data, _state.top());
         _data->depth = 0;
         _data->_is_state_initialized = true;
     }
@@ -2396,6 +2402,7 @@ binary_search_tree<tkey, tvalue>::prefix_const_reverse_iterator::prefix_const_re
         _state.push(subtree_root);
         allocator::construct(_data->_key, _state.top()->key);
         allocator::construct(_data->_value, _state.top()->value);
+        this->_holder->inject_additional_data(_data, _state.top());
         _data->depth = 0;
         _data->_is_state_initialized = true;
     }
@@ -2500,6 +2507,7 @@ binary_search_tree<tkey, tvalue>::infix_iterator::infix_iterator(
 
     allocator::construct(_data->_key, _state.top()->key);
     allocator::construct(_data->_value, _state.top()->value);
+    this->_holder->inject_additional_data(_data, _state.top());
     _data->depth = _state.size()  - 1;
     _data->_is_state_initialized = true;
 }
@@ -2624,6 +2632,7 @@ binary_search_tree<tkey, tvalue>::infix_const_iterator::infix_const_iterator(
 
     allocator::construct(_data->_key, _state.top()->key);
     allocator::construct(_data->_value, _state.top()->value);
+    this->_holder->inject_additional_data(_data, _state.top());
     _data->depth = _state.size()  - 1;
     _data->_is_state_initialized = true;
 }
@@ -2742,6 +2751,7 @@ binary_search_tree<tkey, tvalue>::infix_reverse_iterator::infix_reverse_iterator
 
     allocator::construct(_data->_key, _state.top()->key);
     allocator::construct(_data->_value, _state.top()->value);
+    this->_holder->inject_additional_data(_data, _state.top());
     _data->depth = _state.size()  - 1;
     _data->_is_state_initialized = true;
 }
@@ -2855,6 +2865,7 @@ binary_search_tree<tkey, tvalue>::infix_const_reverse_iterator::infix_const_reve
 
     allocator::construct(_data->_key, _state.top()->key);
     allocator::construct(_data->_value, _state.top()->value);
+    this->_holder->inject_additional_data(_data, _state.top());
     _data->depth = _state.size()  - 1;
     _data->_is_state_initialized = true;
 }
@@ -2971,18 +2982,18 @@ binary_search_tree<tkey, tvalue>::postfix_iterator::postfix_iterator(
             if(current->right_subtree)
             {
                 _state.push(current->right_subtree);
-                ++_data->depth;
             }
 
             if(current->left_subtree)
             {
                 _state.push(current->right_subtree);
-                ++_data->depth;
             }
+            ++_data->depth;
         }
 
         allocator::construct(_data->_key, _state.top()->key);
         allocator::construct(_data->_value, _state.top()->value);
+        this->_holder->inject_additional_data(_data, _state.top());
         _data->_is_state_initialized = true;
     }
     else return;
@@ -2999,7 +3010,7 @@ bool binary_search_tree<tkey, tvalue>::postfix_iterator::operator==(
 
     if(this->_state.empty() ^ other._state.empty()) return false;
 
-    return this->_state.top().first == other._state.top().first;
+    return this->_state.top() == other._state.top();
 }
 
 template<
@@ -3090,18 +3101,19 @@ binary_search_tree<tkey, tvalue>::postfix_const_iterator::postfix_const_iterator
             if(current->right_subtree)
             {
                 _state.push(current->right_subtree);
-                ++_data->depth;
             }
 
             if(current->left_subtree)
             {
-                _state.push(current->right_subtree);
-                ++_data->depth;
+                _state.push(current->left_subtree);
+
             }
+            ++_data->depth;
         }
 
         allocator::construct(_data->_key, _state.top()->key);
         allocator::construct(_data->_value, _state.top()->value);
+        this->_holder->inject_additional_data(_data, _state.top());
         _data->_is_state_initialized = true;
     }
     else return;
@@ -3145,22 +3157,33 @@ typename binary_search_tree<tkey, tvalue>::postfix_const_iterator &binary_search
 
         if(current == _state.top()->left_subtree)
         {
-            node* tmp = _state.top()->right_subtree;
-            --_data->depth;
-            while(tmp)
-            {
-                _state.push(tmp);
-                tmp = tmp->left_subtree;
-                ++_data->depth;
-            }
+
+            break;
+
         }
         else if(current == _state.top()->right_subtree)
         {
             --_data->depth;
+            break;
         }
-        assign_data();
-        return *this;
+
+        else
+        {
+            node* tmp = _state.top()->left_subtree;
+            if(_state.top()->right_subtree) _state.push(_state.top()->right_subtree);
+            while(tmp)
+            {
+                _state.push(tmp);
+                if(tmp->right_subtree) _state.push(tmp->right_subtree);
+                tmp = tmp->left_subtree;
+                ++_data->depth;
+            }
+            break;
+        }
+
     }
+    assign_data();
+    return *this;
 }
 
 template<
@@ -3220,6 +3243,7 @@ binary_search_tree<tkey, tvalue>::postfix_reverse_iterator::postfix_reverse_iter
 
         allocator::construct(_data->_key, _state.top()->key);
         allocator::construct(_data->_value, _state.top()->value);
+        this->_holder->inject_additional_data(_data, _state.top());
         _data->_is_state_initialized = true;
     }
     else return;
@@ -3338,6 +3362,7 @@ binary_search_tree<tkey, tvalue>::postfix_const_reverse_iterator::postfix_const_
 
         allocator::construct(_data->_key, _state.top()->key);
         allocator::construct(_data->_value, _state.top()->value);
+        this->_holder->inject_additional_data(_data, _state.top());
         _data->_is_state_initialized = true;
     }
     else return;
@@ -4128,10 +4153,15 @@ void binary_search_tree<tkey, tvalue>::small_left_rotation(
 
     if(validate && (!subtree_root || !subtree_root->right_subtree)) throw std::logic_error("Can't do the left rotation");
 
-    node* tmp = subtree_root->right_subtree;
-    tmp->right_subtree = subtree_root->left_subtree;
-    tmp->left_subtree = subtree_root;
-    //balance
+
+    node* tmp = subtree_root->right_subtree->left_subtree;
+    node* child = subtree_root->right_subtree;
+
+    child->left_subtree = subtree_root;
+    subtree_root->right_subtree = tmp;
+
+    subtree_root = child;
+
 }
 
 template<
@@ -4144,10 +4174,13 @@ void binary_search_tree<tkey, tvalue>::small_right_rotation(
     if(!validate) return;
     if(validate && (!subtree_root || !subtree_root->left_subtree)) throw std::logic_error("Can't do the right rotation");
 
-    node* tmp = subtree_root->left_subtree;
-    tmp->left_subtree = subtree_root->right_subtree;
-    tmp->left_subtree = subtree_root;
-    //balance
+    node* tmp = subtree_root->left_subtree->right_subtree;
+    node* child = subtree_root->left_subtree;
+
+    child->right_subtree = subtree_root;
+    subtree_root->left_subtree = tmp;
+
+    subtree_root = child;
 
 }
 
@@ -4159,15 +4192,20 @@ void binary_search_tree<tkey, tvalue>::big_left_rotation(
         bool validate) const
 {
     if(!validate) return;
-    if(validate && (!subtree_root || !subtree_root->left_subtree || !subtree_root->left_subtree->right_subtree)) throw std::logic_error("Can't do the big left rotation!");
+    if(validate && (!subtree_root || !subtree_root->right_subtree || !subtree_root->right_subtree->left_subtree)) throw std::logic_error("Can't do the big left rotation!");
 
-    node* child = subtree_root->left_subtree;
-    node* grand_child = child->right_subtree;
+    node* child = subtree_root->right_subtree;
+    node* grand_child = child->left_subtree;
 
-    subtree_root->left_subtree = grand_child;
-    grand_child->left_subtree = child;
+    node* grand_child_data = grand_child->right_subtree;
 
-    small_left_rotation(subtree_root, false);
+    subtree_root->right_subtree = grand_child;
+    grand_child->right_subtree
+    = child;
+
+    child->left_subtree = grand_child_data;
+
+    small_left_rotation(subtree_root);
 }
 
 template<
@@ -4178,15 +4216,19 @@ void binary_search_tree<tkey, tvalue>::big_right_rotation(
         bool validate) const
 {
     if(!validate) return;
-    if(validate && (!subtree_root || !subtree_root->right_subtree || !subtree_root->right_subtree->left_subtree)) throw std::logic_error("Can't do the big left rotation!");
+    if(validate && (!subtree_root || !subtree_root->left_subtree || !subtree_root->left_subtree->right_subtree)) throw std::logic_error("Can't do the big left rotation!");
 
-    node* child = subtree_root->right_subtree;
-    node* grand_child = child->left_subtree;
+    node* child = subtree_root->left_subtree;
+    node* grand_child = child->right_subtree;
 
-    subtree_root->right_subtree = grand_child;
-    grand_child->right_subtree = child;
+    node* grand_child_data = grand_child->left_subtree;
 
-    small_right_rotation(subtree_root, false);
+    subtree_root->left_subtree = grand_child;
+    grand_child->left_subtree = child;
+
+    child->right_subtree = grand_child_data;
+
+    small_right_rotation(subtree_root);
 }
 
 template<
