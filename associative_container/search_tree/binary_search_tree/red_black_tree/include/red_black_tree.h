@@ -218,23 +218,97 @@ private:
 
         void balance(std::stack<typename binary_search_tree<tkey, tvalue>::node**>& path) override
         {
-            node* current = reinterpret_cast<red_black_tree<tkey, tvalue>::node*>(*path.top());
-
-            path.pop();
-
-            if(!current->right_subtree && !current->left_subtree && is_red(current)) current->color = node_color::BLACK;
-
-            else if(!current->left_subtree && !current->right_subtree && !is_red(current))
+            while(!path.empty())
             {
-                bool disposal_node_left = current==(*path.top())->left_subtree ? true : false;
+                node* current = reinterpret_cast<red_black_tree<tkey, tvalue>::node*>(*path.top());
 
-                node* brother = reinterpret_cast<red_black_tree<tkey, tvalue>::node*>(disposal_node_left ? (*path.top())->right_subtree : (*path.top())->left_subtree);
+                path.pop();
 
-                if(is_red(reinterpret_cast<red_black_tree<tkey, tvalue>::node*>(brother->left_subtree)) || is_red(reinterpret_cast<red_black_tree<tkey, tvalue>::node*>(brother->right_subtree)))
+                if(!current->right_subtree && !current->left_subtree && is_red(current)) current->color = node_color::BLACK;
+
+                else if(!current->left_subtree && !current->right_subtree && !is_red(current))
                 {
+                    bool disposal_node_left = current==(*path.top())->left_subtree ? true : false;
 
+                    node* brother = reinterpret_cast<red_black_tree<tkey, tvalue>::node*>(disposal_node_left ? (*path.top())->right_subtree : (*path.top())->left_subtree);
+
+
+                    if(!is_red(brother))
+                    {
+                        if(is_red(reinterpret_cast<red_black_tree<tkey, tvalue>::node*>(brother->left_subtree)) ||
+                           is_red(reinterpret_cast<red_black_tree<tkey, tvalue>::node*>(brother->right_subtree)))
+                        {
+                            if(disposal_node_left && is_red(reinterpret_cast<red_black_tree<tkey, tvalue>::node*>(brother->right_subtree)) || !disposal_node_left && is_red(reinterpret_cast<red_black_tree<tkey, tvalue>::node*>(brother->left_subtree)))
+                            {
+                                node* brother_child = disposal_node_left ? reinterpret_cast<red_black_tree<tkey, tvalue>::node*>(brother->right_subtree) : reinterpret_cast<red_black_tree<tkey, tvalue>::node*>(brother->left_subtree);
+
+                                node* new_subtree_root = brother;
+
+                                typename binary_search_tree<tkey, tvalue>::node* parent = (*path.top());
+                                path.pop();
+
+                                disposal_node_left ? this->_tree->small_right_rotation(parent) : this->_tree->small_left_rotation(parent);
+
+                                if(!path.empty())
+                                    parent == (*path.top())->left_subtree ? (*path.top())->left_subtree = new_subtree_root : (*path.top())->right_subtree = new_subtree_root;
+                                else *_root = new_subtree_root;
+
+                                change_node_color(brother_child);
+                            }
+
+                            else if(disposal_node_left && is_red(reinterpret_cast<red_black_tree<tkey, tvalue>::node*>(brother->left_subtree)) && !is_red(reinterpret_cast<red_black_tree<tkey, tvalue>::node*>(brother->right_subtree)) ||
+                                    !disposal_node_left && is_red(reinterpret_cast<red_black_tree<tkey, tvalue>::node*>(brother->right_subtree)) && !is_red(reinterpret_cast<red_black_tree<tkey, tvalue>::node*>(brother->left_subtree)))
+                            {
+                                node* brother_child = disposal_node_left ? reinterpret_cast<red_black_tree<tkey, tvalue>::node*>(brother->left_subtree) : reinterpret_cast<red_black_tree<tkey, tvalue>::node*>(brother->right_subtree);
+
+                                node* new_subtree_root = brother_child;
+
+                                typename binary_search_tree<tkey, tvalue>::node* parent = (*path.top());
+                                path.pop();
+
+                                disposal_node_left ? this->_tree->big_right_rotation(parent) : this->_tree->big_left_rotation(parent);
+
+                                if(!path.empty())
+                                    parent == (*path.top())->left_subtree ? (*path.top())->left_subtree = new_subtree_root : (*path.top())->right_subtree = new_subtree_root;
+                                else *_root = new_subtree_root;
+
+                                reinterpret_cast<red_black_tree<tkey, tvalue>::node*>(parent)->color = node_color::BLACK;
+                                change_node_color(brother_child);
+                            }
+
+                        }
+
+                        else
+                        {
+                            change_node_color(brother);
+                            node* parent = reinterpret_cast<red_black_tree<tkey, tvalue>::node*>(*path.top());
+                            if(is_red(parent))
+                            {
+                                parent->color = node_color::BLACK;
+                                break;
+                            }
+                            else continue;
+                        }
+                    }
+                    else
+                    {
+                        typename binary_search_tree<tkey, tvalue>::node* parent = (*path.top());
+                        path.pop();
+
+                        node* new_subtree_root = brother;
+                        disposal_node_left ? this->_tree->small_right_rotation(parent) : this->_tree->small_left_rotation(parent);
+
+                        if(!path.empty())
+                            parent == (*path.top())->left_subtree ? (*path.top())->left_subtree = new_subtree_root : (*path.top())->right_subtree = new_subtree_root;
+                        else *_root = new_subtree_root;
+
+                        node* change_parent_color = reinterpret_cast<red_black_tree<tkey, tvalue>::node*>(parent);
+                        change_node_color(change_parent_color);
+                        change_node_color(brother);
+                    }
                 }
             }
+
         }
 
     };

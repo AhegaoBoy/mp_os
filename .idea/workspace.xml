@@ -54,12 +54,7 @@
   <component name="ChangeListManager">
     <list default="true" id="145d997a-6bfd-48ae-8e72-43a0714a22a1" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/associative_container/search_tree/binary_search_tree/AVL_tree/include/AVL_tree.h" beforeDir="false" afterPath="$PROJECT_DIR$/associative_container/search_tree/binary_search_tree/AVL_tree/include/AVL_tree.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/associative_container/search_tree/binary_search_tree/AVL_tree/tests/AVL_tree_tests.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/associative_container/search_tree/binary_search_tree/AVL_tree/tests/AVL_tree_tests.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/associative_container/search_tree/binary_search_tree/include/binary_search_tree.h" beforeDir="false" afterPath="$PROJECT_DIR$/associative_container/search_tree/binary_search_tree/include/binary_search_tree.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/associative_container/search_tree/binary_search_tree/red_black_tree/include/red_black_tree.h" beforeDir="false" afterPath="$PROJECT_DIR$/associative_container/search_tree/binary_search_tree/red_black_tree/include/red_black_tree.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/associative_container/search_tree/binary_search_tree/red_black_tree/tests/red_black_tree_tests.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/associative_container/search_tree/binary_search_tree/red_black_tree/tests/red_black_tree_tests.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/logger/client_logger/src/client_logger.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/logger/client_logger/src/client_logger.cpp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -105,12 +100,16 @@
     "Google Test.AVLTreePositiveTests.test8.executor": "Run",
     "Google Test.AVLTreePositiveTests.test9.executor": "Run",
     "Google Test.redBlackTreePositiveTests.test1.executor": "Run",
+    "Google Test.redBlackTreePositiveTests.test10.executor": "Run",
+    "Google Test.redBlackTreePositiveTests.test11.executor": "Run",
     "Google Test.redBlackTreePositiveTests.test2.executor": "Run",
     "Google Test.redBlackTreePositiveTests.test3.executor": "Run",
     "Google Test.redBlackTreePositiveTests.test4.executor": "Run",
     "Google Test.redBlackTreePositiveTests.test5.executor": "Run",
     "Google Test.redBlackTreePositiveTests.test6.executor": "Run",
     "Google Test.redBlackTreePositiveTests.test7.executor": "Run",
+    "Google Test.redBlackTreePositiveTests.test8.executor": "Run",
+    "Google Test.redBlackTreePositiveTests.test9.executor": "Run",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.cidr.known.project.marker": "true",
@@ -127,7 +126,7 @@
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
-  <component name="RunManager" selected="Google Test.redBlackTreePositiveTests.test7">
+  <component name="RunManager" selected="Google Test.redBlackTreePositiveTests.test8">
     <configuration name="mp_os_allctr_allctr_bdds_sstm_tests" type="CMakeGoogleTestRunConfigurationType" factoryName="Google Test" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="mp_os" TARGET_NAME="mp_os_allctr_allctr_bdds_sstm_tests" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="mp_os" RUN_TARGET_NAME="mp_os_allctr_allctr_bdds_sstm_tests" TEST_MODE="SUITE_TEST">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
@@ -200,31 +199,31 @@
         <option name="BeforeTestRunTask" enabled="true" />
       </method>
     </configuration>
-    <configuration name="redBlackTreePositiveTests.test3" type="CMakeGoogleTestRunConfigurationType" factoryName="Google Test" temporary="true" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="mp_os" TARGET_NAME="mp_os_assctv_cntnr_srch_tr_bnr_srch_tr_rb_tr_tests" RUN_TARGET_PROJECT_NAME="mp_os" RUN_TARGET_NAME="mp_os_assctv_cntnr_srch_tr_bnr_srch_tr_rb_tr_tests" TEST_CLASS="redBlackTreePositiveTests" TEST_METHOD="test3" TEST_MODE="SUITE_TEST">
+    <configuration name="redBlackTreePositiveTests.test10" type="CMakeGoogleTestRunConfigurationType" factoryName="Google Test" temporary="true" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="mp_os" TARGET_NAME="mp_os_assctv_cntnr_srch_tr_bnr_srch_tr_rb_tr_tests" RUN_TARGET_PROJECT_NAME="mp_os" RUN_TARGET_NAME="mp_os_assctv_cntnr_srch_tr_bnr_srch_tr_rb_tr_tests" TEST_CLASS="redBlackTreePositiveTests" TEST_METHOD="test10" TEST_MODE="SUITE_TEST">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
         <option name="BeforeTestRunTask" enabled="true" />
       </method>
     </configuration>
-    <configuration name="redBlackTreePositiveTests.test4" type="CMakeGoogleTestRunConfigurationType" factoryName="Google Test" temporary="true" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="mp_os" TARGET_NAME="mp_os_assctv_cntnr_srch_tr_bnr_srch_tr_rb_tr_tests" RUN_TARGET_PROJECT_NAME="mp_os" RUN_TARGET_NAME="mp_os_assctv_cntnr_srch_tr_bnr_srch_tr_rb_tr_tests" TEST_CLASS="redBlackTreePositiveTests" TEST_METHOD="test4" TEST_MODE="SUITE_TEST">
-      <method v="2">
-        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
-        <option name="BeforeTestRunTask" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="redBlackTreePositiveTests.test5" type="CMakeGoogleTestRunConfigurationType" factoryName="Google Test" temporary="true" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="mp_os" TARGET_NAME="mp_os_assctv_cntnr_srch_tr_bnr_srch_tr_rb_tr_tests" RUN_TARGET_PROJECT_NAME="mp_os" RUN_TARGET_NAME="mp_os_assctv_cntnr_srch_tr_bnr_srch_tr_rb_tr_tests" TEST_CLASS="redBlackTreePositiveTests" TEST_METHOD="test5" TEST_MODE="SUITE_TEST">
-      <method v="2">
-        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
-        <option name="BeforeTestRunTask" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="redBlackTreePositiveTests.test6" type="CMakeGoogleTestRunConfigurationType" factoryName="Google Test" temporary="true" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="mp_os" TARGET_NAME="mp_os_assctv_cntnr_srch_tr_bnr_srch_tr_rb_tr_tests" RUN_TARGET_PROJECT_NAME="mp_os" RUN_TARGET_NAME="mp_os_assctv_cntnr_srch_tr_bnr_srch_tr_rb_tr_tests" TEST_CLASS="redBlackTreePositiveTests" TEST_METHOD="test6" TEST_MODE="SUITE_TEST">
+    <configuration name="redBlackTreePositiveTests.test11" type="CMakeGoogleTestRunConfigurationType" factoryName="Google Test" temporary="true" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="mp_os" TARGET_NAME="mp_os_assctv_cntnr_srch_tr_bnr_srch_tr_rb_tr_tests" RUN_TARGET_PROJECT_NAME="mp_os" RUN_TARGET_NAME="mp_os_assctv_cntnr_srch_tr_bnr_srch_tr_rb_tr_tests" TEST_CLASS="redBlackTreePositiveTests" TEST_METHOD="test11" TEST_MODE="SUITE_TEST">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
         <option name="BeforeTestRunTask" enabled="true" />
       </method>
     </configuration>
     <configuration name="redBlackTreePositiveTests.test7" type="CMakeGoogleTestRunConfigurationType" factoryName="Google Test" temporary="true" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="mp_os" TARGET_NAME="mp_os_assctv_cntnr_srch_tr_bnr_srch_tr_rb_tr_tests" RUN_TARGET_PROJECT_NAME="mp_os" RUN_TARGET_NAME="mp_os_assctv_cntnr_srch_tr_bnr_srch_tr_rb_tr_tests" TEST_CLASS="redBlackTreePositiveTests" TEST_METHOD="test7" TEST_MODE="SUITE_TEST">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+        <option name="BeforeTestRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="redBlackTreePositiveTests.test8" type="CMakeGoogleTestRunConfigurationType" factoryName="Google Test" temporary="true" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="mp_os" TARGET_NAME="mp_os_assctv_cntnr_srch_tr_bnr_srch_tr_rb_tr_tests" RUN_TARGET_PROJECT_NAME="mp_os" RUN_TARGET_NAME="mp_os_assctv_cntnr_srch_tr_bnr_srch_tr_rb_tr_tests" TEST_CLASS="redBlackTreePositiveTests" TEST_METHOD="test8" TEST_MODE="SUITE_TEST">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+        <option name="BeforeTestRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="redBlackTreePositiveTests.test9" type="CMakeGoogleTestRunConfigurationType" factoryName="Google Test" temporary="true" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="mp_os" TARGET_NAME="mp_os_assctv_cntnr_srch_tr_bnr_srch_tr_rb_tr_tests" RUN_TARGET_PROJECT_NAME="mp_os" RUN_TARGET_NAME="mp_os_assctv_cntnr_srch_tr_bnr_srch_tr_rb_tr_tests" TEST_CLASS="redBlackTreePositiveTests" TEST_METHOD="test9" TEST_MODE="SUITE_TEST">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
         <option name="BeforeTestRunTask" enabled="true" />
@@ -369,19 +368,19 @@
       <item itemvalue="Google Test.mp_os_assctv_cntnr_srch_tr_bnr_srch_tr_tests" />
       <item itemvalue="Google Test.mp_os_lggr_clnt_lggr_tests" />
       <item itemvalue="Google Test.mp_os_lggr_srvr_lggr_tests" />
-      <item itemvalue="Google Test.redBlackTreePositiveTests.test3" />
-      <item itemvalue="Google Test.redBlackTreePositiveTests.test4" />
-      <item itemvalue="Google Test.redBlackTreePositiveTests.test5" />
-      <item itemvalue="Google Test.redBlackTreePositiveTests.test6" />
+      <item itemvalue="Google Test.redBlackTreePositiveTests.test10" />
+      <item itemvalue="Google Test.redBlackTreePositiveTests.test11" />
+      <item itemvalue="Google Test.redBlackTreePositiveTests.test8" />
+      <item itemvalue="Google Test.redBlackTreePositiveTests.test9" />
       <item itemvalue="Google Test.redBlackTreePositiveTests.test7" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Google Test.redBlackTreePositiveTests.test8" />
+        <item itemvalue="Google Test.redBlackTreePositiveTests.test9" />
+        <item itemvalue="Google Test.redBlackTreePositiveTests.test10" />
+        <item itemvalue="Google Test.redBlackTreePositiveTests.test11" />
         <item itemvalue="Google Test.redBlackTreePositiveTests.test7" />
-        <item itemvalue="Google Test.redBlackTreePositiveTests.test6" />
-        <item itemvalue="Google Test.redBlackTreePositiveTests.test5" />
-        <item itemvalue="Google Test.redBlackTreePositiveTests.test4" />
-        <item itemvalue="Google Test.redBlackTreePositiveTests.test3" />
       </list>
     </recent_temporary>
   </component>
@@ -397,6 +396,7 @@
       <workItem from="1714901163005" duration="6705000" />
       <workItem from="1714999499284" duration="5483000" />
       <workItem from="1715019355743" duration="11436000" />
+      <workItem from="1715043548034" duration="3669000" />
     </task>
     <servers />
   </component>
