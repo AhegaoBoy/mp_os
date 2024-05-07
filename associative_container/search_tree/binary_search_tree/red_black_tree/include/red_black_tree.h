@@ -150,7 +150,7 @@ private:
                                 change_node_color(current);
                                 change_node_color(grand_parent);
 
-                                path.push(reinterpret_cast<typename binary_search_tree<tkey, tvalue>::node**>(&current));
+                                break;
                             }
 
                             else
@@ -166,7 +166,7 @@ private:
 
                                 change_node_color(parent);
                                 change_node_color(grand_parent);
-                                path.push(reinterpret_cast<typename binary_search_tree<tkey, tvalue>::node**>(&parent));
+                                break;
                             }
                         }
 
@@ -200,6 +200,8 @@ private:
         explicit disposal_template_method(
             red_black_tree<tkey, tvalue> *tree,
             typename binary_search_tree<tkey, tvalue>::disposal_of_nonexistent_key_attempt_strategy disposal_strategy);
+    public:
+        tvalue dispose(tkey const &key) override;
 
     private:
 
@@ -218,98 +220,128 @@ private:
 
         void balance(std::stack<typename binary_search_tree<tkey, tvalue>::node**>& path) override
         {
-            while(!path.empty())
+            node* current = reinterpret_cast<red_black_tree<tkey, tvalue>::node*>(*path.top());
+            path.pop();
+
+            if(!current->right_subtree && !current->left_subtree && is_red(current))
             {
-                node* current = reinterpret_cast<red_black_tree<tkey, tvalue>::node*>(*path.top());
+                    current == (*path.top())->left_subtree ? (*path.top())->left_subtree = nullptr : (*path.top())->right_subtree = nullptr;
+                    allocator::destruct(current);
+                    this->deallocate_with_guard(current);
+            }
 
-                path.pop();
+            else if(!is_red(current) && (!current->left_subtree && current->right_subtree || current->left_subtree && !current->right_subtree))
+            {
+                    node* child = reinterpret_cast<red_black_tree<tkey, tvalue>::node*>(current->right_subtree ? current->right_subtree : current->left_subtree);
 
-                if(!current->right_subtree && !current->left_subtree && is_red(current)) current->color = node_color::BLACK;
+                    this->swap(std::move(current->key), std::move(child->key));
+                    this->swap(std::move(current->value), std::move(child->value));
 
-                else if(!current->left_subtree && !current->right_subtree && !is_red(current))
-                {
-                    bool disposal_node_left = current==(*path.top())->left_subtree ? true : false;
+                    child == current -> left_subtree ? current->left_subtree = nullptr : current->right_subtree = nullptr;
 
-                    node* brother = reinterpret_cast<red_black_tree<tkey, tvalue>::node*>(disposal_node_left ? (*path.top())->right_subtree : (*path.top())->left_subtree);
+                    allocator::destruct(child);
+                    this->deallocate_with_guard(child);
+            }
 
+            else if(!is_red(current) && !current->left_subtree && !current->right_subtree)
+            {
+                    node* parent = reinterpret_cast<red_black_tree<tkey, tvalue>::node*>(*path.top());
+                    typename binary_search_tree<tkey, tvalue>::node* parent_bst = (*path.top());
+                    path.pop();
+
+                    bool is_disposal_node_left =  parent->left_subtree == current ? true : false;
+
+                    node* brother = reinterpret_cast<red_black_tree<tkey, tvalue>::node*>(is_disposal_node_left ? parent->right_subtree : parent->left_subtree);
+
+                    is_disposal_node_left ? parent->left_subtree = nullptr : parent->right_subtree = nullptr;
+                    allocator::destruct(current);
+                    this->deallocate_with_guard(current);
 
                     if(!is_red(brother))
                     {
-                        if(is_red(reinterpret_cast<red_black_tree<tkey, tvalue>::node*>(brother->left_subtree)) ||
-                           is_red(reinterpret_cast<red_black_tree<tkey, tvalue>::node*>(brother->right_subtree)))
+                        if(is_disposal_node_left && !is_red(reinterpret_cast<red_black_tree<tkey, tvalue>::node*>(brother->left_subtree)) && is_red(reinterpret_cast<red_black_tree<tkey, tvalue>::node*>(brother->right_subtree)) || !is_disposal_node_left && !is_red(reinterpret_cast<red_black_tree<tkey, tvalue>::node*>(brother->right_subtree)) && is_red(reinterpret_cast<red_black_tree<tkey, tvalue>::node*>(brother->left_subtree)))
                         {
-                            if(disposal_node_left && is_red(reinterpret_cast<red_black_tree<tkey, tvalue>::node*>(brother->right_subtree)) || !disposal_node_left && is_red(reinterpret_cast<red_black_tree<tkey, tvalue>::node*>(brother->left_subtree)))
-                            {
-                                node* brother_child = disposal_node_left ? reinterpret_cast<red_black_tree<tkey, tvalue>::node*>(brother->right_subtree) : reinterpret_cast<red_black_tree<tkey, tvalue>::node*>(brother->left_subtree);
+                            if(is_red(parent)) brother->color = node_color::RED;
+                            else brother->color = node_color::BLACK;
 
-                                node* new_subtree_root = brother;
+                            node* new_subtree_root = brother;
 
-                                typename binary_search_tree<tkey, tvalue>::node* parent = (*path.top());
-                                path.pop();
+                            node* brother_child = reinterpret_cast<red_black_tree<tkey, tvalue>::node*>(is_disposal_node_left ? brother->right_subtree : brother->left_subtree);
 
-                                disposal_node_left ? this->_tree->small_right_rotation(parent) : this->_tree->small_left_rotation(parent);
+                            is_disposal_node_left ? this->_tree->small_right_rotation(parent_bst) : this->_tree->small_left_rotation(parent_bst);
 
-                                if(!path.empty())
-                                    parent == (*path.top())->left_subtree ? (*path.top())->left_subtree = new_subtree_root : (*path.top())->right_subtree = new_subtree_root;
-                                else *_root = new_subtree_root;
+                            parent->color = node_color::BLACK;
+                            brother_child->color = node_color::BLACK;
 
-                                change_node_color(brother_child);
-                            }
+                            if(!path.empty())
+                                parent == (*path.top())->left_subtree ? (*path.top())->left_subtree = new_subtree_root : (*path.top())->right_subtree = new_subtree_root;
+                            else *_root = new_subtree_root;
 
-                            else if(disposal_node_left && is_red(reinterpret_cast<red_black_tree<tkey, tvalue>::node*>(brother->left_subtree)) && !is_red(reinterpret_cast<red_black_tree<tkey, tvalue>::node*>(brother->right_subtree)) ||
-                                    !disposal_node_left && is_red(reinterpret_cast<red_black_tree<tkey, tvalue>::node*>(brother->right_subtree)) && !is_red(reinterpret_cast<red_black_tree<tkey, tvalue>::node*>(brother->left_subtree)))
-                            {
-                                node* brother_child = disposal_node_left ? reinterpret_cast<red_black_tree<tkey, tvalue>::node*>(brother->left_subtree) : reinterpret_cast<red_black_tree<tkey, tvalue>::node*>(brother->right_subtree);
-
-                                node* new_subtree_root = brother_child;
-
-                                typename binary_search_tree<tkey, tvalue>::node* parent = (*path.top());
-                                path.pop();
-
-                                disposal_node_left ? this->_tree->big_right_rotation(parent) : this->_tree->big_left_rotation(parent);
-
-                                if(!path.empty())
-                                    parent == (*path.top())->left_subtree ? (*path.top())->left_subtree = new_subtree_root : (*path.top())->right_subtree = new_subtree_root;
-                                else *_root = new_subtree_root;
-
-                                reinterpret_cast<red_black_tree<tkey, tvalue>::node*>(parent)->color = node_color::BLACK;
-                                change_node_color(brother_child);
-                            }
-
+                            is_disposal_node_left ? parent->left_subtree = nullptr : parent->right_subtree = nullptr;
+                            allocator::destruct(current);
+                            this->deallocate_with_guard(current);
                         }
 
-                        else
+                        else if(is_disposal_node_left && is_red(reinterpret_cast<red_black_tree<tkey, tvalue>::node*>(brother->left_subtree)) && !is_red(reinterpret_cast<red_black_tree<tkey, tvalue>::node*>(brother->right_subtree)) || !is_disposal_node_left && is_red(reinterpret_cast<red_black_tree<tkey, tvalue>::node*>(brother->right_subtree)) && !is_red(reinterpret_cast<red_black_tree<tkey, tvalue>::node*>(brother->left_subtree)))
+                        {
+
+                            node* brother_child = reinterpret_cast<red_black_tree<tkey, tvalue>::node*>(is_disposal_node_left ? brother->left_subtree : brother->right_subtree);
+
+                            if(is_red(parent)) brother_child->color = node_color::RED;
+                            else brother_child->color = node_color::BLACK;
+
+                            node* new_subtree_root = brother_child;
+
+                            is_disposal_node_left ? this->_tree->big_right_rotation(parent_bst) : this->_tree->big_left_rotation(parent_bst);
+
+                            parent->color = node_color::BLACK;
+                            brother->color = node_color::RED;
+
+                            if(!path.empty())
+                                parent == (*path.top())->left_subtree ? (*path.top())->left_subtree = new_subtree_root : (*path.top())->right_subtree = new_subtree_root;
+                            else *_root = new_subtree_root;
+
+                            is_disposal_node_left ? parent->left_subtree = nullptr : parent->right_subtree = nullptr;
+                            allocator::destruct(current);
+                            this->deallocate_with_guard(current);
+                        }
+
+                        else if(!is_red(reinterpret_cast<red_black_tree<tkey, tvalue>::node*>(brother->left_subtree)) && !is_red(reinterpret_cast<red_black_tree<tkey, tvalue>::node*>(brother->right_subtree)))
                         {
                             change_node_color(brother);
-                            node* parent = reinterpret_cast<red_black_tree<tkey, tvalue>::node*>(*path.top());
+
                             if(is_red(parent))
                             {
-                                parent->color = node_color::BLACK;
-                                break;
+                                change_node_color(parent);
+                                //break;
                             }
-                            else continue;
+                            else
+                            {
+                                //this->_tree->swap(current->)
+                            }
                         }
                     }
+
                     else
                     {
-                        typename binary_search_tree<tkey, tvalue>::node* parent = (*path.top());
-                        path.pop();
+                        change_node_color(parent);
+                        change_node_color(brother);
+
+                        is_disposal_node_left ? this->_tree->small_right_rotation(parent_bst) : this->_tree->small_left_rotation(parent_bst);
 
                         node* new_subtree_root = brother;
-                        disposal_node_left ? this->_tree->small_right_rotation(parent) : this->_tree->small_left_rotation(parent);
 
                         if(!path.empty())
                             parent == (*path.top())->left_subtree ? (*path.top())->left_subtree = new_subtree_root : (*path.top())->right_subtree = new_subtree_root;
                         else *_root = new_subtree_root;
 
-                        node* change_parent_color = reinterpret_cast<red_black_tree<tkey, tvalue>::node*>(parent);
-                        change_node_color(change_parent_color);
-                        change_node_color(brother);
+                        is_disposal_node_left ? parent->left_subtree = nullptr : parent->right_subtree = nullptr;
+                        allocator::destruct(current);
+                        this->deallocate_with_guard(current);
                     }
-                }
             }
-
         }
+
 
     };
 
@@ -403,6 +435,44 @@ red_black_tree<tkey, tvalue>::disposal_template_method::disposal_template_method
     _root(reinterpret_cast<red_black_tree<tkey, tvalue>::node**>(&tree->_root))
 {
 
+}
+
+template<
+        typename tkey,
+        typename tvalue>
+tvalue red_black_tree<tkey, tvalue>::disposal_template_method::dispose(const tkey &key)
+{
+    auto path = this->find_path(key);
+    if((*path.top()) == nullptr)
+    {
+        switch (this->_disposal_strategy)
+        {
+            case binary_search_tree<tkey, tvalue>::disposal_of_nonexistent_key_attempt_strategy::throw_an_exception:
+                throw typename binary_search_tree<tkey, tvalue>::disposal_of_nonexistent_key_attempt_exception(key);
+            case binary_search_tree<tkey, tvalue>::disposal_of_nonexistent_key_attempt_strategy::do_nothing:
+                return tvalue();
+        }
+    }
+
+    if((*path.top())->right_subtree && (*path.top())->right_subtree)
+    {
+        auto *target_to_swap = *(path.top());
+        auto **current = &((*(path.top()))->left_subtree);
+
+        while(*current)
+        {
+            path.push(current);
+            current = &((*current)->right_subtree);
+        }
+
+        this->swap(std::move(target_to_swap->key), std::move((*(path.top()))->key));
+        this->swap(std::move(target_to_swap->value), std::move((*(path.top()))->value));
+    }
+
+    tvalue value = std::move((*(path.top()))->value);
+    this->balance(path);
+
+    return value;
 }
 
 template<

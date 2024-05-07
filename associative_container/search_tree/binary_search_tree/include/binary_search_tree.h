@@ -1782,7 +1782,7 @@ protected:
             public allocator_guardant
     {
 
-    private:
+    protected:
 
         binary_search_tree<tkey, tvalue>::disposal_of_nonexistent_key_attempt_strategy _disposal_strategy;
 
@@ -1800,7 +1800,7 @@ protected:
         void set_disposal_strategy(
                 typename binary_search_tree<tkey, tvalue>::disposal_of_nonexistent_key_attempt_strategy disposal_strategy) noexcept;
 
-    private:
+    protected:
 
         template<
                 typename T>
