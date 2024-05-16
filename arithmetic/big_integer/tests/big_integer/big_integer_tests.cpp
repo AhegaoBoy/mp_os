@@ -85,8 +85,25 @@ TEST(positive_tests, test3)
             },
         });
 
-    big_integer bigint_1("32850346459076457453464575686784654");
+
+
+    big_integer big("1000000000");
+    std::stringstream ss2;
+    ss2<<big;
+    std::cout<<ss2.str()<<std::endl;
+    big_integer bg_2("300000");
+
+    big *= bg_2;
+
+    std::stringstream ss1;
+    ss1<<big;
+    std::cout<<ss1.str()<<std::endl;
+
+    big_integer bigint_1("-32850346459076457453464575686784654");
+
+
     big_integer bigint_2("12342357553253");
+
 
     big_integer result_of_remainder = bigint_1 % bigint_2;
 
