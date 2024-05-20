@@ -53,6 +53,10 @@ private:
             size_t digits_count);
 
     void initialize_from(
+            std::vector<unsigned int> const &digits,
+            size_t digits_count);
+
+    void initialize_from(
             std::string const &value,
             size_t base);
 
@@ -91,7 +95,8 @@ private:
 
     big_integer &change_sign();
     size_t binary_power(size_t number, unsigned int power);
-    std::vector<int> convert_to_base(std::string const & biiiiiiiiiiig_number);
+
+    std::vector<unsigned int> convert_to_base(std::string const & biiiiiiiiiiig_number, size_t base);
 
 public:
 

@@ -85,9 +85,16 @@ TEST(positive_tests, test3)
             },
         });
 
+    unsigned int base = -1;
+    std::cout<<base<<std::endl;
+
+    big_integer tmp("2");
+    big_integer tmp_2("4294967295");
 
 
-    big_integer big("1000000000");
+    tmp *= tmp_2;
+    std::cout<<tmp<<std::endl;
+    big_integer big("100000");
     std::stringstream ss2;
     ss2<<big;
     std::cout<<ss2.str()<<std::endl;

@@ -74,30 +74,9 @@
   <component name="ChangeListManager">
     <list default="true" id="286f9641-db2d-4468-bafd-dd1be35434b8" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeLists.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/arithmetic/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/arithmetic/CMakeLists.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/arithmetic/big_integer/include/big_integer.h" beforeDir="false" afterPath="$PROJECT_DIR$/arithmetic/big_integer/include/big_integer.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/arithmetic/big_integer/src/big_integer.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/arithmetic/big_integer/src/big_integer.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/arithmetic/big_integer/tests/big_integer/big_integer_tests.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/arithmetic/big_integer/tests/big_integer/big_integer_tests.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/arithmetic/big_integer/tests/trivial_division/trivial_division_tests.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/arithmetic/big_integer/tests/trivial_division/trivial_division_tests.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/arithmetic/continued_fraction/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/arithmetic/continued_fraction/CMakeLists.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/associative_container/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/associative_container/CMakeLists.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/associative_container/hash_table/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/associative_container/hash_table/CMakeLists.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/associative_container/search_tree/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/associative_container/search_tree/CMakeLists.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/associative_container/search_tree/binary_search_tree/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/associative_container/search_tree/binary_search_tree/CMakeLists.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/associative_container/search_tree/binary_search_tree/red_black_tree/include/red_black_tree.h" beforeDir="false" afterPath="$PROJECT_DIR$/associative_container/search_tree/binary_search_tree/red_black_tree/include/red_black_tree.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/associative_container/search_tree/binary_search_tree/scapegoat_tree/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/associative_container/search_tree/binary_search_tree/scapegoat_tree/CMakeLists.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/associative_container/search_tree/binary_search_tree/splay_tree/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/associative_container/search_tree/binary_search_tree/splay_tree/CMakeLists.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/associative_container/search_tree/binary_search_tree/splay_tree/tests/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/associative_container/search_tree/binary_search_tree/splay_tree/tests/CMakeLists.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/associative_container/search_tree/indexing_tree/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/associative_container/search_tree/indexing_tree/CMakeLists.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/associative_container/search_tree/indexing_tree/b_plus_tree/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/associative_container/search_tree/indexing_tree/b_plus_tree/CMakeLists.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/associative_container/search_tree/indexing_tree/b_star_plus_tree/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/associative_container/search_tree/indexing_tree/b_star_plus_tree/CMakeLists.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/associative_container/search_tree/indexing_tree/b_star_tree/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/associative_container/search_tree/indexing_tree/b_star_tree/CMakeLists.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/associative_container/search_tree/indexing_tree/b_tree/tests/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/associative_container/search_tree/indexing_tree/b_tree/tests/CMakeLists.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/common/CMakeLists.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/logger/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/logger/CMakeLists.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/logger/server_logger/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/logger/server_logger/CMakeLists.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/logger/server_logger/tests/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/logger/server_logger/tests/CMakeLists.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -111,8 +90,16 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/arithmetic/big_integer/src/big_integer.cpp" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_HOME_DIR$/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/allocator.h" root0="SKIP_INSPECTION" />
+    <setting file="file://$APPLICATION_HOME_DIR$/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/basic_string.h" root0="SKIP_INSPECTION" />
+  </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
   </component>
   <component name="ProjectApplicationVersion">
     <option name="ide" value="CLion" />
@@ -130,10 +117,10 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
-    "CMake Application.mp_os_assctv_cntnr_srch_tr_bnr_srch_tr_rb_tr_tests.executor": "Run",
+    "CMake Application.mp_os_assctv_cntnr_srch_tr_bnr_srch_tr_rb_tr_tests.executor": "Debug",
     "Google Test.positive_tests.test1.executor": "Run",
     "Google Test.positive_tests.test2.executor": "Run",
-    "Google Test.positive_tests.test3.executor": "Debug",
+    "Google Test.positive_tests.test3.executor": "Run",
     "Google Test.positive_tests.test4.executor": "Run",
     "Google Test.positive_tests.test5.executor": "Run",
     "Google Test.positive_tests.test6.executor": "Run",
@@ -153,11 +140,12 @@
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "preferences.keymap",
     "structure.view.defaults.are.configured": "true",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
-  <component name="RunManager" selected="CMake Application.mp_os_assctv_cntnr_srch_tr_bnr_srch_tr_rb_tr_tests">
+  <component name="RunManager" selected="Google Test.positive_tests.test3">
     <configuration name="mp_os_allctr_allctr_bdds_sstm_tests" type="CMakeGoogleTestRunConfigurationType" factoryName="Google Test" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="mp_os" TARGET_NAME="mp_os_allctr_allctr_bdds_sstm_tests" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="mp_os" RUN_TARGET_NAME="mp_os_allctr_allctr_bdds_sstm_tests" TEST_MODE="SUITE_TEST">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
@@ -537,9 +525,9 @@
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Google Test.positive_tests.test3" />
         <item itemvalue="CMake Application.mp_os_assctv_cntnr_srch_tr_bnr_srch_tr_rb_tr_tests" />
         <item itemvalue="CMake Application.mp_os_assctv_cntnr_srch_tr_bnr_srch_tr_AVL_tr_tests" />
-        <item itemvalue="Google Test.positive_tests.test3" />
         <item itemvalue="Google Test.positive_tests.test2" />
         <item itemvalue="Google Test.positive_tests.test1" />
       </list>
@@ -562,6 +550,15 @@
       <workItem from="1715768908292" duration="18452000" />
       <workItem from="1715804863920" duration="2000" />
       <workItem from="1715819576468" duration="3190000" />
+      <workItem from="1715890595560" duration="1978000" />
+      <workItem from="1715915568427" duration="6546000" />
+      <workItem from="1715956709909" duration="7673000" />
+      <workItem from="1716029951066" duration="18318000" />
+      <workItem from="1716119502232" duration="8645000" />
+      <workItem from="1716130431125" duration="378000" />
+      <workItem from="1716150178300" duration="7081000" />
+      <workItem from="1716212581437" duration="456000" />
+      <workItem from="1716234958868" duration="7382000" />
     </task>
     <servers />
   </component>
@@ -578,25 +575,39 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
           <url>file://$PROJECT_DIR$/arithmetic/big_integer/src/big_integer.cpp</url>
-          <line>623</line>
-          <option name="timeStamp" value="9" />
+          <line>507</line>
+          <option name="timeStamp" value="23" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
           <url>file://$PROJECT_DIR$/arithmetic/big_integer/src/big_integer.cpp</url>
-          <line>904</line>
-          <option name="timeStamp" value="15" />
+          <line>612</line>
+          <option name="timeStamp" value="24" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
           <url>file://$PROJECT_DIR$/arithmetic/big_integer/src/big_integer.cpp</url>
-          <line>950</line>
-          <option name="timeStamp" value="20" />
+          <line>173</line>
+          <option name="timeStamp" value="27" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
           <url>file://$PROJECT_DIR$/arithmetic/big_integer/src/big_integer.cpp</url>
-          <line>419</line>
-          <option name="timeStamp" value="22" />
+          <line>162</line>
+          <option name="timeStamp" value="29" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
+          <url>file://$PROJECT_DIR$/arithmetic/big_integer/src/big_integer.cpp</url>
+          <line>111</line>
+          <option name="timeStamp" value="30" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
+          <url>file://$PROJECT_DIR$/arithmetic/big_integer/src/big_integer.cpp</url>
+          <line>1046</line>
+          <option name="timeStamp" value="31" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
   </component>
 </project>
