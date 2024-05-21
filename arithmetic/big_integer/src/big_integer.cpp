@@ -233,8 +233,14 @@ std::vector<unsigned int> big_integer::convert_to_base(std::string const &biiiii
 
     std::vector<unsigned int> result = divide_str_on_int(biiiiiiiiiiig_number, pos ? pos : 0);
 
-    if(result[result.size() - 1] & (1 << (sizeof(unsigned int) << 3 - 1)))
+    if((result[result.size() - 1] & (1 << ((sizeof(unsigned int) << 3) - 1))) != 0)
+    {
+        std::cout<<(result[result.size() - 1] & (1 << ((sizeof(unsigned int) << 3) - 1)))<<std::endl;
         result.push_back(0);
+
+    }
+
+
 
     if(is_negative)
     {
@@ -474,7 +480,7 @@ big_integer &big_integer::operator-=(
         {
              bool need_to_borrow = false;
 
-            std::vector<int> result;
+            std::vector<unsigned int> result;
             for(int i = 0; i < this->get_digits_count(); ++i)
             {
                 auto number_one = this->get_digit(i);
@@ -484,9 +490,10 @@ big_integer &big_integer::operator-=(
 
                 need_to_borrow = number_one < number_two;
 
-                result.push_back(static_cast<int>(operation_result));
+                result.push_back(operation_result);
             }
-            big_integer tmp(result);
+            big_integer tmp("0");
+            tmp.initialize_from(result, result.size());
             *this = std::move(tmp);
 
             return *this;
@@ -547,27 +554,27 @@ big_integer &big_integer::operator*=(
 
         if(i % 2 == 0)
         {
-            auto number = this->get_digit(i);
+            auto number = this->get_digit(i / 2);
             first_number_half = number & mask;
         }
         else
         {
-            auto number = this->get_digit(i - 1);
+            auto number = this->get_digit(i / 2);
             first_number_half = (number >> shift) & mask;
         }
 
         for(int j = 0; j < 2 * size_of_other; ++j)
         {
-            std::vector<int> digits_array;
+            std::vector<unsigned int> digits_array;
             unsigned int second_number_half;
             if(j % 2 == 0)
             {
-                auto number = copied_other.get_digit(j);
+                auto number = copied_other.get_digit(j / 2);
                 second_number_half = number & mask;
             }
             else
             {
-                auto number = copied_other.get_digit(j - 1);
+                auto number = copied_other.get_digit(j / 2);
                 second_number_half = (number >> shift) & mask;
             }
 
@@ -577,7 +584,8 @@ big_integer &big_integer::operator*=(
 
             digits_array.push_back(operation_result % base);
 
-            big_integer multiply_result(digits_array);
+            big_integer multiply_result("0");
+            multiply_result.initialize_from(digits_array, digits_array.size());
 
             multiply_result <<= (shift * (i + j));
             std::cout<<multiply_result<<std::endl;
@@ -586,9 +594,10 @@ big_integer &big_integer::operator*=(
         }
         if(remainder)
         {
-            std::vector<int> remainder_vector(1);
+            std::vector<unsigned int> remainder_vector(1);
             remainder_vector[0] = remainder;
-            big_integer add_remainder(remainder_vector);
+            big_integer add_remainder("0");
+            add_remainder.initialize_from(remainder_vector, remainder_vector.size());
 
 
 
@@ -822,20 +831,22 @@ bool big_integer::operator<(
 
     else
     {
-        if(*this->_other_digits > *other._other_digits) return this->sign() == 1 ? false : true;
-        else if(*this->_other_digits < *other._other_digits) return this->sign() == 1 ? true : false;
+        auto this_digits_count = this->get_digits_count();
+        auto other_digits_count = other.get_digits_count();
+        if(this_digits_count > other_digits_count) return this->sign() == 1 ? false : true;
+        else if(this_digits_count < other_digits_count) return this->sign() == 1 ? true : false;
 
         else
         {
-            int digits_count = *this->_other_digits;
 
-            for(int i = 1; i <= digits_count; ++i)
+
+            for(int i = 1; i < this_digits_count; ++i)
             {
-                if(this->_other_digits[i] == other._other_digits[i]) continue;
+                if(this->get_digit(i) == other.get_digit(i)) continue;
 
-                if(this->_other_digits[i] > other._other_digits[i]) return this->sign()==1 ? false : true;
+                if(this->get_digit(i) > other.get_digit(i)) return this->sign()==1 ? false : true;
 
-                else if(this->_other_digits[i] < other._other_digits[i]) return this->sign() == 1 ? true : false;
+                else if(this->get_digit(i) < other.get_digit(i)) return this->sign() == 1 ? true : false;
 
 
             }

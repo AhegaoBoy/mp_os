@@ -85,28 +85,17 @@ TEST(positive_tests, test3)
             },
         });
 
-    unsigned int base = -1;
-    std::cout<<base<<std::endl;
-
-    big_integer tmp("2");
-    big_integer tmp_2("4294967295");
-
-
-    tmp *= tmp_2;
-    std::cout<<tmp<<std::endl;
-    big_integer big("100000");
-    std::stringstream ss2;
-    ss2<<big;
-    std::cout<<ss2.str()<<std::endl;
+    big_integer big("1000000");
     big_integer bg_2("300000");
 
-    big *= bg_2;
+    bg_2 -= big;
 
     std::stringstream ss1;
-    ss1<<big;
+    ss1<<bg_2;
     std::cout<<ss1.str()<<std::endl;
 
     big_integer bigint_1("-32850346459076457453464575686784654");
+
 
 
     big_integer bigint_2("12342357553253");

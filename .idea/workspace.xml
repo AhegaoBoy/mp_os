@@ -74,7 +74,6 @@
   <component name="ChangeListManager">
     <list default="true" id="286f9641-db2d-4468-bafd-dd1be35434b8" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/arithmetic/big_integer/include/big_integer.h" beforeDir="false" afterPath="$PROJECT_DIR$/arithmetic/big_integer/include/big_integer.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/arithmetic/big_integer/src/big_integer.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/arithmetic/big_integer/src/big_integer.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/arithmetic/big_integer/tests/big_integer/big_integer_tests.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/arithmetic/big_integer/tests/big_integer/big_integer_tests.cpp" afterDir="false" />
     </list>
@@ -120,7 +119,7 @@
     "CMake Application.mp_os_assctv_cntnr_srch_tr_bnr_srch_tr_rb_tr_tests.executor": "Debug",
     "Google Test.positive_tests.test1.executor": "Run",
     "Google Test.positive_tests.test2.executor": "Run",
-    "Google Test.positive_tests.test3.executor": "Run",
+    "Google Test.positive_tests.test3.executor": "Debug",
     "Google Test.positive_tests.test4.executor": "Run",
     "Google Test.positive_tests.test5.executor": "Run",
     "Google Test.positive_tests.test6.executor": "Run",
@@ -559,6 +558,7 @@
       <workItem from="1716150178300" duration="7081000" />
       <workItem from="1716212581437" duration="456000" />
       <workItem from="1716234958868" duration="7382000" />
+      <workItem from="1716244400941" duration="5121000" />
     </task>
     <servers />
   </component>
@@ -575,33 +575,23 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
           <url>file://$PROJECT_DIR$/arithmetic/big_integer/src/big_integer.cpp</url>
-          <line>507</line>
+          <line>514</line>
           <option name="timeStamp" value="23" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
           <url>file://$PROJECT_DIR$/arithmetic/big_integer/src/big_integer.cpp</url>
-          <line>612</line>
+          <line>621</line>
           <option name="timeStamp" value="24" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
           <url>file://$PROJECT_DIR$/arithmetic/big_integer/src/big_integer.cpp</url>
+          <line>439</line>
+          <option name="timeStamp" value="33" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
+          <url>file://$PROJECT_DIR$/arithmetic/big_integer/src/big_integer.cpp</url>
           <line>173</line>
-          <option name="timeStamp" value="27" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
-          <url>file://$PROJECT_DIR$/arithmetic/big_integer/src/big_integer.cpp</url>
-          <line>162</line>
-          <option name="timeStamp" value="29" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
-          <url>file://$PROJECT_DIR$/arithmetic/big_integer/src/big_integer.cpp</url>
-          <line>111</line>
-          <option name="timeStamp" value="30" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
-          <url>file://$PROJECT_DIR$/arithmetic/big_integer/src/big_integer.cpp</url>
-          <line>1046</line>
-          <option name="timeStamp" value="31" />
+          <option name="timeStamp" value="34" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
