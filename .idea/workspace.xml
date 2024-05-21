@@ -72,7 +72,7 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="286f9641-db2d-4468-bafd-dd1be35434b8" name="Changes" comment="">
+    <list default="true" id="ea096b57-01f7-4003-a24a-7ae105dd8e22" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/arithmetic/big_integer/src/big_integer.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/arithmetic/big_integer/src/big_integer.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/arithmetic/big_integer/tests/big_integer/big_integer_tests.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/arithmetic/big_integer/tests/big_integer/big_integer_tests.cpp" afterDir="false" />
@@ -89,48 +89,29 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="HighlightingSettingsPerFile">
-    <setting file="file://$PROJECT_DIR$/arithmetic/big_integer/src/big_integer.cpp" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_HOME_DIR$/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/allocator.h" root0="SKIP_INSPECTION" />
-    <setting file="file://$APPLICATION_HOME_DIR$/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/basic_string.h" root0="SKIP_INSPECTION" />
-  </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
-  </component>
-  <component name="ProblemsViewState">
-    <option name="selectedTabId" value="CurrentFile" />
   </component>
   <component name="ProjectApplicationVersion">
     <option name="ide" value="CLion" />
     <option name="majorVersion" value="2023" />
-    <option name="minorVersion" value="3.4" />
+    <option name="minorVersion" value="2.2" />
   </component>
   <component name="ProjectColorInfo">{
   &quot;customColor&quot;: &quot;&quot;,
   &quot;associatedIndex&quot;: 8
 }</component>
-  <component name="ProjectId" id="2gKj9AmOnjgG5NRhKFwwXg4wx1e" />
+  <component name="ProjectId" id="2gliA2EEkAnU3VAdiSDSk6bjT73" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
-    "CMake Application.mp_os_assctv_cntnr_srch_tr_bnr_srch_tr_rb_tr_tests.executor": "Debug",
-    "Google Test.positive_tests.test1.executor": "Run",
-    "Google Test.positive_tests.test2.executor": "Run",
-    "Google Test.positive_tests.test3.executor": "Debug",
-    "Google Test.positive_tests.test4.executor": "Run",
-    "Google Test.positive_tests.test5.executor": "Run",
-    "Google Test.positive_tests.test6.executor": "Run",
-    "Google Test.positive_tests.test7.executor": "Run",
-    "Google Test.positive_tests.test8.executor": "Run",
-    "Google Test.positive_tests.test9.executor": "Run",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.cidr.known.project.marker": "true",
-    "RunOnceActivity.readMode.enableVisualFormatting": "true",
-    "cf.advertisement.text.has.clang-format": "true",
+    "WebServerToolWindowFactoryState": "false",
     "cf.first.check.clang-format": "false",
     "cidr.known.project.marker": "true",
     "git-widget-placeholder": "main",
@@ -138,8 +119,6 @@
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "preferences.keymap",
     "structure.view.defaults.are.configured": "true",
     "vue.rearranger.settings.migration": "true"
   }
@@ -289,19 +268,7 @@
         <option name="BeforeTestRunTask" enabled="true" />
       </method>
     </configuration>
-    <configuration name="positive_tests.test1" type="CMakeGoogleTestRunConfigurationType" factoryName="Google Test" temporary="true" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="mp_os" TARGET_NAME="mp_os_arthmtc_bg_intgr_tests_bgnt" RUN_TARGET_PROJECT_NAME="mp_os" RUN_TARGET_NAME="mp_os_arthmtc_bg_intgr_tests_bgnt" TEST_CLASS="positive_tests" TEST_METHOD="test1" TEST_MODE="SUITE_TEST">
-      <method v="2">
-        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
-        <option name="BeforeTestRunTask" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="positive_tests.test2" type="CMakeGoogleTestRunConfigurationType" factoryName="Google Test" temporary="true" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="mp_os" TARGET_NAME="mp_os_arthmtc_bg_intgr_tests_bgnt" RUN_TARGET_PROJECT_NAME="mp_os" RUN_TARGET_NAME="mp_os_arthmtc_bg_intgr_tests_bgnt" TEST_CLASS="positive_tests" TEST_METHOD="test2" TEST_MODE="SUITE_TEST">
-      <method v="2">
-        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
-        <option name="BeforeTestRunTask" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="positive_tests.test3" type="CMakeGoogleTestRunConfigurationType" factoryName="Google Test" temporary="true" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="mp_os" TARGET_NAME="mp_os_arthmtc_bg_intgr_tests_bgnt" RUN_TARGET_PROJECT_NAME="mp_os" RUN_TARGET_NAME="mp_os_arthmtc_bg_intgr_tests_bgnt" TEST_CLASS="positive_tests" TEST_METHOD="test3" TEST_MODE="SUITE_TEST">
+    <configuration name="positive_tests.test3" type="CMakeGoogleTestRunConfigurationType" factoryName="Google Test" temporary="true" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="mp_os" TARGET_NAME="mp_os_arthmtc_bg_intgr_tests_bgnt" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="mp_os" RUN_TARGET_NAME="mp_os_arthmtc_bg_intgr_tests_bgnt" TEST_CLASS="positive_tests" TEST_METHOD="test3" TEST_MODE="SUITE_TEST">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
         <option name="BeforeTestRunTask" enabled="true" />
@@ -397,17 +364,7 @@
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
       </method>
     </configuration>
-    <configuration name="mp_os_assctv_cntnr_srch_tr_bnr_srch_tr_AVL_tr_tests" type="CMakeRunConfiguration" factoryName="Application" temporary="true" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="mp_os" TARGET_NAME="mp_os_assctv_cntnr_srch_tr_bnr_srch_tr_AVL_tr_tests" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="mp_os" RUN_TARGET_NAME="mp_os_assctv_cntnr_srch_tr_bnr_srch_tr_AVL_tr_tests">
-      <method v="2">
-        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="mp_os_assctv_cntnr_srch_tr_bnr_srch_tr_rb_tr" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="mp_os" TARGET_NAME="mp_os_assctv_cntnr_srch_tr_bnr_srch_tr_rb_tr" CONFIG_NAME="Debug">
-      <method v="2">
-        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="mp_os_assctv_cntnr_srch_tr_bnr_srch_tr_rb_tr_tests" type="CMakeRunConfiguration" factoryName="Application" temporary="true" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="mp_os" TARGET_NAME="mp_os_assctv_cntnr_srch_tr_bnr_srch_tr_rb_tr_tests" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="mp_os" RUN_TARGET_NAME="mp_os_assctv_cntnr_srch_tr_bnr_srch_tr_rb_tr_tests">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
       </method>
@@ -492,8 +449,6 @@
       <item itemvalue="CMake Application.mp_os_lggr_clnt_lggr" />
       <item itemvalue="CMake Application.mp_os_lggr_lggr" />
       <item itemvalue="CMake Application.mp_os_lggr_srvr_lggr" />
-      <item itemvalue="CMake Application.mp_os_assctv_cntnr_srch_tr_bnr_srch_tr_AVL_tr_tests" />
-      <item itemvalue="CMake Application.mp_os_assctv_cntnr_srch_tr_bnr_srch_tr_rb_tr_tests" />
       <item itemvalue="Google Test.mp_os_allctr_allctr_bndr_tgs_tests" />
       <item itemvalue="Google Test.mp_os_allctr_allctr_bdds_sstm_tests" />
       <item itemvalue="Google Test.mp_os_allctr_allctr_glbl_hp_tests" />
@@ -518,47 +473,24 @@
       <item itemvalue="Google Test.mp_os_assctv_cntnr_srch_tr_indxng_tr_b_tr_tests" />
       <item itemvalue="Google Test.mp_os_lggr_clnt_lggr_tests" />
       <item itemvalue="Google Test.mp_os_lggr_srvr_lggr_tests" />
-      <item itemvalue="Google Test.positive_tests.test1" />
-      <item itemvalue="Google Test.positive_tests.test2" />
       <item itemvalue="Google Test.positive_tests.test3" />
     </list>
     <recent_temporary>
       <list>
         <item itemvalue="Google Test.positive_tests.test3" />
-        <item itemvalue="CMake Application.mp_os_assctv_cntnr_srch_tr_bnr_srch_tr_rb_tr_tests" />
-        <item itemvalue="CMake Application.mp_os_assctv_cntnr_srch_tr_bnr_srch_tr_AVL_tr_tests" />
-        <item itemvalue="Google Test.positive_tests.test2" />
-        <item itemvalue="Google Test.positive_tests.test1" />
       </list>
     </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="286f9641-db2d-4468-bafd-dd1be35434b8" name="Changes" comment="" />
-      <created>1715453010711</created>
+      <changelist id="ea096b57-01f7-4003-a24a-7ae105dd8e22" name="Changes" comment="" />
+      <created>1716278419536</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1715453010711</updated>
-      <workItem from="1715453012179" duration="4701000" />
-      <workItem from="1715503145262" duration="15420000" />
-      <workItem from="1715552876797" duration="3759000" />
-      <workItem from="1715599621124" duration="18754000" />
-      <workItem from="1715629007060" duration="6747000" />
-      <workItem from="1715705503532" duration="13142000" />
-      <workItem from="1715768908292" duration="18452000" />
-      <workItem from="1715804863920" duration="2000" />
-      <workItem from="1715819576468" duration="3190000" />
-      <workItem from="1715890595560" duration="1978000" />
-      <workItem from="1715915568427" duration="6546000" />
-      <workItem from="1715956709909" duration="7673000" />
-      <workItem from="1716029951066" duration="18318000" />
-      <workItem from="1716119502232" duration="8645000" />
-      <workItem from="1716130431125" duration="378000" />
-      <workItem from="1716150178300" duration="7081000" />
-      <workItem from="1716212581437" duration="456000" />
-      <workItem from="1716234958868" duration="7382000" />
-      <workItem from="1716244400941" duration="5121000" />
+      <updated>1716278419536</updated>
+      <workItem from="1716278422258" duration="3088000" />
+      <workItem from="1716282438167" duration="173000" />
     </task>
     <servers />
   </component>
@@ -566,38 +498,20 @@
     <option name="version" value="3" />
   </component>
   <component name="VCPKGProject">
+    <isAutomaticEditVcpkgJson value="false" />
     <isAutomaticCheckingOnLaunch value="false" />
     <isAutomaticFoundErrors value="true" />
-    <isAutomaticReloadCMake value="true" />
+    <isAutomaticFoundErrors value="true" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
           <url>file://$PROJECT_DIR$/arithmetic/big_integer/src/big_integer.cpp</url>
-          <line>514</line>
-          <option name="timeStamp" value="23" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
-          <url>file://$PROJECT_DIR$/arithmetic/big_integer/src/big_integer.cpp</url>
-          <line>621</line>
-          <option name="timeStamp" value="24" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
-          <url>file://$PROJECT_DIR$/arithmetic/big_integer/src/big_integer.cpp</url>
           <line>439</line>
-          <option name="timeStamp" value="33" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
-          <url>file://$PROJECT_DIR$/arithmetic/big_integer/src/big_integer.cpp</url>
-          <line>173</line>
-          <option name="timeStamp" value="34" />
+          <option name="timeStamp" value="1" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
-  </component>
-  <component name="XSLT-Support.FileAssociations.UIState">
-    <expand />
-    <select />
   </component>
 </project>

@@ -85,8 +85,9 @@ TEST(positive_tests, test3)
             },
         });
 
-    big_integer big("1000000");
-    big_integer bg_2("300000");
+    big_integer big("-15000");
+
+    big_integer bg_2("-30000");
 
     bg_2 -= big;
 

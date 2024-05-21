@@ -461,7 +461,22 @@ big_integer &big_integer::operator-=(
     }
     else if(this->sign() == 1 && other.sign() == -1)
     {
-        *this += other;
+        big_integer tmp(other);
+        tmp.change_sign();
+
+        *this += tmp;
+        return *this;
+    }
+
+    else if(this->sign() == -1 && other.sign() == -1)
+    {
+        big_integer tmp(other);
+
+        tmp.change_sign();
+
+        tmp += *this;
+
+        *this = std::move(tmp);
         return *this;
     }
 
@@ -499,6 +514,7 @@ big_integer &big_integer::operator-=(
             return *this;
         }
     }
+
 }
 
 big_integer big_integer::operator-(
@@ -840,7 +856,7 @@ bool big_integer::operator<(
         {
 
 
-            for(int i = 1; i < this_digits_count; ++i)
+            for(int i = 0; i < this_digits_count; ++i)
             {
                 if(this->get_digit(i) == other.get_digit(i)) continue;
 
