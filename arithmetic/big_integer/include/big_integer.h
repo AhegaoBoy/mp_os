@@ -10,33 +10,6 @@
 class big_integer final
 {
 
-public:
-    class division
-    {
-    public:
-        enum division_rule
-        {
-            trivial
-        };
-
-        static void trivial_division(big_integer& dividing_integer, big_integer const& other)
-        {
-            dividing_integer /= other;
-        }
-    };
-
-    class multiplication
-    {
-    public:
-        enum multiplication_rule
-        {
-            trivial
-        };
-    };
-
-
-
-
 private:
 
     void clear();
@@ -94,7 +67,6 @@ private:
 private:
 
     big_integer &change_sign();
-    size_t binary_power(size_t number, unsigned int power);
 
     std::vector<unsigned int> convert_to_base(std::string const & biiiiiiiiiiig_number, size_t base);
 
@@ -134,11 +106,6 @@ public:
             big_integer const &other);
 
     ~big_integer();
-
-public:
-    //static void divide(big_integer& bigInteger1, big_integer bigInteger2, big_integer::division::division_rule divisionRule);
-
-    static  big_integer divide(big_integer& bigInteger1, big_integer bigInteger2, big_integer::division::division_rule divisionRule);
 
 public:
 

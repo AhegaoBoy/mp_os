@@ -146,18 +146,6 @@ big_integer &big_integer::change_sign()
     return *this;
 }
 
-size_t big_integer::binary_power(size_t number, unsigned int power)
-{
-    size_t result = 1;
-
-    while (power)
-    {
-        if(power & 1) result *= number;
-        number*=number;
-        power>>=1;
-    }
-    return result;
-}
 std::vector<unsigned int> big_integer::convert_to_base(std::string const &biiiiiiiiiiig_number, size_t base)
 {
     bool is_negative = false;
@@ -230,7 +218,7 @@ std::vector<unsigned int> big_integer::convert_to_base(std::string const &biiiii
         return result;
     };
 
-    std::vector<unsigned int> result = divide_str_on_int(biiiiiiiiiiig_number, pos ? pos : 0);
+    std::vector<unsigned int> result = divide_str_on_int(biiiiiiiiiiig_number, pos);
 
     if((result[result.size() - 1] & (1 << ((sizeof(unsigned int) << 3) - 1))) != 0)
     {
@@ -309,7 +297,6 @@ big_integer::big_integer(
 big_integer::big_integer(
         std::vector<int> const &digits)
 {
-    // TODO: remove additional zeros
     initialize_from(digits, digits.size());
 }
 
@@ -343,17 +330,6 @@ big_integer::~big_integer()
     clear();
 }
 
-big_integer big_integer::divide(big_integer &bigInteger1, big_integer bigInteger2,
-                         big_integer::division::division_rule divisionRule)
-{
-    switch (divisionRule)
-    {
-        case division::trivial:
-            big_integer::division::trivial_division(bigInteger1, bigInteger2);
-    }
-
-    return bigInteger1;
-}
 
 big_integer &big_integer::operator+=(
         big_integer const &other)
@@ -558,8 +534,6 @@ big_integer &big_integer::operator*=(
 
     int const size_of_this = this->get_digits_count();
     int const size_of_other = copied_other.get_digits_count();
-    unsigned int const max_int = -1;
-    size_t base = static_cast<size_t>(max_int) + 1;
 
     constexpr int shift = sizeof(unsigned int) << 2;
     constexpr unsigned int mask = (1U << shift) - 1;
@@ -670,19 +644,37 @@ big_integer &big_integer::operator/=(
         }
     }
 
-
-/*    {
-        //check if divider is pow of 2
-        big_integer pow("1");
-        int pow_count = 0;
-
-        while(pow < copied_other)
+    if(this->_oldest_digit == 1 && this->_other_digits == nullptr || copied_other._oldest_digit == 1 && copied_other._other_digits ==
+    nullptr)
+    {
+        if(copied_other._oldest_digit == 1 && copied_other._other_digits == nullptr)
         {
-            pow<<=1;
-            pow_count++;
+            if(is_result_negative)
+                this->change_sign();
+
+            return *this;
         }
-        if(pow == copied_other) return *this >>= pow_count;
-    }*/
+    }
+
+    {
+        big_integer tmp(other);
+        big_integer one("1");
+        int shift = 0;
+
+        while((tmp & one) != one)
+        {
+            tmp>>=1;
+            shift++;
+        }
+
+        if(tmp == one)
+        {
+            *this >>= shift;
+            if(is_result_negative)
+                this->change_sign();
+            return *this;
+        }
+    }
 
     auto compare_vectors = [](std::vector<unsigned int> const& vector_1, std::vector<unsigned int> const& vector_2) -> int
     {
@@ -822,8 +814,6 @@ big_integer &big_integer::operator/=(
                     multiplication_result.pop_back();
 
 
-                std::cout<<big_dividend - big_mult_result<<"\t"<<copied_other<<std::endl;
-
                 big_integer remainder = big_dividend - big_mult_result;
 
                 if(remainder >= copied_other)
@@ -832,25 +822,6 @@ big_integer &big_integer::operator/=(
                 }
                 else
                 {
-                    /*result.push_back(static_cast<int>(divide_result));
-                    std::reverse(dividend.begin(), dividend.end());
-                    std::reverse(multiplication_result.begin() ,multiplication_result.end());
-
-                    big_integer number_1("0");
-
-                    if((dividend[dividend.size() - 1] & (1 << ((sizeof(unsigned int) << 3) - 1))) != 0)
-                        dividend.push_back(0);
-
-                    number_1.initialize_from(dividend, dividend.size());
-
-                    big_integer number_2("0");
-                    if((multiplication_result[multiplication_result.size() - 1] & (1 << ((sizeof(unsigned int) << 3) - 1))) != 0)
-                        multiplication_result.push_back(0);
-
-                    number_2.initialize_from(multiplication_result, multiplication_result.size());
-
-                    number_1 -= number_2;
-*/
                     result.push_back(static_cast<int>(divide_result));
                     dividend.clear();
                     if(!remainder.is_equal_to_zero())
@@ -1187,12 +1158,12 @@ big_integer &big_integer::operator&=(
 
     int const new_size = std::min(size_1, size_2);
 
-    int* new_digits = new int[new_size + 1];
-    *new_digits = new_size;
+    std::vector<unsigned int> new_digits;
 
-    for(int i = 1; i <= new_size; ++i)
+
+    for(int i = 0; i < new_size; ++i)
     {
-        new_digits[i] = this->get_digit(i) & other.get_digit(i);
+        new_digits.push_back(this->get_digit(i) & other.get_digit(i));
     }
 
     this->clear();
@@ -1372,7 +1343,53 @@ big_integer big_integer::operator<<(
 big_integer &big_integer::operator>>=(
         size_t shift_value)
 {
-//TODO: SHOULD IMPLEMENT!!!!!!!!!!!!!!
+    if (is_equal_to_zero() || shift_value == 0) {
+        return *this;
+    }
+
+    auto value_sign = sign();
+    if (value_sign == -1) {
+        change_sign();
+    }
+
+    auto const remove_digits_count = shift_value / (sizeof(unsigned int) << 3);
+    shift_value %= (sizeof(unsigned int) << 3);
+
+    if (remove_digits_count > 0) {
+        if (remove_digits_count >= *_other_digits) {
+            delete[] _other_digits;
+            _other_digits = nullptr;
+            _oldest_digit = 0;
+            return *this;
+        }
+
+        auto new_size = *_other_digits - remove_digits_count;
+        unsigned int *new_digits = new unsigned int[new_size + 1];
+        std::memcpy(new_digits + 1, _other_digits + 1 + remove_digits_count, sizeof(unsigned int) * (new_size - 1));
+        *new_digits = new_size;
+        delete[] _other_digits;
+        _other_digits = new_digits;
+    }
+
+    if (shift_value != 0) {
+        unsigned int part_to_move_to_previous_digit = 0;
+        auto const digits_count = get_digits_count();
+        for (auto i = digits_count - 1; i >= 0; --i) {
+            auto *digit_address = i == digits_count - 1
+                                  ? reinterpret_cast<unsigned int *>(&_oldest_digit)
+                                  : _other_digits + 1 + i;
+            unsigned int current_digit = get_digit(i);
+            *(digit_address) >>= shift_value;
+            *(digit_address) |= part_to_move_to_previous_digit;
+            part_to_move_to_previous_digit = (current_digit << ((sizeof(unsigned int) << 3) - shift_value));
+        }
+    }
+
+    if (value_sign == -1) {
+        change_sign();
+    }
+
+    return *this;
 }
 
 big_integer big_integer::operator>>(

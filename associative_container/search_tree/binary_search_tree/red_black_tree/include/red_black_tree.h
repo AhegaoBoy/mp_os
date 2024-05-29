@@ -112,7 +112,7 @@ private:
 
                     node* uncle = reinterpret_cast<red_black_tree<tkey, tvalue>::node*>(parent == grand_parent->right_subtree ? grand_parent->left_subtree : grand_parent->right_subtree);
 
-                    is_uncle_left = uncle == grand_parent->left_subtree ? true : false;
+                    is_uncle_left = uncle == grand_parent->left_subtree;
 
                     if(!is_red(parent))
                     {
@@ -249,7 +249,7 @@ private:
                     typename binary_search_tree<tkey, tvalue>::node* parent_bst = (*path.top());
                     path.pop();
 
-                    bool is_disposal_node_left =  parent->left_subtree == current ? true : false;
+                    bool is_disposal_node_left =  parent->left_subtree;
 
                     node* brother = reinterpret_cast<red_black_tree<tkey, tvalue>::node*>(is_disposal_node_left ? parent->right_subtree : parent->left_subtree);
 
@@ -259,7 +259,8 @@ private:
 
                     if(!is_red(brother))
                     {
-                        if(is_disposal_node_left && !is_red(reinterpret_cast<red_black_tree<tkey, tvalue>::node*>(brother->left_subtree)) && is_red(reinterpret_cast<red_black_tree<tkey, tvalue>::node*>(brother->right_subtree)) || !is_disposal_node_left && !is_red(reinterpret_cast<red_black_tree<tkey, tvalue>::node*>(brother->right_subtree)) && is_red(reinterpret_cast<red_black_tree<tkey, tvalue>::node*>(brother->left_subtree)))
+                        if(is_disposal_node_left && !is_red(reinterpret_cast<red_black_tree<tkey, tvalue>::node*>(brother->left_subtree)) && is_red(reinterpret_cast<red_black_tree<tkey, tvalue>::node*>(brother->right_subtree)) ||
+                        !is_disposal_node_left && !is_red(reinterpret_cast<red_black_tree<tkey, tvalue>::node*>(brother->right_subtree)) && is_red(reinterpret_cast<red_black_tree<tkey, tvalue>::node*>(brother->left_subtree)))
                         {
                             if(is_red(parent)) brother->color = node_color::RED;
                             else brother->color = node_color::BLACK;
@@ -282,7 +283,8 @@ private:
                             this->deallocate_with_guard(current);
                         }
 
-                        else if(is_disposal_node_left && is_red(reinterpret_cast<red_black_tree<tkey, tvalue>::node*>(brother->left_subtree)) && !is_red(reinterpret_cast<red_black_tree<tkey, tvalue>::node*>(brother->right_subtree)) || !is_disposal_node_left && is_red(reinterpret_cast<red_black_tree<tkey, tvalue>::node*>(brother->right_subtree)) && !is_red(reinterpret_cast<red_black_tree<tkey, tvalue>::node*>(brother->left_subtree)))
+                        else if(is_disposal_node_left && is_red(reinterpret_cast<red_black_tree<tkey, tvalue>::node*>(brother->left_subtree)) && !is_red(reinterpret_cast<red_black_tree<tkey, tvalue>::node*>(brother->right_subtree)) ||
+                        !is_disposal_node_left && is_red(reinterpret_cast<red_black_tree<tkey, tvalue>::node*>(brother->right_subtree)) && !is_red(reinterpret_cast<red_black_tree<tkey, tvalue>::node*>(brother->left_subtree)))
                         {
 
                             node* brother_child = reinterpret_cast<red_black_tree<tkey, tvalue>::node*>(is_disposal_node_left ? brother->left_subtree : brother->right_subtree);
@@ -292,10 +294,9 @@ private:
 
                             node* new_subtree_root = brother_child;
 
-                            is_disposal_node_left ? this->_tree->big_right_rotation(parent_bst) : this->_tree->big_left_rotation(parent_bst);
+                            is_disposal_node_left ? this->_tree->big_left_rotation(parent_bst) : this->_tree->big_right_rotation(parent_bst);
 
                             parent->color = node_color::BLACK;
-                            brother->color = node_color::RED;
 
                             if(!path.empty())
                                 parent == (*path.top())->left_subtree ? (*path.top())->left_subtree = new_subtree_root : (*path.top())->right_subtree = new_subtree_root;
@@ -348,6 +349,9 @@ private:
                                 change_node_color(brother);
 
                                 is_disposal_node_left ? parent->left_subtree = nullptr : parent->right_subtree = nullptr;
+
+                                change_node_color(reinterpret_cast<red_black_tree<tkey, tvalue>::node*&>(is_disposal_node_left ? brother->right_subtree : brother->left_subtree));
+
                                 allocator::destruct(current);
                                 this->deallocate_with_guard(current);
                             }
