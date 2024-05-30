@@ -116,18 +116,28 @@ TEST(positive_tests, test5)
                                            },
                                        });
 
+//    big_integer bg1("1");
+//    big_integer bg2("1");
+//
+//    bg1<<= 2048;
+//    bg2<<= 2048;
+//
+//    bg1 *= bg2;
+
+//    std::cout<<bg1<<std::endl;
+
     std::stringstream iss("8062112134235893450865580976575 5224253464575690753458936456445353");
 
     big_integer bigint_1("0");
     big_integer bigint_2("0");
+
     iss >> bigint_1 >> bigint_2;
-    if((std::ostringstream() << bigint_1).str() == "8062112134235893450865580976575" && (std::ostringstream() << bigint_2).str() == "5224253464575690753458936456445353")        std::cout<<1<<std::endl;
 
 
     big_integer::multiply(bigint_1, bigint_2, nullptr, big_integer::multiplication_rule::trivial);
+//    std::cout<<bigint_1<<std::endl;
 
-std::cout<<bigint_1<<std::endl;
-    EXPECT_TRUE((std::ostringstream() << bigint_1).str() == "42118517249079582762848120969952324453639154832768688602860605975");
+    EXPECT_TRUE((std::ostringstream() << bigint_1).str() == "42118517249079582762848121140093507914108386564455992318744711703");
 
     delete logger;
 }

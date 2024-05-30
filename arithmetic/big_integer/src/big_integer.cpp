@@ -478,12 +478,7 @@ big_integer &big_integer::operator-=(
     {
         if(*this < other)
         {
-            big_integer tmp(other);
-            tmp -= *this;
-            *this = std::move(tmp);
-
-            this->change_sign();
-            return *this;
+           dc
         }
         else
         {
