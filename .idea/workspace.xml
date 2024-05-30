@@ -3,9 +3,9 @@
   <component name="AutoImportSettings">
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
-  <component name="CMakePresetLoader"><![CDATA[{
-  "useNewFormat": true
-}]]></component>
+  <component name="CMakePresetLoader">{
+  &quot;useNewFormat&quot;: true
+}</component>
   <component name="CMakeReloadState">
     <option name="reloaded" value="true" />
   </component>
@@ -72,7 +72,7 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7a4a1a05-42cb-4276-9003-747ed795e03b" name="Changes" comment="">
+    <list default="true" id="558a56d4-b6b7-4179-a42d-1cb50396017d" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/arithmetic/big_integer/src/big_integer.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/arithmetic/big_integer/src/big_integer.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/arithmetic/big_integer/tests/trivial_multiplication/trivial_multiplication_tests.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/arithmetic/big_integer/tests/trivial_multiplication/trivial_multiplication_tests.cpp" afterDir="false" />
@@ -89,46 +89,53 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/arithmetic/fraction/src/fraction.cpp" root0="FORCE_HIGHLIGHTING" />
+  </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
   <component name="ProjectApplicationVersion">
     <option name="ide" value="CLion" />
     <option name="majorVersion" value="2023" />
-    <option name="minorVersion" value="2.2" />
+    <option name="minorVersion" value="3.4" />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "customColor": "",
-  "associatedIndex": 8
-}]]></component>
-  <component name="ProjectId" id="2hC0M6yVmcf7G7R69uBQfjsz1EG" />
+  <component name="ProjectColorInfo">{
+  &quot;customColor&quot;: &quot;&quot;,
+  &quot;associatedIndex&quot;: 8
+}</component>
+  <component name="ProjectId" id="2gvgtPT1yPSO458oW7XbdlXLWEb" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "CMake Application.mp_os_arthmtc_bg_intgr_tests_bgnt.executor": "Run",
+    "CMake Application.mp_os_arthmtc_bg_intgr_tests_trvl_dvsn.executor": "Run",
+    "CMake Application.mp_os_arthmtc_bg_intgr_tests_trvl_mltplctn.executor": "Run",
+    "CMake Application.mp_os_assctv_cntnr_srch_tr_bnr_srch_tr_rb_tr_tests.executor": "Run",
+    "Google Test.positive_tests.test1.executor": "Run",
+    "Google Test.positive_tests.test5.executor": "Debug",
+    "Google Test.positive_tests.test6.executor": "Run",
+    "Google Test.positive_tests.test7.executor": "Debug",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.cidr.known.project.marker": "true",
-    "WebServerToolWindowFactoryState": "false",
+    "RunOnceActivity.readMode.enableVisualFormatting": "true",
     "cf.first.check.clang-format": "false",
     "cidr.known.project.marker": "true",
     "git-widget-placeholder": "main",
+    "last_opened_file_path": "A:/mai_stuff/EarBitSky/teamwork",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
-    "structure.view.defaults.are.configured": "true",
+    "nodejs_package_manager_path": "npm",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
-  <component name="RunManager" selected="CMake Application.mp_os_arthmtc_bg_intgr_tests_trvl_mltplctn">
-    <configuration default="true" type="CLionExternalRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true">
-      <method v="2">
-        <option name="CLION.EXTERNAL.BUILD" enabled="true" />
-      </method>
-    </configuration>
+  <component name="RunManager" selected="CMake Application.mp_os_arthmtc_bg_intgr_tests_trvl_dvsn">
     <configuration name="mp_os_allctr_allctr_bdds_sstm_tests" type="CMakeGoogleTestRunConfigurationType" factoryName="Google Test" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="mp_os" TARGET_NAME="mp_os_allctr_allctr_bdds_sstm_tests" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="mp_os" RUN_TARGET_NAME="mp_os_allctr_allctr_bdds_sstm_tests" TEST_MODE="SUITE_TEST">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
@@ -273,19 +280,25 @@
         <option name="BeforeTestRunTask" enabled="true" />
       </method>
     </configuration>
-    <configuration name="positive_tests.test1" type="CMakeGoogleTestRunConfigurationType" factoryName="Google Test" temporary="true" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="mp_os" TARGET_NAME="mp_os_arthmtc_bg_intgr_tests_trvl_mltplctn" RUN_TARGET_PROJECT_NAME="mp_os" RUN_TARGET_NAME="mp_os_arthmtc_bg_intgr_tests_trvl_mltplctn" TEST_CLASS="positive_tests" TEST_METHOD="test1" TEST_MODE="SUITE_TEST">
+    <configuration name="positive_tests.test1" type="CMakeGoogleTestRunConfigurationType" factoryName="Google Test" temporary="true" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="mp_os" TARGET_NAME="mp_os_arthmtc_bg_intgr_tests_bgnt" RUN_TARGET_PROJECT_NAME="mp_os" RUN_TARGET_NAME="mp_os_arthmtc_bg_intgr_tests_bgnt" TEST_CLASS="positive_tests" TEST_METHOD="test1" TEST_MODE="SUITE_TEST">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
         <option name="BeforeTestRunTask" enabled="true" />
       </method>
     </configuration>
-    <configuration name="positive_tests.test5" type="CMakeGoogleTestRunConfigurationType" factoryName="Google Test" temporary="true" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="mp_os" TARGET_NAME="mp_os_arthmtc_bg_intgr_tests_trvl_mltplctn" RUN_TARGET_PROJECT_NAME="mp_os" RUN_TARGET_NAME="mp_os_arthmtc_bg_intgr_tests_trvl_mltplctn" TEST_CLASS="positive_tests" TEST_METHOD="test5" TEST_MODE="SUITE_TEST">
+    <configuration name="positive_tests.test5" type="CMakeGoogleTestRunConfigurationType" factoryName="Google Test" temporary="true" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="mp_os" TARGET_NAME="mp_os_arthmtc_bg_intgr_tests_trvl_mltplctn" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="mp_os" RUN_TARGET_NAME="mp_os_arthmtc_bg_intgr_tests_trvl_mltplctn" TEST_CLASS="positive_tests" TEST_METHOD="test5" TEST_MODE="SUITE_TEST">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
         <option name="BeforeTestRunTask" enabled="true" />
       </method>
     </configuration>
-    <configuration name="positive_tests.test6" type="CMakeGoogleTestRunConfigurationType" factoryName="Google Test" temporary="true" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="mp_os" TARGET_NAME="mp_os_arthmtc_bg_intgr_tests_trvl_mltplctn" RUN_TARGET_PROJECT_NAME="mp_os" RUN_TARGET_NAME="mp_os_arthmtc_bg_intgr_tests_trvl_mltplctn" TEST_CLASS="positive_tests" TEST_METHOD="test6" TEST_MODE="SUITE_TEST">
+    <configuration name="positive_tests.test6" type="CMakeGoogleTestRunConfigurationType" factoryName="Google Test" temporary="true" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="mp_os" TARGET_NAME="mp_os_arthmtc_bg_intgr_tests_trvl_dvsn" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="mp_os" RUN_TARGET_NAME="mp_os_arthmtc_bg_intgr_tests_trvl_dvsn" TEST_CLASS="positive_tests" TEST_METHOD="test6" TEST_MODE="SUITE_TEST">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+        <option name="BeforeTestRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="positive_tests.test7" type="CMakeGoogleTestRunConfigurationType" factoryName="Google Test" temporary="true" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="mp_os" TARGET_NAME="mp_os_arthmtc_bg_intgr_tests_trvl_dvsn" RUN_TARGET_PROJECT_NAME="mp_os" RUN_TARGET_NAME="mp_os_arthmtc_bg_intgr_tests_trvl_dvsn" TEST_CLASS="positive_tests" TEST_METHOD="test7" TEST_MODE="SUITE_TEST">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
         <option name="BeforeTestRunTask" enabled="true" />
@@ -347,11 +360,6 @@
       </method>
     </configuration>
     <configuration name="mp_os_arthmtc_bg_intgr_tests_trvl_dvsn" type="CMakeRunConfiguration" factoryName="Application" temporary="true" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="mp_os" TARGET_NAME="mp_os_arthmtc_bg_intgr_tests_trvl_dvsn" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="mp_os" RUN_TARGET_NAME="mp_os_arthmtc_bg_intgr_tests_trvl_dvsn">
-      <method v="2">
-        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="mp_os_arthmtc_bg_intgr_tests_trvl_mltplctn" type="CMakeRunConfiguration" factoryName="Application" temporary="true" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="mp_os" TARGET_NAME="mp_os_arthmtc_bg_intgr_tests_trvl_mltplctn" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="mp_os" RUN_TARGET_NAME="mp_os_arthmtc_bg_intgr_tests_trvl_mltplctn">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
       </method>
@@ -447,9 +455,13 @@
       </method>
     </configuration>
     <list>
+      <item itemvalue="CMake Application.gmock" />
+      <item itemvalue="CMake Application.gmock_main" />
+      <item itemvalue="CMake Application.gtest" />
+      <item itemvalue="CMake Application.gtest_main" />
       <item itemvalue="CMake Application.mp_os_allctr_allctr" />
-      <item itemvalue="CMake Application.mp_os_allctr_allctr_bndr_tgs" />
       <item itemvalue="CMake Application.mp_os_allctr_allctr_bdds_sstm" />
+      <item itemvalue="CMake Application.mp_os_allctr_allctr_bndr_tgs" />
       <item itemvalue="CMake Application.mp_os_allctr_allctr_glbl_hp" />
       <item itemvalue="CMake Application.mp_os_allctr_allctr_rb_tr" />
       <item itemvalue="CMake Application.mp_os_allctr_allctr_srtd_lst" />
@@ -468,26 +480,21 @@
       <item itemvalue="CMake Application.mp_os_assctv_cntnr_srch_tr_indxng_tr_b_str_pls_tr" />
       <item itemvalue="CMake Application.mp_os_assctv_cntnr_srch_tr_indxng_tr_b_str_tr" />
       <item itemvalue="CMake Application.mp_os_assctv_cntnr_srch_tr_indxng_tr_b_tr" />
-      <item itemvalue="CMake Application.gmock" />
-      <item itemvalue="CMake Application.gmock_main" />
-      <item itemvalue="CMake Application.gtest" />
-      <item itemvalue="CMake Application.gtest_main" />
       <item itemvalue="CMake Application.mp_os_cmmn" />
       <item itemvalue="CMake Application.mp_os_lggr_clnt_lggr" />
       <item itemvalue="CMake Application.mp_os_lggr_lggr" />
       <item itemvalue="CMake Application.mp_os_lggr_srvr_lggr" />
       <item itemvalue="CMake Application.mp_os_arthmtc_bg_intgr_tests_trvl_dvsn" />
-      <item itemvalue="CMake Application.mp_os_arthmtc_bg_intgr_tests_trvl_mltplctn" />
-      <item itemvalue="Google Test.mp_os_allctr_allctr_bndr_tgs_tests" />
       <item itemvalue="Google Test.mp_os_allctr_allctr_bdds_sstm_tests" />
+      <item itemvalue="Google Test.mp_os_allctr_allctr_bndr_tgs_tests" />
       <item itemvalue="Google Test.mp_os_allctr_allctr_glbl_hp_tests" />
       <item itemvalue="Google Test.mp_os_allctr_allctr_rb_tr_tests" />
       <item itemvalue="Google Test.mp_os_allctr_allctr_srtd_lst_tests" />
-      <item itemvalue="Google Test.mp_os_arthmtc_bg_intgr_tests_bgnt" />
       <item itemvalue="Google Test.mp_os_arthmtc_bg_intgr_tests_Burnikel_Ziegler_dvsn" />
       <item itemvalue="Google Test.mp_os_arthmtc_bg_intgr_tests_Karatsuba_mltplctn" />
       <item itemvalue="Google Test.mp_os_arthmtc_bg_intgr_tests_Newton_dvsn" />
       <item itemvalue="Google Test.mp_os_arthmtc_bg_intgr_tests_Schonhage_Strassen_mltplctn" />
+      <item itemvalue="Google Test.mp_os_arthmtc_bg_intgr_tests_bgnt" />
       <item itemvalue="Google Test.mp_os_arthmtc_bg_intgr_tests_trvl_dvsn" />
       <item itemvalue="Google Test.mp_os_arthmtc_bg_intgr_tests_trvl_mltplctn" />
       <item itemvalue="Google Test.mp_os_assctv_cntnr_hsh_tbl_tests" />
@@ -502,15 +509,16 @@
       <item itemvalue="Google Test.mp_os_assctv_cntnr_srch_tr_indxng_tr_b_tr_tests" />
       <item itemvalue="Google Test.mp_os_lggr_clnt_lggr_tests" />
       <item itemvalue="Google Test.mp_os_lggr_srvr_lggr_tests" />
-      <item itemvalue="Google Test.positive_tests.test1" />
       <item itemvalue="Google Test.positive_tests.test5" />
       <item itemvalue="Google Test.positive_tests.test6" />
+      <item itemvalue="Google Test.positive_tests.test7" />
+      <item itemvalue="Google Test.positive_tests.test1" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="CMake Application.mp_os_arthmtc_bg_intgr_tests_trvl_mltplctn" />
-        <item itemvalue="Google Test.positive_tests.test5" />
         <item itemvalue="CMake Application.mp_os_arthmtc_bg_intgr_tests_trvl_dvsn" />
+        <item itemvalue="Google Test.positive_tests.test5" />
+        <item itemvalue="Google Test.positive_tests.test7" />
         <item itemvalue="Google Test.positive_tests.test6" />
         <item itemvalue="Google Test.positive_tests.test1" />
       </list>
@@ -519,12 +527,18 @@
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="7a4a1a05-42cb-4276-9003-747ed795e03b" name="Changes" comment="" />
-      <created>1717082702519</created>
+      <changelist id="558a56d4-b6b7-4179-a42d-1cb50396017d" name="Changes" comment="" />
+      <created>1716583679082</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1717082702519</updated>
-      <workItem from="1717082705317" duration="9088000" />
+      <updated>1716583679082</updated>
+      <workItem from="1716583680756" duration="2391000" />
+      <workItem from="1716624684274" duration="743000" />
+      <workItem from="1716719700054" duration="25000" />
+      <workItem from="1716913198184" duration="2841000" />
+      <workItem from="1716982512096" duration="7263000" />
+      <workItem from="1717023525901" duration="2301000" />
+      <workItem from="1717025891489" duration="1808000" />
     </task>
     <servers />
   </component>
@@ -532,18 +546,22 @@
     <option name="version" value="3" />
   </component>
   <component name="VCPKGProject">
-    <isAutomaticEditVcpkgJson value="false" />
     <isAutomaticCheckingOnLaunch value="false" />
     <isAutomaticFoundErrors value="true" />
-    <isAutomaticFoundErrors value="true" />
+    <isAutomaticReloadCMake value="true" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
           <url>file://$PROJECT_DIR$/arithmetic/big_integer/src/big_integer.cpp</url>
+          <line>637</line>
+          <option name="timeStamp" value="3" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
+          <url>file://$PROJECT_DIR$/arithmetic/big_integer/src/big_integer.cpp</url>
           <line>528</line>
-          <option name="timeStamp" value="1" />
+          <option name="timeStamp" value="4" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

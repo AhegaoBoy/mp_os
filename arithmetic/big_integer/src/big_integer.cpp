@@ -478,11 +478,11 @@ big_integer &big_integer::operator-=(
     {
         if(*this < other)
         {
-           dc
+           return *this = other - *this;
         }
         else
         {
-             bool need_to_borrow = false;
+             bool need_to_borrow = false; //0 or 1
 
             std::vector<unsigned int> result;
             for(int i = 0; i < this->get_digits_count(); ++i)
@@ -490,7 +490,7 @@ big_integer &big_integer::operator-=(
                 auto number_one = this->get_digit(i);
                 auto number_two = i < other.get_digits_count() ? other.get_digit(i) : 0;
 
-                unsigned int operation_result = /*idk this fucking base*/ number_one - (number_two + need_to_borrow);
+                unsigned int operation_result = number_one - number_two - need_to_borrow;
 
                 need_to_borrow = number_one < number_two;
 
@@ -603,6 +603,8 @@ big_integer &big_integer::operator*=(
             multiply_result <<= (shift * (i + j));;
             result += multiply_result;
 
+            std::cout<<result<<" "<<multiply_result<<std::endl;
+
         }
         if(remainder)
         {
@@ -615,6 +617,9 @@ big_integer &big_integer::operator*=(
 
             add_remainder <<= (shift * (2 * size_of_other + i));
             result += add_remainder;
+
+            std::cout<<result<<" "<<add_remainder<<std::endl;
+
         }
     }
 

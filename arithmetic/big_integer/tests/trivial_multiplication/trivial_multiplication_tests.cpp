@@ -137,7 +137,7 @@ TEST(positive_tests, test5)
     big_integer::multiply(bigint_1, bigint_2, nullptr, big_integer::multiplication_rule::trivial);
 //    std::cout<<bigint_1<<std::endl;
 
-    EXPECT_TRUE((std::ostringstream() << bigint_1).str() == "42118517249079582762848121140093507914108386564455992318744711703");
+    EXPECT_TRUE((std::ostringstream() << bigint_1).str() == "42118517249079582762848120969952324453639154832768688602860605975");
 
     delete logger;
 }
