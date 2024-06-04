@@ -44,6 +44,14 @@ TEST(positive_tests, test1)
     big_integer bigint_2("423534596495087569087908753095322");
     big_integer result_of_sum = bigint_1 + bigint_2;
 
+    big_integer bg1("-242");
+
+    big_integer bg2("121");
+
+    big_integer result = big_integer::euclidean_algorithm(bg1, bg2);
+
+    std::cout<<result<<std::endl;
+
 
 
 
@@ -198,6 +206,10 @@ TEST(positive_tests, test8)
                 logger::severity::information
             },
         });
+//    std::cout<<big_integer("3940467042472152277375391128553094203799416680559842321024") / big_integer("2482841961665992469840006678237417515525324775583493805108")<<std::endl;
+    std::cout<<big_integer("703687441776640000000000000000") % big_integer("703687441776640000000000000000")<<std::endl;
+    std::cout<<big_integer("3940467042472152277375391128553094203799416680559842321024") % big_integer("2482841961665992469840006678237417515525324775583493805108")<<std::endl;
+    std::cout<<big_integer::euclidean_algorithm(big_integer("703687441776640000000000000000"), big_integer("c"))<<std::endl;
     
     big_integer bigint_1("4238954354321");
     big_integer bigint_2("423895435432");

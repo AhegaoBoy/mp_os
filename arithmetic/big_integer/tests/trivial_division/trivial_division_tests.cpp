@@ -140,6 +140,10 @@ TEST(positive_tests, test6)
     big_integer bigint_2("2354893245937465784937542389428935349086840957804985309763636567574564");
     big_integer::divide(bigint_1, bigint_2);
 
+    std::cout<<big_integer("4317319086080000000000000000000000000000000000000000")/big_integer("80000000000000000000")<<std::endl;
+
+    std::cout<<bigint_1<<std::endl;
+
     EXPECT_TRUE((std::ostringstream() << bigint_1).str() == "52411");
 
     delete logger;

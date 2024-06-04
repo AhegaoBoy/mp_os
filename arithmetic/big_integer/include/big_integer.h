@@ -211,7 +211,6 @@ private:
     unsigned int *_other_digits;
     allocator* _allocator;
 
-private:
 
 
 private:
@@ -261,11 +260,16 @@ public:
 
     ~big_integer();
 
-private:
+public:
     [[nodiscard]] allocator *get_allocator() const noexcept;
+    void remove_leading_zeros();
 
 
 public:
+
+    static big_integer euclidean_algorithm(
+            big_integer first_number,
+            big_integer second_number);
 
     big_integer &operator+=(
             big_integer const &other);

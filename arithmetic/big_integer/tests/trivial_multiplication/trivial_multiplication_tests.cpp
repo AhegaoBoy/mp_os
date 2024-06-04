@@ -116,16 +116,6 @@ TEST(positive_tests, test5)
                                            },
                                        });
 
-//    big_integer bg1("1");
-//    big_integer bg2("1");
-//
-//    bg1<<= 2048;
-//    bg2<<= 2048;
-//
-//    bg1 *= bg2;
-
-//    std::cout<<bg1<<std::endl;
-
     std::stringstream iss("8062112134235893450865580976575 5224253464575690753458936456445353");
 
     big_integer bigint_1("0");
@@ -133,9 +123,7 @@ TEST(positive_tests, test5)
 
     iss >> bigint_1 >> bigint_2;
 
-
     big_integer::multiply(bigint_1, bigint_2, nullptr, big_integer::multiplication_rule::trivial);
-//    std::cout<<bigint_1<<std::endl;
 
     EXPECT_TRUE((std::ostringstream() << bigint_1).str() == "42118517249079582762848120969952324453639154832768688602860605975");
 

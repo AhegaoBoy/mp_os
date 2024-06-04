@@ -5,7 +5,9 @@ add_subdirectory(tests)
 
 add_library(
         mp_os_arthmtc_frctn
-        src/fraction.cpp)
+        src/fraction.cpp
+        tests/fraction_test.cpp
+        tests/fraction_test.cpp)
 target_include_directories(
         mp_os_arthmtc_frctn
         PUBLIC
