@@ -322,13 +322,15 @@ fraction fraction::sin(
 
     fraction sum(big_integer("0"), big_integer("1"));
     fraction prev_sum = sum;
+    fraction current(big_integer("0"), big_integer("1"));
     size_t n = 0;
     do {
-//            std::cout<<sum<<" "<<prev_sum<<std::endl;
+        std::cout<<n<<std::endl;
         prev_sum = sum;
-        sum += sin_raw(n, *this);
+        current = sin_raw(n, *this);
+        sum += current;
         ++n;
-    } while (abs(sum - prev_sum) >= epsilon && n <= 31);
+    } while (abs(current) >= epsilon && n <= 200);
 
 
     return sum;
@@ -348,16 +350,16 @@ fraction fraction::cos(
 
     fraction sum(big_integer("0"), big_integer("1"));
     fraction prev_sum(sum);
-    fraction element(big_integer("0"), big_integer("1"));
+    fraction current(big_integer("0"), big_integer("1"));
     size_t n = 0;
     do
     {
 
         prev_sum = sum;
-        element = cos_raw(n, *this);
-        sum += element;
+        current = cos_raw(n, *this);
+        sum += current;
         ++n;
-    }while(abs(element) >= epsilon && n <= 50);
+    }while(abs(current) >= epsilon && n <= 200);
 
     return sum;
 }
@@ -442,15 +444,16 @@ fraction fraction::arcsin(
     };
 
     fraction prev_summ = arcsin_raw(0,*this);
-    fraction result = prev_summ + arcsin_raw(1, *this);
-    std::cout<<result<<" "<<prev_summ<<std::endl;
-    size_t iter = 2;
-    while(abs(result - prev_summ) > epsilon && iter <= 30)
-    {
-        std::cout<<result<<" "<<prev_summ<<std::endl;
 
+    fraction current = arcsin_raw(1, *this);
+    fraction result = prev_summ + current;
+
+    size_t iter = 2;
+    while(abs(current) > epsilon && iter <= 200)
+    {
         prev_summ = result;
-        result += arcsin_raw(iter, *this);
+        current = arcsin_raw(iter, *this);
+        result += current;
         iter++;
     }
     return result;
@@ -479,13 +482,16 @@ fraction fraction::arctg(
     };
 
     fraction prev_summ = arctg_raw(0, *this);
-    fraction result = prev_summ + arctg_raw(1, *this);
+
+    fraction current = arctg_raw(1, *this);
+    fraction result = prev_summ + current;
     size_t iter = 2;
 
-    while(abs(result - prev_summ) >= epsilon && iter <= 30)
+    while(abs(current) >= epsilon && iter <= 30)
     {
         prev_summ = result;
-        result += arctg_raw(iter, *this);
+        current = arctg_raw(iter, *this);
+        result += current;
         iter++;
     }
     return result;
@@ -586,7 +592,7 @@ fraction fraction::root(
     int iteration = 1;
 
     fraction precompute = alpha;
-    while (abs(prev) > epsilon && iteration <= 30) {
+    while (abs(prev) > epsilon && iteration <= 100) {
         std::cout<<iteration<<std::endl;
         prev = precompute;
         prev *= copy.pow(iteration);
@@ -608,7 +614,7 @@ fraction fraction::log2(
     fraction const &epsilon) const
 {
     if(this->_numerator.sign() == -1)
-        throw std::logic_error("You cannot calculate logarythm of negative argument");
+        throw std::logic_error("You cannot calculate logarithm of negative argument");
     if(this->_numerator == this->_denominator)
         return fraction(big_integer("0"), big_integer("1"));
 
@@ -646,16 +652,16 @@ fraction fraction::ln(
     };
 
     fraction sum(big_integer("0"), big_integer("1"));
-    fraction term = fraction(big_integer("1"), big_integer("1"));
+    fraction current = fraction(big_integer("1"), big_integer("1"));
     size_t n = 1;
     do {
-        std::cout<<sum<<" "<<term<<std::endl;
-        term = ln_raw(n, z);
-        sum += term;
+//        std::cout<<sum<<" "<<current<<std::endl;
+        current = ln_raw(n, z);
+        sum += current;
         n++;
-    } while (abs(term) >= epsilon && n <= 30);
+    } while (abs(current) >= epsilon && n <= 200);
 
-    if(*this <  fraction(big_integer("1"), big_integer("1")))
+    if(*this > fraction(big_integer("1"), big_integer("1")))
         sum._numerator = std::move(-sum._numerator);
     return sum;
 
@@ -665,7 +671,7 @@ fraction fraction::lg(
     fraction const &epsilon) const
 {
     if(this->_numerator.sign() == -1)
-        throw std::logic_error("You cannot calculate logarythm of negative argument");
+        throw std::logic_error("You cannot calculate logarithm of negative argument");
     if(this->_numerator == this->_denominator)
         return fraction(big_integer("0"), big_integer("1"));
 
